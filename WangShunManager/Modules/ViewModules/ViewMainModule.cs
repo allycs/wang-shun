@@ -10,6 +10,7 @@ namespace WangShunManager.Modules.ViewModules
         public ViewMainModule()
         {
             Get("/main-page", _ => View["main-page"]);
+            Get("/user-table", _ => View["user-table"]);
         }
     }
 }
