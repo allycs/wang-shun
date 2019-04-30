@@ -12,7 +12,8 @@ author email: allycs@126.com
     <meta name="keywords" content="allycs design" />
     <script type="application/x-javascript">
         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-            function hideURLbar(){ window.scrollTo(0,1); } </script>
+            function hideURLbar(){ window.scrollTo(0,1); }
+    </script>
     <!-- //custom-theme -->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/component.css" rel="stylesheet" type="text/css" media="all" />
@@ -28,15 +29,12 @@ author email: allycs@126.com
         <!-- /nav-->
         <div class="allycs_agileits_top_nav">
             <ul id="gn-menu" class="gn-menu-main">
-
                 <!-- //nav_agile_allycs -->
                 <li class="second logo admin" style="float:left;">
-                    <h1><a href="main-page.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Elephant </a></h1>
+                    <h1><a href="main-page"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Elephant </a></h1>
                 </li>
-
             </ul>
             <!-- //nav -->
-
         </div>
         <div class="clearfix"></div>
         <!-- //allycs_agileits_top_nav-->
@@ -44,21 +42,18 @@ author email: allycs@126.com
         <div class="inner_content">
             <!-- /inner_content_allycs_agile_info-->
             <div class="inner_content_allycs_agile_info">
-
-
                 <div class="registration admin_agile">
-
                     <div class="signin-form profile admin">
+                        <div class="alert alert-danger" role="alert" style="display:none;">
+                            <strong>验证不合法!</strong>请在此检查登录的各项参数是否合法。
+                        </div>
                         <h2>管理登录</h2>
                         <div class="login-form">
-                            <form action="login" method="post">
-                                <input type="text" name="name" value="用户账户" required="">
-                                <input type="password" name="password" value="password" required="">
-                                <div class="tp">
-                                    <input type="submit" value="登录">
-                                </div>
-
-                            </form>
+                            <input type="text" name="name" value="用户账户">
+                            <input type="password" name="password" value="aa11bb22">
+                            <div class="tp">
+                                <input type="submit" value="登录">
+                            </div>
                         </div>
                         <div class="login-social-grids admin_allycs">
                             <ul>
@@ -67,13 +62,8 @@ author email: allycs@126.com
                                 <li><a href="#"><i class="fa fa-weibo"></i></a></li>
                             </ul>
                         </div>
-
-                        <h6><a href="main-page.html">返回首页</a><h6>
-
-
+                        <h6><a href="main-page">返回首页</a><h6>
                     </div>
-
-
 
                 </div>
                 <!-- //inner_content_allycs_agile_info-->
@@ -84,109 +74,43 @@ author email: allycs@126.com
         <!--copy rights start here-->
         @Partial['copyrights.html'];
         <!--copy rights end here-->
-        <!-- js -->
+    </div>
+    <!-- js -->
 
-        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-        <script src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
 
-        <script src="js/classie.js"></script>
-        <script src="js/gnmenu.js"></script>
-        <script>
-            new gnMenu(document.getElementById('gn-menu'));
-        </script>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-        <script type="text/javascript">
-            google.maps.event.addDomListener(window, 'load', init);
-            function init() {
-                var mapOptions = {
-                    zoom: 11,
-                    center: new google.maps.LatLng(40.6700, -73.9400),
-                    styles: [{ "featureType": "all", "elementType": "labels.text.fill", "stylers": [{ "saturation": 36 }, { "color": "#000000" }, { "lightness": 40 }] }, { "featureType": "all", "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on" }, { "color": "#000000" }, { "lightness": 16 }] }, { "featureType": "all", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#000000" }, { "lightness": 20 }] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#000000" }, { "lightness": 17 }, { "weight": 1.2 }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 20 }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 21 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#000000" }, { "lightness": 17 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#000000" }, { "lightness": 29 }, { "weight": 0.2 }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 18 }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 16 }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 19 }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#000000" }, { "lightness": 17 }] }]
-                };
-                var mapElement = document.getElementById('map');
-                var map = new google.maps.Map(mapElement, mapOptions);
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(40.6700, -73.9400),
-                    map: map,
-                });
+    <script src="js/classie.js"></script>
+    <!--<script src="js/gnmenu.js"></script>-->
+    <!--<script>
+        new gnMenu(document.getElementById('gn-menu'));
+    </script>-->
+    <!-- //js -->
+    <script src="js/screenfull.js"></script>
+    <script>
+        $(function () {
+            $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+            if (!screenfull.enabled) {
+                return false;
             }
-        </script>
-        <script src="js/prettymaps.js"></script>
-        <script>
 
-            $(function () {
-                //default
-                $('.map-canvas').prettyMaps({
-                    address: 'Melbourne, Australia',
-                    image: 'map-icon.png',
-                    hue: '#FF0000',
-                    saturation: -20
-                });
 
-                //red map example
-                $('#default-map-btn').on('click', function () {
-                    $('.map-canvas').prettyMaps();
-                });
 
-                //green map example
-                $('#green-map-btn').on('click', function () {
-                    $('.map-canvas').prettyMaps({
-                        address: 'Melbourne, Australia',
-                        image: 'map-icon.png',
-                        hue: '#00FF55',
-                        saturation: -30
-                    });
-                });
-
-                //blue map example
-                $('#blue-map-btn').on('click', function () {
-                    $('.map-canvas').prettyMaps({
-                        address: 'Melbourne, Australia',
-                        image: 'map-icon.png',
-                        hue: '#0073FF',
-                        saturation: -30,
-                        zoom: 16,
-                        panControl: true,
-                        zoomControl: true,
-                        mapTypeControl: true,
-                        scaleControl: true,
-                        streetViewControl: true,
-                        overviewMapControl: true,
-                        scrollwheel: false,
-                    });
-                });
-
-                //grey map example
-                $('#grey-map-btn').on('click', function () {
-                    $('.map-canvas').prettyMaps({
-                        address: 'Melbourne, Australia',
-                        image: 'map-icon.png',
-                        saturation: -100,
-                        lightness: 10
-                    });
-                });
+            $('#toggle').click(function () {
+                screenfull.toggle($('#container')[0]);
             });
+        });
+    </script>
+    <script src="js/jquery.nicescroll.js"></script>
+    <script src="js/scripts.js"></script>
 
-        </script>
-        <!-- //js -->
-        <script src="js/screenfull.js"></script>
-        <script>
-            $(function () {
-                $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
-
-                if (!screenfull.enabled) {
-                    return false;
-                }
-
-
-
-                $('#toggle').click(function () {
-                    screenfull.toggle($('#container')[0]);
-                });
-            });
-        </script>
-        <script src="js/jquery.nicescroll.js"></script>
-        <script src="js/scripts.js"></script>
-        <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+    <script src="js/login.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            Login.init();
+        });
+    </script>
 </body>
 </html>

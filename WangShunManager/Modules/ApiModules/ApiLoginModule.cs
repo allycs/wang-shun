@@ -1,8 +1,14 @@
-﻿using Nancy;
+﻿using Flurl;
+using Flurl.Http;
+using Nancy;
+using Nancy.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
+using WangShunManager.Dtos;
+using WangShunManager.Models;
 
 namespace WangShunManager.Modules.ApiModules
 {
@@ -10,7 +16,22 @@ namespace WangShunManager.Modules.ApiModules
     {
         public ApiLoginModule()
         {
-            Post("/login", _ => { return Response.AsRedirect("/main-page"); });
+            Post("/login", _ => DoLoginAsync());
+            Get("/logout")
+        }
+
+        private async Task<Response> DoLoginAsync()
+        {
+            var model = this.Bind<LoginModel>();
+            var result = await "http://vm.tongyun188.com:12009/manager"
+                    .AppendPathSegment("login")
+                    .PostJsonAsync(new
+                    {
+                        LoginId = model.Name,
+                        Password = model.Password
+                    })
+                    .ReceiveJson<LoginDto>().ConfigureAwait(false);
+            return Response.AsJson(result);
         }
     }
 }
