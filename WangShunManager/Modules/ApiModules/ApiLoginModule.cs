@@ -17,7 +17,6 @@ namespace WangShunManager.Modules.ApiModules
         public ApiLoginModule()
         {
             Post("/login", _ => DoLoginAsync());
-            Get("/logout")
         }
 
         private async Task<Response> DoLoginAsync()
@@ -30,7 +29,7 @@ namespace WangShunManager.Modules.ApiModules
                         LoginId = model.Name,
                         Password = model.Password
                     })
-                    .ReceiveJson<LoginDto>().ConfigureAwait(false);
+                    .ReceiveJson<ResponseDto<LoginDataDto>>().ConfigureAwait(false);
             return Response.AsJson(result);
         }
     }

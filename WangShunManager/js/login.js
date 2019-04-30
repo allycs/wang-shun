@@ -24,7 +24,7 @@ var Login = function () {
                         return;
                     }
                     localStorage.clear();
-                    localStorage.setItem('UserInfo', (JSON.stringify(result.data)));
+                    localStorage.setItem('UserInfo',(JSON.stringify(result.data)));
                     self.location = "/main-page";
                 },
                 error: function (data) {
@@ -34,14 +34,12 @@ var Login = function () {
                 }
             });
             return false;
-        };
+        }
     };
 
     return {
         init: function () {
             handleLogin();
         }
-
     };
-
 }();

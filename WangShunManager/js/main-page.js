@@ -34,14 +34,13 @@ var Main_Page = function () {
                 }
             });
             return false;
-        };
+        }
     };
 
     return {
         init: function () {
             handleMain();
         }
-
     };
 
 }();

@@ -5,18 +5,15 @@ using System.Web;
 
 namespace WangShunManager.Dtos
 {
-    public class LoginDto
-    {
-        public int State { get; set; }
-        public string Message { get; set; }
-        public Data Data { get; set; }
-    }
-    public class Data
+    public class UserRowDto
     {
         public int Id { get; set; }
         public string LoginId { get; set; }
         public string RealName { get; set; }
         public string CompanyName { get; set; }
+        public int UsableBalance { get; set; }
+        public int FreezeBalance { get; set; }
+        public int CreditAmount { get; set; }
         public string CompanyAddress { get; set; }
         public string ContactQq { get; set; }
         public string Email { get; set; }
