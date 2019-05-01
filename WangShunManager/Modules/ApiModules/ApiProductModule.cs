@@ -12,20 +12,20 @@ using WangShunManager.Models;
 
 namespace WangShunManager.Modules.ApiModules
 {
-    public class ApiUserModule : BaseModule
+    public class ApiProductModule : BaseModule
     {
-        public ApiUserModule()
+        public ApiProductModule()
         {
-            Get("/users", _ => GetUsersAsync());
+            Get("/products", _ => GetProductsAsync());
         }
 
-        private async Task<Response> GetUsersAsync()
+        private async Task<Response> GetProductsAsync()
         {
             var model = this.Bind<UsersModel>();
             if (model.Id == null && string.IsNullOrWhiteSpace(model.Loginid) && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
-                      .AppendPathSegment("GetUserList")
+                      .AppendPathSegment("GetPreCardProductList")
                       .PostJsonAsync(new { model.PageIndex, model.PageSize })
                       .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
@@ -33,7 +33,7 @@ namespace WangShunManager.Modules.ApiModules
             if (model.Id == null && string.IsNullOrWhiteSpace(model.Loginid))
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
-                   .AppendPathSegment("GetUserList")
+                   .AppendPathSegment("GetPreCardProductList")
                    .PostJsonAsync(new { model.PageIndex,model.PageSize,model.State})
                    .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
@@ -41,7 +41,7 @@ namespace WangShunManager.Modules.ApiModules
             if (model.Id == null && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
-                  .AppendPathSegment("GetUserList")
+                  .AppendPathSegment("GetPreCardProductList")
                   .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Loginid })
                   .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
@@ -49,15 +49,16 @@ namespace WangShunManager.Modules.ApiModules
             if (string.IsNullOrWhiteSpace(model.Loginid) && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
-                  .AppendPathSegment("GetUserList")
+                  .AppendPathSegment("GetPreCardProductList")
                   .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Id })
                   .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
+           
             if (model.Id == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
-                      .AppendPathSegment("GetUserList")
+                      .AppendPathSegment("GetPreCardProductList")
                       .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Loginid,model.State })
                       .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
@@ -65,7 +66,7 @@ namespace WangShunManager.Modules.ApiModules
             if (model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
-                      .AppendPathSegment("GetUserList")
+                      .AppendPathSegment("GetPreCardProductList")
                       .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Loginid, model.Id })
                       .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
@@ -73,14 +74,14 @@ namespace WangShunManager.Modules.ApiModules
             if (string.IsNullOrWhiteSpace(model.Loginid))
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
-                      .AppendPathSegment("GetUserList")
+                      .AppendPathSegment("GetPreCardProductList")
                       .PostJsonAsync(new { model.PageIndex, model.PageSize, model.State, model.Id })
                       .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
              
             return Response.AsJson(await "http://vm.tongyun188.com:12009/manager"
-                    .AppendPathSegment("GetUserList")
+                    .AppendPathSegment("GetPreCardProductList")
                     .PostJsonAsync(model)
                     .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false));
         }

@@ -11,6 +11,7 @@ namespace WangShunManager.Modules.ViewModules
         {
             Get("/main-page", _ => View["main-page"]);
             Get("/user-table", _ => View["user-table"]);
+            Get("/product-table", _ => View["user-table"]);
         }
     }
 }

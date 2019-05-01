@@ -12,7 +12,7 @@
         <div class="allycs_agileits_breadcrumbs_inner">
             <ul>
                 @Partial['breadcrumbs_main-page.html'];
-                <li>会员管理<span>«</span>会员列表</li>
+                <li>产品管理<span>«</span>产品列表</li>
             </ul>
         </div>
     </div>
@@ -27,27 +27,23 @@
                 <strong>数据请求存在错误!</strong>请再次检查请求的各项参数是否合法。
             </div>
             <div class="allycs-table-info agile_info_shadow">
-                <h3 class="allycs_inner_tittle two">会员信息列表</h3>
+                <h3 class="allycs_inner_tittle two">产品信息列表</h3>
                 <table id="table">
                     <thead>
                         <tr>
                             <th>主键</th>
-                            <th>登录索引</th>
-                            <th>真实姓名</th>
-                            <th>公司名称</th>
-                            <th>公司地址</th>
-                            <th>联系 Q Q</th>
-                            <th>联系邮箱</th>
-                            <th>账号管理员</th>
-                            <th>备注</th>
-                            <th>是否删除</th>
-                            <th>用户状态</th>
-                            <th>账号类型</th>
+                            <th>产品名称</th>
+                            <th>产品类目</th>
+                            <th>产品面值</th>
+                            <th>状态</th>
+                            <th>最高售价</th>
+                            <th>最低售价</th>
+                            <th>最高折扣</th>
+                            <th>最低折扣</th>
                             <th>操作</th>
                         </tr>
                     </thead>
-                    <tbody id="user_table">
-                       
+                    <tbody id="product_table">
                     </tbody>
                 </table>
             </div>
@@ -63,11 +59,11 @@
 @Section['page_script']
 <!-- tables -->
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
-<script src="js/user-table.js"></script>
+<script src="js/product-table.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#table').basictable();
-        User_Table.init();
+        Product_Table.init();
     });
 </script>
 @EndSection

@@ -1,11 +1,11 @@
-﻿var User_Table = function () {
+﻿var Product_Table = function () {
     var handleUser = function () {
         var userInfo = localStorage.UserInfo;
         console.log(userInfo);
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: "/users",
+            url: "/products",
             data: { PageIndex: 1, PageSize: 50 },
             success: function (result) {
                 console.log(result);
@@ -26,25 +26,20 @@
                     tableHtml +=
                     '<tr>' +
                         '<td>'+items[i].id+'</td>' +
-                        '<td>' + items[i].loginId +'</td>' +
-                        '<td>' + items[i].realName +'</td>' +
-                        '<td>' + items[i].companyName +'</td>' +
-                        '<td>' + items[i].companyAddress +'</td>' +
-                        '<td>' + items[i].contactQq +'</td>' +
-                        '<td>' + items[i].email +'</td>' +
-                        '<td>' + items[i].accountManager +'</td>' +
-                        '<td>' + items[i].remark +'</td>' +
-                        '<td>' + items[i].isDel +'</td>' +
-                        '<td>' + items[i].userInfoState +'</td>' +
-                        '<td>' + items[i].accountType +'</td>' + 
+                        '<td>' + items[i].productName +'</td>' +
+                        '<td>' + items[i].categoryId +'</td>' +
+                        '<td>' + items[i].parValue +'</td>' +
+                        '<td>' + items[i].state +'</td>' +
+                        '<td>' + items[i].maxPrice +'</td>' +
+                        '<td>' + items[i].minPrice +'</td>' +
+                        '<td>' + items[i].maxDiscount +'</td>' +
+                        '<td>' + items[i].minDiscount +'</td>' +
                         '<td>' +
-                        '<button type="button" class="btn btn-info">查看</button>' +
-                        '<button type="button" class="btn btn-warning">修改</button>' +
-                        '<button type="button" class="btn btn-danger">删除</button>' +
+                        '<button type="button" class="btn btn-warning">上下架</button>' +
                         '</td>' +
                      '</tr>';
                 }
-                $('#user_table').html(tableHtml);
+                $('#product_table').html(tableHtml);
             },
             error: function (data) {
                 $('.alert').html("网络异常请联系管理员!");
