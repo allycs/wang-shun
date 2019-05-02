@@ -1,0 +1,73 @@
+﻿@Master['master.html']
+
+@Section['page_style']
+<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+<link rel="stylesheet" type="text/css" href="css/basictable.css" />
+@EndSection
+@Section['Content']
+<div class="inner_content">
+    <!-- /inner_content_allycs_agile_info-->
+    <!-- breadcrumbs -->
+    <div class="allycs_agileits_breadcrumbs">
+        <div class="allycs_agileits_breadcrumbs_inner">
+            <ul>
+                @Partial['breadcrumbs_main-page.html'];
+                <li>财务管理<span>«</span>资金明细列表</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+
+    <div class="inner_content_allycs_agile_info two_in">
+
+        <!-- tables -->
+
+        <div class="agile-tables">
+            <div class="alert alert-danger" role="alert" style="display:none;">
+                <strong>数据请求存在错误!</strong>请再次检查请求的各项参数是否合法。
+            </div>
+            <div class="allycs-table-info agile_info_shadow">
+                <h3 class="allycs_inner_tittle two">资金明细列表</h3>
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th>主键</th>
+                            <th>登录索引</th>
+                            <th>真实姓名</th>
+                            <th>公司名称</th>
+                            <th>公司地址</th>
+                            <th>联系 Q Q</th>
+                            <th>联系邮箱</th>
+                            <th>账号管理员</th>
+                            <th>备注</th>
+                            <th>是否删除</th>
+                            <th>用户状态</th>
+                            <th>账号类型</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user_table">
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- //tables -->
+        <!-- /social_media-->
+        @Partial['social_media_allycs.html'];
+        <!-- //social_media-->
+    </div>
+    <!-- //inner_content_allycs_agile_info-->
+</div>
+@EndSection
+@Section['page_script']
+<!-- tables -->
+<script type="text/javascript" src="js/jquery.basictable.min.js"></script>
+<script src="js/user-table.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#table').basictable();
+        User_Table.init();
+    });
+</script>
+@EndSection

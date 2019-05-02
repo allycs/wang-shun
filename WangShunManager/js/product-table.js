@@ -1,12 +1,11 @@
 ﻿var Product_Table = function () {
     var handleUser = function () {
         var userInfo = localStorage.UserInfo;
-        console.log(userInfo);
         $.ajax({
             type: "GET",
             dataType: "json",
             url: "/products",
-            data: { PageIndex: 1, PageSize: 50 },
+            data: { PageIndex: 1, PageSize: 30 },
             success: function (result) {
                 console.log(result);
                 if (result.state != 0) {

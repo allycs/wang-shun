@@ -15,19 +15,19 @@
                 <li>
                     <a href="#">
 
-                        <i class="fa fa-building-o" aria-hidden="true"></i>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         <div class="ca-content">
-                            <h4 class="ca-main">16,808</h4>
-                            <h3 class="ca-sub">New Companies</h3>
+                            <h4 class="ca-main" id="product_count">--</h4>
+                            <h3 class="ca-sub">产品总数</h3>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <i class="fa fa-users" aria-hidden="true"></i>
                         <div class="ca-content">
-                            <h4 class="ca-main one">26,808</h4>
-                            <h3 class="ca-sub one">New Clients</h3>
+                            <h4 class="ca-main one" id="user_count">--</h4>
+                            <h3 class="ca-sub one">用户总数</h3>
                         </div>
                     </a>
                 </li>
@@ -96,7 +96,6 @@
                     <div class="main-example">
                         <div class="clock"></div>
                         <div class="message"></div>
-
                     </div>
                 </div>
             </div>
@@ -578,7 +577,7 @@
 
 @Section['page_script']
 <!-- /circle-->
-<script type="text/javascript" src="js/circles.js"></script>
+<!--<script type="text/javascript" src="js/circles.js"></script>
 <script>
     var colors = [
         ['#ffffff', '#fd9426'], ['#ffffff', '#fc3158'], ['#ffffff', '#53d769'], ['#ffffff', '#147efb']
@@ -598,7 +597,7 @@
         });
     }
 
-</script>
+</script>-->
 <!-- //circle -->
 <!--skycons-icons-->
 <script src="js/skycons.js"></script>
@@ -632,14 +631,14 @@
 <script type="text/javascript">
     var clock;
     $(document).ready(function () {
-
+        var countdown = new Date().getTime();
         clock = $('.clock').FlipClock({
             clockFace: 'HourlyCounter'
         });
     });
 </script>
 <script src="js/bars.js"></script>
-
+<script src="js/main-page.js"></script>
 <script>
     jQuery(document).ready(function () {
         Main_Page.init();

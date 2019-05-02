@@ -283,7 +283,19 @@
     <Content Include="js\control-page.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="js\common.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="js\product-table.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="js\sale-customer-table.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="js\sale-table.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="js\user-table - 复制.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="js\user-table.js">
@@ -383,7 +395,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\ViewLogin\login.html" />
+    <Content Include="Views\ViewMain\sale-table.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\ViewMain\sale-customer-table.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\ViewMain\product-table.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\ViewMain\capital-details-table.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\ViewMain\user-table.html">
@@ -397,13 +418,24 @@
     </Compile>
     <Compile Include="Dtos\LoginDataDto.cs" />
     <Compile Include="Dtos\PageDataDto.cs" />
+    <Compile Include="Dtos\ProductDto.cs" />
+    <Compile Include="Dtos\ProductRowDto.cs" />
     <Compile Include="Dtos\ResponseDto.cs" />
+    <Compile Include="Dtos\SaleCustomerRowDto.cs" />
+    <Compile Include="Dtos\SaleRowDto.cs" />
+    <Compile Include="Dtos\CapitalDetailsRowDto.cs" />
     <Compile Include="Dtos\UserRowDto.cs" />
     <Compile Include="Models\BasePagesModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\SalesCustomerModel.cs" />
+    <Compile Include="Models\ProductsModel.cs" />
+    <Compile Include="Models\SalesModel.cs" />
+    <Compile Include="Models\CapitalDetailsModel.cs" />
     <Compile Include="Models\UsersModel.cs" />
+    <Compile Include="Modules\ApiModules\ApiCapitalDetailsModule.cs" />
     <Compile Include="Modules\ApiModules\ApiLoginModule.cs" />
     <Compile Include="Modules\ApiModules\ApiProductModule.cs" />
+    <Compile Include="Modules\ApiModules\ApiSaleModule.cs" />
     <Compile Include="Modules\ApiModules\ApiUserModule.cs" />
     <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\ViewModules\ViewLoginModule.cs" />

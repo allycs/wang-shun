@@ -5,10 +5,10 @@ using System.Web;
 
 namespace WangShunManager.Models
 {
-    public class UsersModel : BasePagesModel
+    public class SalesModel:BasePagesModel
     {
-        public int? Id { get; set; }
-        public string Loginid { get; set; }
+        public int? CategoryId { get; set; }
+        public decimal? ParValue { get; set; }
         public int? State { get; set; }
     }
 }

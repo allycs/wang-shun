@@ -5,6 +5,7 @@
         public ViewLoginModule()
         {
             Get("/login", _ => View["login"]);
+            Get("/", _ => View["login"]);
         }
     }
 }
