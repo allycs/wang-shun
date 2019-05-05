@@ -44,6 +44,10 @@ var Main_Page = function () {
                 return;
             }
         });
+        setTimeout(function () {
+
+            $("a[title='JavaScript charts']").remove();
+        }, 700);
     };
 
     return {
