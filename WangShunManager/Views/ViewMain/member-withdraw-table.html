@@ -1,0 +1,73 @@
+﻿@Master['master.html']
+
+@Section['page_style']
+<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+<link rel="stylesheet" type="text/css" href="css/basictable.css" />
+@EndSection
+@Section['Content']
+<div class="inner_content">
+    <!-- /inner_content_allycs_agile_info-->
+    <!-- breadcrumbs -->
+    <div class="allycs_agileits_breadcrumbs">
+        <div class="allycs_agileits_breadcrumbs_inner">
+            <ul>
+                @Partial['breadcrumbs_main-page.html'];
+                <li>财务管理<span>«</span>会员提现列表</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //breadcrumbs -->
+
+    <div class="inner_content_allycs_agile_info two_in">
+
+        <!-- tables -->
+
+        <div class="agile-tables">
+            <div class="alert alert-danger" role="alert" style="display:none;">
+                <strong>数据请求存在错误!</strong>请再次检查请求的各项参数是否合法。
+            </div>
+            <div class="allycs-table-info agile_info_shadow">
+                <h3 class="allycs_inner_tittle two">会员提现列表</h3>
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th>用户主键</th>
+                            <th>会员编号</th>
+                            <th>申请结算金额</th>
+                            <th>审核状态</th>
+                            <th>备注说明</th>
+                            <th>创建时间</th>
+                            <th>处理时间</th>
+                            <th>结算流水</th>
+                            <th>结算通道</th>
+                            <th>账户持有人</th>
+                            <th>账户号</th>
+                            <th>备注</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="member_withdraw_table">
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- //tables -->
+        <!-- /social_media-->
+        @Partial['social_media_allycs.html'];
+        <!-- //social_media-->
+    </div>
+    <!-- //inner_content_allycs_agile_info-->
+</div>
+@EndSection
+@Section['page_script']
+<!-- tables -->
+<script type="text/javascript" src="js/jquery.basictable.min.js"></script>
+<script src="js/member-withdraw-table.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#table').basictable();
+        Member_Withdraw_Table.init();
+    });
+</script>
+@EndSection
