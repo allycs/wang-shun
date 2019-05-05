@@ -69,7 +69,7 @@
             <div class="col-md-4 profile-main">
                 <div class="profile_bg_agile">
                     <div class="profile-pic wthree">
-                        <h2>allycs@126.com</h2>
+                        <h2>王顺</h2>
                         <img src="images/profile.jpg" alt="Image">
                         <p>网站设计者</p>
                     </div>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="allycs_social_icons allycs_social_icons1">
                             <ul>
-                                <li><a href="tencent://message/?uin=41585493&amp;Site=有事Q我&amp;Menu=yes" class="facebook"><i class="fa fa-qq" aria-hidden="true"></i></a></li>
+                                <li><a href="tencent://message/?uin=304143368&amp;Site=有事Q我&amp;Menu=yes" class="facebook"><i class="fa fa-qq" aria-hidden="true"></i></a></li>
                                 <li><a href="#" class="twitter"><i class="fa fa-wechat" aria-hidden="true"></i></a></li>
                                 <li><a href="#" class="google_plus"><i class="fa fa-weibo" aria-hidden="true"></i></a></li>
                             </ul>
@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div class="col-md-8 allycs_agile_cylinder chart agile_info_shadow" style="padding:0em;">
-                <h3 class="allycs_inner_tittle two"> Cylinder chart</h3>
+                <h3 class="allycs_inner_tittle two">数据直观图</h3>
                 <div id="chartdiv" style="height:396px;"></div>
             </div>
 
@@ -123,67 +123,7 @@
 <script src="js/serial.js"></script>
 <!--<script src="js/export.js"></script>-->
 <script src="js/light.js"></script>
-<!-- Chart code -->
-<script>
-    var chart = AmCharts.makeChart("chartdiv", {
-        "theme": "light",
-        "type": "serial",
-        "startDuration": 2,
-        "dataProvider": [{
-            "country": "卡密数",
-            "visits": 1000,
-            "color": "#FF0F00"
-        }, {
-            "country": "卡密出库总数",
-            "visits": 400,
-            "color": "#FF6600"
-        }, {
-            "country": "用户提现总数",
-            "visits": 1000,
-            "color": "#FF9E01"
-        }, {
-            "country": "产品数",
-            "visits": 200,
-            "color": "#FCD202"
-        }, {
-            "country": "用户数",
-            "visits": 3,
-            "color": "#F8FF01"
-        }],
-        "valueAxes": [{
-            "position": "left",
-            "axisAlpha": 0,
-            "gridAlpha": 0
-        }],
-        "graphs": [{
-            "balloonText": "[[category]]: <b>[[value]]</b>",
-            "colorField": "color",
-            "fillAlphas": 0.85,
-            "lineAlpha": 0.1,
-            "type": "column",
-            "topRadius": 1,
-            "valueField": "visits"
-        }],
-        "depth3D": 40,
-        "angle": 30,
-        "chartCursor": {
-            "categoryBalloonEnabled": false,
-            "cursorAlpha": 0,
-            "zoomable": false
-        },
-        "categoryField": "country",
-        "categoryAxis": {
-            "gridPosition": "start",
-            "axisAlpha": 0,
-            "gridAlpha": 0
 
-        },
-        "export": {
-            "enabled": true
-        }
-
-    }, 0);
-</script>
 
 <!-- //amcharts -->
 <script src="js/Chart.min.js"></script>

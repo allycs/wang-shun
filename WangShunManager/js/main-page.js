@@ -1,22 +1,26 @@
-var Main_Page = function () {
+ï»¿var Main_Page = function () {
     var handleMain = function () {
+        var userCount = 0;
+        var productCount = 0;
         $.ajax({
             type: "GET",
             dataType: "json",
+            async: false, 
             url: "/users",
             data: { PageIndex: 1, PageSize: 30 },
             success: function (result) {
                 if (result.state != 0) {
-                    if (result.message == 'ÇëÖØĞÂµÇÂ¼') { window.location.href = '/login'; }
+                    if (result.message == 'è¯·é‡æ–°ç™»å½•') { window.location.href = '/login'; }
                     $('.alert strong').html(result.message + "!");
                     $('.alert').show();
                     return;
                 }
                 total = result.data.total;
-                $('#user_count').html(total)
+                userCount = total;
+                $('#user_count').html(total);
             },
             error: function (data) {
-                $('.alert').html("ÍøÂçÒì³£ÇëÁªÏµ¹ÜÀíÔ±!");
+                $('.alert').html("ç½‘ç»œå¼‚å¸¸è¯·è”ç³»ç®¡ç†å‘˜!");
                 $('.alert').show();
                 return;
             }
@@ -24,28 +28,87 @@ var Main_Page = function () {
         $.ajax({
             type: "GET",
             dataType: "json",
+            async: false, 
             url: "/products",
             data: { PageIndex: 1, PageSize: 30 },
             success: function (result) {
                 console.log(result);
                 if (result.state != 0) {
-                    if (result.message == 'ÇëÖØĞÂµÇÂ¼') { window.location.href = '/login'; }
+                    if (result.message == 'è¯·é‡æ–°ç™»å½•') { window.location.href = '/login'; }
                     $('.alert strong').html(result.message + "!");
                     $('.alert').show();
                     return;
                 }
                 total = result.data.total;
-                $('#product_count').html(total)
-                
+                productCount = total;
+                $('#product_count').html(total);
+
             },
             error: function (data) {
-                $('.alert').html("ÍøÂçÒì³£ÇëÁªÏµ¹ÜÀíÔ±!");
+                $('.alert').html("ç½‘ç»œå¼‚å¸¸è¯·è”ç³»ç®¡ç†å‘˜!");
                 $('.alert').show();
                 return;
             }
         });
-        setTimeout(function () {
+        var chart = AmCharts.makeChart("chartdiv", {
+            "theme": "light",
+            "type": "serial",
+            "startDuration": 2,
+            "dataProvider": [{
+                "country": "å¡å¯†æ•°",
+                "visits": 1000,
+                "color": "#FF0F00"
+            }, {
+                "country": "å¡å¯†å‡ºåº“æ€»æ•°",
+                "visits": 400,
+                "color": "#FF6600"
+            }, {
+                "country": "ç”¨æˆ·æç°æ€»æ•°",
+                "visits": 1000,
+                "color": "#FF9E01"
+            }, {
+                "country": "äº§å“æ•°",
+                "visits": productCount,
+                "color": "#FCD202"
+            }, {
+                "country": "ç”¨æˆ·æ•°",
+                "visits": userCount,
+                "color": "#F8FF01"
+            }],
+            "valueAxes": [{
+                "position": "left",
+                "axisAlpha": 0,
+                "gridAlpha": 0
+            }],
+            "graphs": [{
+                "balloonText": "[[category]]: <b>[[value]]</b>",
+                "colorField": "color",
+                "fillAlphas": 0.85,
+                "lineAlpha": 0.1,
+                "type": "column",
+                "topRadius": 1,
+                "valueField": "visits"
+            }],
+            "depth3D": 40,
+            "angle": 30,
+            "chartCursor": {
+                "categoryBalloonEnabled": false,
+                "cursorAlpha": 0,
+                "zoomable": false
+            },
+            "categoryField": "country",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "axisAlpha": 0,
+                "gridAlpha": 0
 
+            },
+            "export": {
+                "enabled": true
+            }
+
+        }, 0);
+        setTimeout(function () {
             $("a[title='JavaScript charts']").remove();
         }, 700);
     };
