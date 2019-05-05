@@ -2,16 +2,12 @@
 using Flurl.Http;
 using Nancy;
 using Nancy.ModelBinding;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using WangShunManager.Dtos;
-using WangShunManager.Models;
-
 namespace WangShunManager.Modules.ApiModules
 {
+    using System.Threading.Tasks;
+    using WangShunManager.Dtos;
+    using WangShunManager.Models;
+
     public class ApiCapitalDetailsModule : BaseModule
     {
         public ApiCapitalDetailsModule()
@@ -22,7 +18,7 @@ namespace WangShunManager.Modules.ApiModules
         private async Task<Response> GetCapitalDetailsAsync()
         {
             var model = this.Bind<CapitalDetailsModel>();
-            if (model.UserId == null && model.Status==null && model.Type == null)
+            if (model.UserId == null && model.Status == null && model.Type == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"
                       .AppendPathSegment("GetAccountstatementList")
@@ -30,7 +26,7 @@ namespace WangShunManager.Modules.ApiModules
                       .ReceiveJson<ResponseDto<PageDataDto<CapitalDetailsRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if (model.UserId == null && model.Status==null)
+            if (model.UserId == null && model.Status == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"
                    .AppendPathSegment("GetAccountstatementList")
@@ -46,7 +42,7 @@ namespace WangShunManager.Modules.ApiModules
                   .ReceiveJson<ResponseDto<PageDataDto<CapitalDetailsRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if (model.Status==null && model.Type == null)
+            if (model.Status == null && model.Type == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"
                   .AppendPathSegment("GetAccountstatementList")
@@ -70,7 +66,7 @@ namespace WangShunManager.Modules.ApiModules
                       .ReceiveJson<ResponseDto<PageDataDto<CapitalDetailsRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if (model.Status==null)
+            if (model.Status == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"
                       .AppendPathSegment("GetAccountstatementList")

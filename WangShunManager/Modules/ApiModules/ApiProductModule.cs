@@ -1,17 +1,13 @@
-﻿using Flurl;
-using Flurl.Http;
-using Nancy;
-using Nancy.ModelBinding;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using WangShunManager.Dtos;
-using WangShunManager.Models;
-
-namespace WangShunManager.Modules.ApiModules
+﻿namespace WangShunManager.Modules.ApiModules
 {
+    using Flurl;
+    using Flurl.Http;
+    using Nancy;
+    using Nancy.ModelBinding;
+    using System.Threading.Tasks;
+    using WangShunManager.Dtos;
+    using WangShunManager.Models;
+
     public class ApiProductModule : BaseModule
     {
         public ApiProductModule()
@@ -22,7 +18,7 @@ namespace WangShunManager.Modules.ApiModules
         private async Task<Response> GetProductsAsync()
         {
             var model = this.Bind<ProductsModel>();
-            if (string.IsNullOrWhiteSpace(model.ProductName)&&model.CategoryId == null &&model.ParValue==null && model.State == null)
+            if (string.IsNullOrWhiteSpace(model.ProductName) && model.CategoryId == null && model.ParValue == null && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Product"
                       .AppendPathSegment("GetPreCardProductList")
@@ -34,11 +30,11 @@ namespace WangShunManager.Modules.ApiModules
             {
                 var result = await "http://vm.tongyun188.com:12009/Product"
                    .AppendPathSegment("GetPreCardProductList")
-                   .PostJsonAsync(new { model.PageIndex,model.PageSize,model.State})
+                   .PostJsonAsync(new { model.PageIndex, model.PageSize, model.State })
                    .ReceiveJson<ResponseDto<PageDataDto<ProductRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if (string.IsNullOrWhiteSpace(model.ProductName) && model.CategoryId == null &&  model.State == null)
+            if (string.IsNullOrWhiteSpace(model.ProductName) && model.CategoryId == null && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Product"
                   .AppendPathSegment("GetPreCardProductList")
@@ -46,7 +42,7 @@ namespace WangShunManager.Modules.ApiModules
                   .ReceiveJson<ResponseDto<PageDataDto<ProductRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if (string.IsNullOrWhiteSpace(model.ProductName)  && model.ParValue == null && model.State == null)
+            if (string.IsNullOrWhiteSpace(model.ProductName) && model.ParValue == null && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Product"
                   .AppendPathSegment("GetPreCardProductList")
@@ -54,23 +50,23 @@ namespace WangShunManager.Modules.ApiModules
                   .ReceiveJson<ResponseDto<PageDataDto<ProductRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if ( model.CategoryId == null && model.ParValue == null && model.State == null)
-                {
+            if (model.CategoryId == null && model.ParValue == null && model.State == null)
+            {
                 var result = await "http://vm.tongyun188.com:12009/Product"
                   .AppendPathSegment("GetPreCardProductList")
                   .PostJsonAsync(new { model.PageIndex, model.PageSize, model.ProductName })
                   .ReceiveJson<ResponseDto<PageDataDto<ProductRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if (  model.ParValue == null && model.State == null)
+            if (model.ParValue == null && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Product"
                       .AppendPathSegment("GetPreCardProductList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize,model.ProductName,model.CategoryId })
+                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.ProductName, model.CategoryId })
                       .ReceiveJson<ResponseDto<PageDataDto<ProductRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if (model.CategoryId == null  && model.State == null)
+            if (model.CategoryId == null && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Product"
                       .AppendPathSegment("GetPreCardProductList")
@@ -88,39 +84,37 @@ namespace WangShunManager.Modules.ApiModules
                 return Response.AsJson(result);
             }
 
-            if (model.State==null)
+            if (model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Product"
                       .AppendPathSegment("GetPreCardProductList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize,model.CategoryId,model.ParValue,model.ProductName })
+                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.CategoryId, model.ParValue, model.ProductName })
                       .ReceiveJson<ResponseDto<PageDataDto<ProductRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if ( model.ParValue == null)
+            if (model.ParValue == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Product"
                       .AppendPathSegment("GetPreCardProductList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.CategoryId,model.State ,model.ProductName})
+                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.CategoryId, model.State, model.ProductName })
                       .ReceiveJson<ResponseDto<PageDataDto<ProductRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-
-
 
             if (string.IsNullOrWhiteSpace(model.ProductName))
             {
                 var result = await "http://vm.tongyun188.com:12009/Product"
                       .AppendPathSegment("GetPreCardProductList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize,model.ParValue,model.State,model.CategoryId })
+                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.ParValue, model.State, model.CategoryId })
                       .ReceiveJson<ResponseDto<PageDataDto<ProductRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
 
-            if ( model.CategoryId == null)
+            if (model.CategoryId == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Product"
                       .AppendPathSegment("GetPreCardProductList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize,model.ParValue,model.State,model.ProductName })
+                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.ParValue, model.State, model.ProductName })
                       .ReceiveJson<ResponseDto<PageDataDto<ProductRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }

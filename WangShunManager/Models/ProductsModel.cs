@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace WangShunManager.Models
+﻿namespace WangShunManager.Models
 {
-    public class ProductsModel:BasePagesModel
+    public class ProductsModel : BasePagesModel
     {
         public string ProductName { get; set; }
         public int? CategoryId { get; set; }

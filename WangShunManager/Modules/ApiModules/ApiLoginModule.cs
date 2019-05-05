@@ -1,17 +1,13 @@
-﻿using Flurl;
-using Flurl.Http;
-using Nancy;
-using Nancy.ModelBinding;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using WangShunManager.Dtos;
-using WangShunManager.Models;
-
-namespace WangShunManager.Modules.ApiModules
+﻿namespace WangShunManager.Modules.ApiModules
 {
+    using Flurl;
+    using Flurl.Http;
+    using Nancy;
+    using Nancy.ModelBinding;
+    using System.Threading.Tasks;
+    using WangShunManager.Dtos;
+    using WangShunManager.Models;
+
     public class ApiLoginModule : BaseModule
     {
         public ApiLoginModule()

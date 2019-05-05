@@ -31,22 +31,20 @@
                 <table id="table">
                     <thead>
                         <tr>
-                            <th>主键</th>
-                            <th>登录索引</th>
-                            <th>真实姓名</th>
-                            <th>公司名称</th>
-                            <th>公司地址</th>
-                            <th>联系 Q Q</th>
-                            <th>联系邮箱</th>
-                            <th>账号管理员</th>
+                            <th>用户主键</th>
+                            <th>会员编号</th>
+                            <th>创建时间</th>
+                            <th>关联业务主键</th>
+                            <th>交易金额</th>
+                            <th>交易前金额</th>
+                            <th>交易后余额</th>
+                            <th>交易类型</th>
+                            <th>结算状态</th>
                             <th>备注</th>
-                            <th>是否删除</th>
-                            <th>用户状态</th>
-                            <th>账号类型</th>
                             <th>操作</th>
                         </tr>
                     </thead>
-                    <tbody id="user_table">
+                    <tbody id="capital_details_table">
                        
                     </tbody>
                 </table>
@@ -63,11 +61,11 @@
 @Section['page_script']
 <!-- tables -->
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
-<script src="js/user-table.js"></script>
+<script src="js/capital-details-table.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#table').basictable();
-        User_Table.init();
+        Capital_Details_Table.init();
     });
 </script>
 @EndSection

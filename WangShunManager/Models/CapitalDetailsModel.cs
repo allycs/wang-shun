@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace WangShunManager.Models
+﻿namespace WangShunManager.Models
 {
+    using System;
+
     public class CapitalDetailsModel : BasePagesModel
     {
         public DateTime StartTime { get; set; } = DateTime.Now.AddDays(-7);
