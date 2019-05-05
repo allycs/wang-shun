@@ -22,7 +22,7 @@ namespace WangShunManager.Modules.ApiModules
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"
                       .AppendPathSegment("GetAccountstatementList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize })
+                      .PostJsonAsync(new { model.PageIndex, model.PageSize,model.StartTime,model.EndTime })
                       .ReceiveJson<ResponseDto<PageDataDto<CapitalDetailsRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
@@ -30,7 +30,7 @@ namespace WangShunManager.Modules.ApiModules
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"
                    .AppendPathSegment("GetAccountstatementList")
-                   .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Type })
+                   .PostJsonAsync(new { model.PageIndex, model.PageSize, model.StartTime, model.EndTime, model.Type })
                    .ReceiveJson<ResponseDto<PageDataDto<CapitalDetailsRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
@@ -38,7 +38,7 @@ namespace WangShunManager.Modules.ApiModules
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"
                   .AppendPathSegment("GetAccountstatementList")
-                  .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Status })
+                  .PostJsonAsync(new { model.PageIndex, model.PageSize, model.StartTime, model.EndTime, model.Status })
                   .ReceiveJson<ResponseDto<PageDataDto<CapitalDetailsRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
@@ -46,7 +46,7 @@ namespace WangShunManager.Modules.ApiModules
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"
                   .AppendPathSegment("GetAccountstatementList")
-                  .PostJsonAsync(new { model.PageIndex, model.PageSize, model.UserId })
+                  .PostJsonAsync(new { model.PageIndex, model.PageSize, model.StartTime, model.EndTime, model.UserId })
                   .ReceiveJson<ResponseDto<PageDataDto<CapitalDetailsRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
@@ -54,7 +54,7 @@ namespace WangShunManager.Modules.ApiModules
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"
                       .AppendPathSegment("GetAccountstatementList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Status, model.Type })
+                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.StartTime, model.EndTime, model.Status, model.Type })
                       .ReceiveJson<ResponseDto<PageDataDto<CapitalDetailsRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
@@ -62,7 +62,7 @@ namespace WangShunManager.Modules.ApiModules
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"
                       .AppendPathSegment("GetAccountstatementList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Status, model.UserId })
+                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.StartTime, model.EndTime, model.Status, model.UserId })
                       .ReceiveJson<ResponseDto<PageDataDto<CapitalDetailsRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
@@ -70,7 +70,7 @@ namespace WangShunManager.Modules.ApiModules
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"
                       .AppendPathSegment("GetAccountstatementList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Type, model.UserId })
+                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.StartTime, model.EndTime, model.Type, model.UserId })
                       .ReceiveJson<ResponseDto<PageDataDto<CapitalDetailsRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
