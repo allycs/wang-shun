@@ -7,7 +7,6 @@
             url: "/users",
             data: { PageIndex: pageIndex, PageSize: pageSize, Id: userId, LoginId: loginId, State: state },
             success: function (result) {
-                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
                     $('.alert-main strong').html(result.message + "!");
@@ -50,7 +49,7 @@
                         + items[i].accountManager + '","'
                         + items[i].remark +
                     '")\'>维护</button>' +
-                        '<button id="user_state_btn_' + items[i].id + '" type="button" class="btn btn-warning" style="margin-left:2px;">' + InfoStateToString(Math.abs(items[i].userInfoState - 1)) + '</button>' +
+                    '<button id="user_state_btn_' + items[i].id + '" type="button" class="btn btn-warning" style="margin-left:2px;" onclick="Table.setState(' + items[i].id + ',' + items[i].userInfoState+')">' + InfoStateToString(Math.abs(items[i].userInfoState - 1)) + '</button>' +
                         '<button type="button" class="btn btn-danger" style="margin-left:2px;">删除</button>' +
                         '</td>' +
                         '</tr>';
@@ -84,6 +83,33 @@
     var handle = function () {
         getData(pageIndex, pageSize);
     };
+    var setState = function (id, state) {
+        state = Math.abs(state - 1);
+        $.ajax({
+            type: "PUT",
+            dataType: "json",
+            url: "/users/"+id+"/"+state,
+            data: {},
+            success: function (result) {
+                console.log(result);
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert-main strong').html(result.message + "!");
+                    $('.alert-main').show();
+                    return;
+                }
+                
+                $('#user_state_' + id).html(InfoStateToString(state));
+                $("#user_state_btn_" + id).attr("onclick", "Table.setState(" + id + "," + state + ");");
+                $("#user_state_btn_" + id).html(InfoStateToString(Math.abs(state - 1)));
+            },
+            error: function (data) {
+                $('.alert-main').html("网络异常请联系管理员!");
+                $('.alert-main').show();
+                return;
+            }
+        });
+    };
     return {
         init: function () {
             handle();
@@ -93,6 +119,9 @@
         },
         service: function (id, loginId, realName, usableBalance, freezeBalance, creditAmount, companyName, companyAddress, contactQq, email, accountManager, remark) {
             service(id, loginId, realName, usableBalance, freezeBalance, creditAmount, companyName, companyAddress, contactQq, email, accountManager, remark);
+        },
+        setState:function(id, state) {
+            setState(id,state);
         }
     };
 }();
