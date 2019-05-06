@@ -1,24 +1,29 @@
-
-
-function next() {
-    if ((Number(pageNumber) * Number(rowsPerPage)) >= total) {
-        return false;
+var pageIndex = 1;
+var pageSize = 6;
+var total = 30;
+function nextPage() {
+    console.log(pageIndex);
+    if ((Number(pageIndex) * Number(pageSize)) >= total) {
+        return pageIndex;
     }
-    pageNumber = pageNumber + 1;
-    GetGovMembers();
+    pageIndex = pageIndex + 1;
+    Table.getData();
+    return pageIndex;
 };
-function previous() {
-    pageNumber = pageNumber - 1;
-    if (pageNumber < 1)
-        pageNumber = 1;
-    GetGovMembers();
+function previousPage() {
+    pageIndex = pageIndex - 1;
+    if (pageIndex < 1)
+        pageIndex = 1;
+    Table.getData();
+    return pageIndex;
 };
 function CheckPage() {
-    if (total > (pageNumber * rowsPerPage))
+    //console.log(pageIndex + ";" + pageSize + ";" + total);
+    if (total > (pageIndex * pageSize))
         $(".next").removeClass("disabled");
     else
         $(".next").addClass("disabled");
-    if (pageNumber > 1)
+    if (pageIndex > 1)
         $(".previous").removeClass("disabled");
     else
         $(".previous").addClass("disabled");

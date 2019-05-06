@@ -1,11 +1,10 @@
-﻿var Product_Table = function () {
-    var handleUser = function () {
-        var userInfo = localStorage.UserInfo;
+﻿var Table = function () {
+    var getData = function (pageIndex, pageSize, productName, categoryId, parValue,state) {
         $.ajax({
             type: "GET",
             dataType: "json",
             url: "/products",
-            data: { PageIndex: 1, PageSize: 30 },
+            data: { PageIndex: pageIndex, PageSize: pageSize,ProductName:productName,CategoryId:categoryId,ParValue:parValue,State:state },
             success: function (result) {
                 console.log(result);
                 if (result.state != 0) {
@@ -18,27 +17,27 @@
                 var items = result.data.rows;
                 console.log(items);
                 total = result.data.total;
-                //TestPage();
-                console.log(items[0]);
                 var tableHtml = '';
                 for (i = 0; i < length; i++) {
                     tableHtml +=
-                    '<tr>' +
-                        '<td>'+items[i].id+'</td>' +
-                        '<td>' + items[i].productName +'</td>' +
-                        '<td>' + items[i].categoryId +'</td>' +
-                        '<td>' + items[i].parValue +'</td>' +
-                        '<td>' + items[i].state +'</td>' +
-                        '<td>' + items[i].maxPrice +'</td>' +
-                        '<td>' + items[i].minPrice +'</td>' +
-                        '<td>' + items[i].maxDiscount +'</td>' +
-                        '<td>' + items[i].minDiscount +'</td>' +
+                        '<tr>' +
+                        '<td>' + items[i].id + '</td>' +
+                        '<td>' + items[i].productName + '</td>' +
+                        '<td>' + items[i].categoryId + '</td>' +
+                        '<td>' + items[i].parValue + '</td>' +
+                        '<td>' + InfoStateToString(items[i].state) + '</td>' +
+                        '<td>' + items[i].maxPrice + '</td>' +
+                        '<td>' + items[i].minPrice + '</td>' +
+                        '<td>' + items[i].maxDiscount + '</td>' +
+                        '<td>' + items[i].minDiscount + '</td>' +
                         '<td>' +
                         '<button type="button" class="btn btn-warning">上下架</button>' +
                         '</td>' +
-                     '</tr>';
+                        '</tr>';
                 }
                 $('#product_table').html(tableHtml);
+                $('#total').html("第" + pageIndex + "页-共" + total + "条");
+                CheckPage();
             },
             error: function (data) {
                 $('.alert').html("网络异常请联系管理员!");
@@ -47,10 +46,16 @@
             }
         });
     };
+    var handle = function () {
+        getData(pageIndex, pageSize);
+    };
 
     return {
         init: function () {
-            handleUser();
+            handle();
+        },
+        getData: function () {
+            getData(pageIndex, pageSize, productName, categoryId, parValue, state);
         }
     };
 }();

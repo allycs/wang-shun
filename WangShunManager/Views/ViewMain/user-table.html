@@ -6,6 +6,70 @@
 @EndSection
 @Section['Content']
 <div class="inner_content">
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">用户信息查看维护</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="grid-1">
+                        <div class="form-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-1 control-label">主键</label>
+                                    <div class="col-sm-5"> <input type="text" class="form-control" disabled="disabled" id="user_id"> </div>
+                                    <label for="inputEmail3" class="col-sm-1 control-label">账号</label>
+                                    <div class="col-sm-5"> <input type="text" class="form-control" disabled="disabled" id="user_login_id"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-1 control-label">姓名</label>
+                                    <div class="col-sm-5"> <input type="text" class="form-control" id="user_real_name"> </div>
+                                    <label for="inputEmail3" class="col-sm-1 control-label">公司</label>
+                                    <div class="col-sm-5"> <input type="text" class="form-control" id="user_company_name"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-1 control-label">可用</label>
+                                    <div class="col-sm-3"> <input type="text" class="form-control disabled" disabled="disabled" id="user_usable_balance"> </div>
+                                    <label for="inputEmail3" class="col-sm-1 control-label">冻结</label>
+                                    <div class="col-sm-3"> <input type="text" class="form-control" disabled="disabled" id="user_freeze_balance"> </div>
+                                    <label for="inputEmail3" class="col-sm-1 control-label">信用</label>
+                                    <div class="col-sm-3"> <input type="text" class="form-control" disabled="disabled" id="user_credit_amount"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-1 control-label">QQ</label>
+                                    <div class="col-sm-5"> <input type="text" class="form-control" id="user_contact_qq"> </div>
+                                    <label for="inputEmail3" class="col-sm-1 control-label">Email</label>
+                                    <div class="col-sm-5"> <input type="email" class="form-control" id="user_email"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-1 control-label">经理</label>
+                                    <div class="col-sm-5"> <input type="text" class="form-control" id="user_account_manager"> </div>
+                                    <label for="inputEmail3" class="col-sm-1 control-label">备注</label>
+                                    <div class="col-sm-5"> <input type="email" class="form-control" id="user_remark"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-3 control-label">公司地址</label>
+                                    <div class="col-sm-9"> <input type="text" class="form-control"  id="user_company_address"> </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">更新</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- /inner_content_allycs_agile_info-->
     <!-- breadcrumbs -->
     <div class="allycs_agileits_breadcrumbs">
@@ -23,7 +87,7 @@
         <!-- tables -->
 
         <div class="agile-tables">
-            <div class="alert alert-danger" role="alert" style="display:none;">
+            <div class="alert alert-danger" role="alert">
                 <strong>数据请求存在错误!</strong>请再次检查请求的各项参数是否合法。
             </div>
             <div class="allycs-table-info agile_info_shadow">
@@ -34,22 +98,29 @@
                             <th>主键</th>
                             <th>登录索引</th>
                             <th>真实姓名</th>
+                            <th>可用余额</th>
+                            <th>冻结金额</th>
+                            <th>信用额度</th>
                             <th>公司名称</th>
                             <th>公司地址</th>
                             <th>联系 Q Q</th>
                             <th>联系邮箱</th>
-                            <th>账号管理员</th>
+                            <th>管理员</th>
                             <th>备注</th>
                             <th>是否删除</th>
                             <th>用户状态</th>
-                            <th>账号类型</th>
-                            <th>操作</th>
+                            <th style="text-align:center;">操作</th>
                         </tr>
                     </thead>
-                    <tbody id="user_table">
-                       
-                    </tbody>
+                    <tbody id="user_table"></tbody>
                 </table>
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous disabled"><a href="#javascript:;" onclick="previousPage();"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                        <li><span aria-hidden="true" id="total">共-条</span></li>
+                        <li class="next"><a href="#javascript:;" onclick="nextPage();">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
         <!-- //tables -->
@@ -65,9 +136,14 @@
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
 <script src="js/user-table.js"></script>
 <script type="text/javascript">
+    var userId = null;
+    var loginId = null;
+    var state = null;
+   
     $(document).ready(function () {
         $('#table').basictable();
-        User_Table.init();
+        Table.init();
     });
+     
 </script>
 @EndSection

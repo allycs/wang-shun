@@ -43,9 +43,15 @@
                             <th>操作</th>
                         </tr>
                     </thead>
-                    <tbody id="product_table">
-                    </tbody>
+                    <tbody id="product_table"></tbody>
                 </table>
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous disabled"><a href="#javascript:;" onclick="previousPage();"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                        <li><span aria-hidden="true" id="total">共-条</span></li>
+                        <li class="next"><a href="#javascript:;" onclick="nextPage();">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
         <!-- //tables -->
@@ -61,9 +67,13 @@
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
 <script src="js/product-table.js"></script>
 <script type="text/javascript">
+    var productName = null;
+    var categoryId = null;
+    var parValue = null;
+    var state = null;
     $(document).ready(function () {
         $('#table').basictable();
-        Product_Table.init();
+        Table.init();
     });
 </script>
 @EndSection

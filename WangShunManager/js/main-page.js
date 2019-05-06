@@ -7,7 +7,7 @@
             dataType: "json",
             async: false, 
             url: "/users",
-            data: { PageIndex: 1, PageSize: 30 },
+            data: { PageIndex: 1, PageSize: 1 },
             success: function (result) {
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
@@ -30,7 +30,7 @@
             dataType: "json",
             async: false, 
             url: "/products",
-            data: { PageIndex: 1, PageSize: 30 },
+            data: { PageIndex: 1, PageSize: 1 },
             success: function (result) {
                 console.log(result);
                 if (result.state != 0) {

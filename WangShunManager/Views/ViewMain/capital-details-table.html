@@ -44,10 +44,15 @@
                             <th>操作</th>
                         </tr>
                     </thead>
-                    <tbody id="capital_details_table">
-                       
-                    </tbody>
+                    <tbody id="capital_details_table"></tbody>
                 </table>
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous disabled"><a href="#javascript:;" onclick="previousPage();"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                        <li><span aria-hidden="true" id="total">共-条</span></li>
+                        <li class="next"><a href="#javascript:;" onclick="nextPage();">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
         <!-- //tables -->

@@ -18,7 +18,7 @@
         private async Task<Response> GetUsersAsync()
         {
             var model = this.Bind<UsersModel>();
-            if (model.Id == null && string.IsNullOrWhiteSpace(model.Loginid) && model.State == null)
+            if (model.Id == null && string.IsNullOrWhiteSpace(model.LoginId) && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
                       .AppendPathSegment("GetUserList")
@@ -26,7 +26,7 @@
                       .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if (model.Id == null && string.IsNullOrWhiteSpace(model.Loginid))
+            if (model.Id == null && string.IsNullOrWhiteSpace(model.LoginId))
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
                    .AppendPathSegment("GetUserList")
@@ -38,11 +38,11 @@
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
                   .AppendPathSegment("GetUserList")
-                  .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Loginid })
+                  .PostJsonAsync(new { model.PageIndex, model.PageSize, model.LoginId })
                   .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if (string.IsNullOrWhiteSpace(model.Loginid) && model.State == null)
+            if (string.IsNullOrWhiteSpace(model.LoginId) && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
                   .AppendPathSegment("GetUserList")
@@ -54,7 +54,7 @@
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
                       .AppendPathSegment("GetUserList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Loginid, model.State })
+                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.LoginId, model.State })
                       .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
@@ -62,11 +62,11 @@
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
                       .AppendPathSegment("GetUserList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.Loginid, model.Id })
+                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.LoginId, model.Id })
                       .ReceiveJson<ResponseDto<PageDataDto<UserRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            if (string.IsNullOrWhiteSpace(model.Loginid))
+            if (string.IsNullOrWhiteSpace(model.LoginId))
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
                       .AppendPathSegment("GetUserList")
