@@ -2,7 +2,6 @@ var pageIndex = 1;
 var pageSize = 6;
 var total = 30;
 function nextPage() {
-    console.log(pageIndex);
     if ((Number(pageIndex) * Number(pageSize)) >= total) {
         return pageIndex;
     }

@@ -2,10 +2,11 @@
     var handleMain = function () {
         var userCount = 0;
         var productCount = 0;
+        var memberWithdrawCount = 0;
         $.ajax({
             type: "GET",
             dataType: "json",
-            async: false, 
+            async: false,
             url: "/users",
             data: { PageIndex: 1, PageSize: 1 },
             success: function (result) {
@@ -28,7 +29,7 @@
         $.ajax({
             type: "GET",
             dataType: "json",
-            async: false, 
+            async: false,
             url: "/products",
             data: { PageIndex: 1, PageSize: 1 },
             success: function (result) {
@@ -50,21 +51,46 @@
                 return;
             }
         });
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            async: false,
+            url: "/member-withdraw",
+            data: { PageIndex: 1, PageSize: 1 },
+            success: function (result) {
+                console.log(result);
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert strong').html(result.message + "!");
+                    $('.alert').show();
+                    return;
+                }
+                total = result.data.total;
+                memberWithdrawCount = total;
+                $('#member_withdraw_count').html(total);
+
+            },
+            error: function (data) {
+                $('.alert').html("网络异常请联系管理员!");
+                $('.alert').show();
+                return;
+            }
+        });
         var chart = AmCharts.makeChart("chartdiv", {
             "theme": "light",
             "type": "serial",
             "startDuration": 2,
             "dataProvider": [{
                 "country": "卡密数",
-                "visits": 1000,
+                "visits": 10,
                 "color": "#FF0F00"
             }, {
                 "country": "卡密出库总数",
-                "visits": 400,
+                "visits": 20,
                 "color": "#FF6600"
             }, {
                 "country": "用户提现总数",
-                "visits": 1000,
+                "visits": memberWithdrawCount,
                 "color": "#FF9E01"
             }, {
                 "country": "产品数",
