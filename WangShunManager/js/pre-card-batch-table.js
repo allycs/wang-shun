@@ -1,5 +1,5 @@
-﻿var Pre_Card_Batch_Table = function () {
-    var handlePreCardBatch = function () {
+﻿var Table = function () {
+    var handle = function () {
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -57,7 +57,7 @@
 
     return {
         init: function () {
-            handlePreCardBatch();
+            handle();
         }
     };
 }();

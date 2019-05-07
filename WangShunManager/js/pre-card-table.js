@@ -1,5 +1,5 @@
-﻿var Pre_Card_Table = function () {
-    var handlePreCard = function () {
+﻿var Table = function () {
+    var handle = function () {
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -64,7 +64,7 @@
 
     return {
         init: function () {
-            handlePreCard();
+            handle();
         }
     };
 }();
