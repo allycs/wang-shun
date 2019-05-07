@@ -31,7 +31,7 @@
                         '<td>' + items[i].maxDiscount + '</td>' +
                         '<td>' + items[i].minDiscount + '</td>' +
                         '<td style="text-align:center;">' +
-                    '<button id="product_state_btn_' + items[i].id + '" type="button" class="btn btn-warning" onclick="Table.setState(' + items[i].id + ',' + items[i].state + ')">' + ProductStateToString(Math.abs(items[i].state-1)) + '</button>' +
+                        '<button id="product_state_btn_' + items[i].id + '" type="button" class="btn btn-warning" onclick="Table.setState(' + items[i].id + ',' + items[i].state + ')">' + ProductStateToString(Math.abs(items[i].state - 1)) + '</button>' +
                         '</td>' +
                         '</tr>';
                 }
