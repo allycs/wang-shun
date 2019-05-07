@@ -1,12 +1,12 @@
 ﻿var Table = function () {
     var getData = function (pageIndex, pageSize, productName, categoryId, parValue, state) {
+        console.log(pageIndex + ";" + pageSize + ";" + productName + ";" + categoryId + ";" + parValue + ";" +state);
         $.ajax({
             type: "GET",
             dataType: "json",
             url: "/products",
             data: { PageIndex: pageIndex, PageSize: pageSize, ProductName: productName, CategoryId: categoryId, ParValue: parValue, State: state },
             success: function (result) {
-                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
                     $('.alert strong').html(result.message + "!");
@@ -74,6 +74,14 @@
             }
         });
     };
+    var search = function () {
+        var searchProductName = $('#search_product_name').val();
+        var searchCategory = $('#search_categoryId option:selected').val();
+        var searchParValue = $('#search_par_value').val();
+        var searchState = $('#search_state option:selected').val();
+        //console.log("name:" + searchProductName + ";category:" + searchCategory + ";parValue:" + searchParValue + ";state:" + searchState);
+        getData(pageIndex, pageSize, ""+searchProductName+"", searchCategory, searchParValue, searchState);
+    };
     return {
         init: function () {
             handle();
@@ -83,6 +91,9 @@
         },
         setState: function (id, state) {
             setState(id, state);
+        },
+        search: function () {
+            search();
         }
     };
 }();

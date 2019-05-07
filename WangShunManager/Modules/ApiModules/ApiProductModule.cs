@@ -29,6 +29,8 @@
         private async Task<Response> GetProductsAsync()
         {
             var model = this.Bind<ProductsModel>();
+            model.CategoryId = model.CategoryId == -1 ? null : model.CategoryId;
+            model.State = model.State == -1 ? null : model.State;
             if (string.IsNullOrWhiteSpace(model.ProductName) && model.CategoryId == null && model.ParValue == null && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Product"

@@ -26,8 +26,38 @@
             <div class="alert alert-danger alert-main" role="alert" style="display:none;">
                 <strong>数据请求存在错误!</strong>请再次检查请求的各项参数是否合法。
             </div>
-            <div class="allycs-table-info agile_info_shadow">
-                <h3 class="allycs_inner_tittle two">产品信息列表</h3>
+            <div class="allycs-table-info agile_info_shadow" >
+                <div class="row">
+                    <div class="col-sm-2">
+                        <h3 class="allycs_inner_tittle two">产品信息列表</h3>
+                    </div>
+                    <div class="col-sm-10" style="padding-top: 0.5em;">
+                        <div class="col-sm-2">
+                            <input id="search_product_name" type="text" class="form-control" placeholder="产品名称">
+                        </div>
+                        <div class="col-sm-3">
+                            <select name="selector_category" id="search_categoryId" class="form-control1" placeholder="运营商">
+                                <option value="-1">运行商不限</option>
+                                <option value="0">移动</option>
+                                <option value="1">联通</option>
+                                <option value="2">电信</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="search_par_value" type="number" class="form-control" placeholder="面值">
+                        </div>
+                        <div class="col-sm-2">
+                            <select name="selector_state" id="search_state" class="form-control1" placeholder="运营商">
+                                <option value="-1">状态不限</option>
+                                <option value="0">禁用</option>
+                                <option value="1">启用</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <button class="btn btn-default" type="button" style="margin-top:2px;" onclick="Table.search();">Go!</button>
+                        </div>
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
                 <table id="table">
                     <thead>
                         <tr>
