@@ -91,7 +91,30 @@
                 <strong>数据请求存在错误!</strong>请再次检查请求的各项参数是否合法。
             </div>
             <div class="allycs-table-info agile_info_shadow">
-                <h3 class="allycs_inner_tittle two">会员信息列表</h3>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <h3 class="allycs_inner_tittle two">会员信息列表</h3>
+                    </div>
+                    <div class="col-sm-10" style="padding-top: 0.5em;">
+
+                        <div class="col-sm-2 col-sm-offset-3">
+                            <input id="search_id" type="number" class="form-control" placeholder="会员编号">
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="search_login_id" type="text" class="form-control" placeholder="会员账号">
+                        </div>
+                        <div class="col-sm-2">
+                            <select name="selector_state" id="search_state" class="form-control1" placeholder="会员状态">
+                                <option value="-1">状态不限</option>
+                                <option value="0">禁用</option>
+                                <option value="1">启用</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <button class="btn btn-default" type="button" style="margin-top:2px;" onclick="Table.search();">Go!</button>
+                        </div>
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
                 <table id="table">
                     <thead>
                         <tr>

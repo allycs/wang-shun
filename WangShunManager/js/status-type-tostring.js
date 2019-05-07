@@ -28,6 +28,18 @@ function ProductStateToString(type) {
             return "？";
     }
 };
+function ProductCategoryToString(type) {
+    switch (type) {
+        case 0:
+            return "移动";
+        case 1:
+            return "联动";
+        case 2:
+            return "电信";
+        default:
+            return "？";
+    }
+};
 
 
 function MemberTypeToString(type) {

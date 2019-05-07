@@ -137,12 +137,20 @@
             }
         });
     };
+    var search = function () {
+        var searchId = $('#search_id').val();
+        var searchLoginId = $('#search_login_id').val();
+        var searchState = $('#search_state option:selected').val();
+        //console.log("name:" + searchProductName + ";category:" + searchCategory + ";parValue:" + searchParValue + ";state:" + searchState);
+        getData(pageIndex, pageSize, searchId, searchLoginId, searchState);
+    };
     return {
         init: function () {
             handle();
         },
         getData: function () {
-            getData(pageIndex, pageSize, userId, loginId, state);
+            search();
+            //getData(pageIndex, pageSize, userId, loginId, state);
         },
         service: function (id, loginId, realName, usableBalance, freezeBalance, creditAmount, companyName, companyAddress, contactQq, email, accountManager, remark) {
             service(id, loginId, realName, usableBalance, freezeBalance, creditAmount, companyName, companyAddress, contactQq, email, accountManager, remark);
@@ -152,6 +160,9 @@
         },
         delUser: function (id) {
             delUser(id);
+        },
+        search: function () {
+            search();
         }
     };
 }();

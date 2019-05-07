@@ -19,6 +19,8 @@
         private async Task<Response> GetSalesCustomerAsync()
         {
             var model = this.Bind<SalesCustomerModel>();
+            model.CategoryId = model.CategoryId == -1 ? null : model.CategoryId;
+            model.State = model.State == -1 ? null : model.State;
             if (string.IsNullOrWhiteSpace(model.ProductName) && model.CategoryId == null && model.ParValue == null && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/ProductSale"
@@ -128,6 +130,8 @@
         private async Task<Response> GetSalesAsync()
         {
             var model = this.Bind<SalesModel>();
+            model.CategoryId = model.CategoryId == -1 ? null : model.CategoryId;
+            model.State = model.State == -1 ? null : model.State;
             if (model.CategoryId == null && model.ParValue == null && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/ProductSale"

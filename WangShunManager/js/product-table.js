@@ -1,6 +1,5 @@
 ﻿var Table = function () {
     var getData = function (pageIndex, pageSize, productName, categoryId, parValue, state) {
-        console.log(pageIndex + ";" + pageSize + ";" + productName + ";" + categoryId + ";" + parValue + ";" +state);
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -87,7 +86,8 @@
             handle();
         },
         getData: function () {
-            getData(pageIndex, pageSize, productName, categoryId, parValue, state);
+            //getData(pageIndex, pageSize, productName, categoryId, parValue, state);
+            search();
         },
         setState: function (id, state) {
             setState(id, state);

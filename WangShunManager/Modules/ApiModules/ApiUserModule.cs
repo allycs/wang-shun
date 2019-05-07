@@ -39,6 +39,7 @@
         private async Task<Response> GetUsersAsync()
         {
             var model = this.Bind<UsersModel>();
+            model.State = model.State == -1 ? null : model.State;
             if (model.Id == null && string.IsNullOrWhiteSpace(model.LoginId) && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/manager"
