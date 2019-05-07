@@ -32,8 +32,8 @@
                         '<td>' + items[i].email + '</td>' +
                         '<td>' + items[i].accountManager + '</td>' +
                         '<td>' + items[i].remark + '</td>' +
-                        '<td>' + IsDelToString(items[i].isDel) + '</td>' +
-                        '<td id="user_state_' + items[i].id+'">' + InfoStateToString(items[i].userInfoState) + '</td>' +
+                        '<td id="user_del_'+items[i].id+'">' + IsDelToString(items[i].isDel) + '</td>' +
+                        '<td id="user_state_' + items[i].id + '">' + InfoStateToString(items[i].userInfoState) + '</td>' +
                         '<td style="text-align:center;">' +
                         '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick=\'Table.service('
                         + items[i].id + ',"'
@@ -48,9 +48,12 @@
                         + items[i].email + '","'
                         + items[i].accountManager + '","'
                         + items[i].remark +
-                    '")\'>维护</button>' +
-                    '<button id="user_state_btn_' + items[i].id + '" type="button" class="btn btn-warning" style="margin-left:2px;" onclick="Table.setState(' + items[i].id + ',' + items[i].userInfoState+')">' + InfoStateToString(Math.abs(items[i].userInfoState - 1)) + '</button>' +
-                        '<button type="button" class="btn btn-danger" style="margin-left:2px;">删除</button>' +
+                        '")\'>维护</button>' +
+                        '<button id="user_state_btn_' + items[i].id + '" type="button" class="btn btn-warning" style="margin-left:2px;" onclick="Table.setState(' + items[i].id + ',' + items[i].userInfoState + ')">' + InfoStateToString(Math.abs(items[i].userInfoState - 1)) + '</button>';
+                    if (!items[i].isDel) {
+                        tableHtml += '<button id="user_del_btn_' + items[i].id + '" type="button" class="btn btn-danger" style="margin-left:2px;" onclick="Table.delUser(' + items[i].id + ')">删除</button>';
+                    }
+                    tableHtml +
                         '</td>' +
                         '</tr>';
                 }
@@ -88,7 +91,32 @@
         $.ajax({
             type: "PUT",
             dataType: "json",
-            url: "/users/"+id+"/"+state,
+            url: "/users/" + id + "/" + state,
+            data: {},
+            success: function (result) {
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert-main strong').html(result.message + "!");
+                    $('.alert-main').show();
+                    return;
+                }
+
+                $('#user_state_' + id).html(InfoStateToString(state));
+                $("#user_state_btn_" + id).attr("onclick", "Table.setState(" + id + "," + state + ");");
+                $("#user_state_btn_" + id).html(InfoStateToString(Math.abs(state - 1)));
+            },
+            error: function (data) {
+                $('.alert-main').html("网络异常请联系管理员!");
+                $('.alert-main').show();
+                return;
+            }
+        });
+    };
+    var delUser = function (id) {
+        $.ajax({
+            type: "DELETE",
+            dataType: "json",
+            url: "/users/" + id ,
             data: {},
             success: function (result) {
                 console.log(result);
@@ -98,10 +126,9 @@
                     $('.alert-main').show();
                     return;
                 }
-                
-                $('#user_state_' + id).html(InfoStateToString(state));
-                $("#user_state_btn_" + id).attr("onclick", "Table.setState(" + id + "," + state + ");");
-                $("#user_state_btn_" + id).html(InfoStateToString(Math.abs(state - 1)));
+
+                $('#user_del_' + id).html("删除");
+                $("#user_del_btn_" + id).remove();
             },
             error: function (data) {
                 $('.alert-main').html("网络异常请联系管理员!");
@@ -120,8 +147,11 @@
         service: function (id, loginId, realName, usableBalance, freezeBalance, creditAmount, companyName, companyAddress, contactQq, email, accountManager, remark) {
             service(id, loginId, realName, usableBalance, freezeBalance, creditAmount, companyName, companyAddress, contactQq, email, accountManager, remark);
         },
-        setState:function(id, state) {
-            setState(id,state);
+        setState: function (id, state) {
+            setState(id, state);
+        },
+        delUser: function (id) {
+            delUser(id);
         }
     };
 }();

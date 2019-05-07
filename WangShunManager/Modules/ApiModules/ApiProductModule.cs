@@ -4,6 +4,7 @@
     using Flurl.Http;
     using Nancy;
     using Nancy.ModelBinding;
+    using System;
     using System.Threading.Tasks;
     using WangShunManager.Dtos;
     using WangShunManager.Models;
@@ -13,6 +14,16 @@
         public ApiProductModule()
         {
             Get("/products", _ => GetProductsAsync());
+            Put("/products/{id:int}/{state:int}", p => SetProductsStateAsncAsync((int)p.id, (int)p.state));
+        }
+
+        private async Task<Response> SetProductsStateAsncAsync(int id, int state)
+        {
+            var result = await "http://vm.tongyun188.com:12009/Product"
+                          .AppendPathSegment("SetPreCardProduct")
+                          .PostJsonAsync(new { id, State = state })
+                          .ReceiveJson<ResponseDto<string>>().ConfigureAwait(false);
+            return Response.AsJson(result);
         }
 
         private async Task<Response> GetProductsAsync()

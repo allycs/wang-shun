@@ -2,10 +2,8 @@
     switch (type) {
         case false:
             return "正常";
-            break;
         case true:
             return "删除";
-            break;
         default:
             return "？";
     }
@@ -14,14 +12,24 @@ function InfoStateToString(type) {
     switch (type) {
         case 0:
             return "禁用";
-            break;
         case 1:
             return "启用";
-            break;
         default:
             return "？";
     }
 };
+function ProductStateToString(type) {
+    switch (type) {
+        case 0:
+            return "下架";
+        case 1:
+            return "上架";
+        default:
+            return "？";
+    }
+};
+
+
 function MemberTypeToString(type) {
     switch (type) {
         case 0:
