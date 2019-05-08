@@ -9,8 +9,8 @@
                 console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
-                    $('.alert strong').html(result.message + "!");
-                    $('.alert').show();
+                    $('.alert-main strong').html(result.message + "!");
+                    $('.alert-main').show();
                     return;
                 }
                 var length = result.data.rows.length;
@@ -55,8 +55,8 @@
                 $('#pre_card_table').html(tableHtml);
             },
             error: function (data) {
-                $('.alert').html("网络异常请联系管理员!");
-                $('.alert').show();
+                $('.alert-main').html("网络异常请联系管理员!");
+                $('.alert-main').show();
                 return;
             }
         });
