@@ -20,19 +20,19 @@
                 for (i = 0; i < length; i++) {
                     tableHtml +=
                         '<tr id="user_' + items[i].id + '">' +
-                        '<td>' + items[i].id + '</td>' +
+                        '<td id="user_id_' + items[i].id + '">' + items[i].id + '</td>' +
                         '<td>' + items[i].loginId + '</td>' +
-                        '<td>' + items[i].realName + '</td>' +
+                        '<td id="user_real_name_' + items[i].id + '">' + items[i].realName + '</td>' +
                         '<td>' + items[i].usableBalance + '</td>' +
                         '<td>' + items[i].freezeBalance + '</td>' +
                         '<td>' + items[i].creditAmount + '</td>' +
-                        '<td>' + items[i].companyName + '</td>' +
-                        '<td>' + items[i].companyAddress + '</td>' +
-                        '<td>' + items[i].contactQq + '</td>' +
-                        '<td>' + items[i].email + '</td>' +
-                        '<td>' + items[i].accountManager + '</td>' +
-                        '<td>' + items[i].remark + '</td>' +
-                        '<td id="user_del_'+items[i].id+'">' + IsDelToString(items[i].isDel) + '</td>' +
+                        '<td id="user_company_name_' + items[i].id + '">' + items[i].companyName + '</td>' +
+                        '<td id="user_company_address_' + items[i].id + '">' + items[i].companyAddress + '</td>' +
+                        '<td id="user_contact_qq_' + items[i].id + '">' + items[i].contactQq + '</td>' +
+                        '<td id="user_email_' + items[i].id + '">' + items[i].email + '</td>' +
+                        '<td id="user_account_manager_' + items[i].id + '">' + items[i].accountManager + '</td>' +
+                        '<td id="user_remark_' + items[i].id + '">' + items[i].remark + '</td>' +
+                        '<td id="user_del_' + items[i].id + '">' + IsDelToString(items[i].isDel) + '</td>' +
                         '<td id="user_state_' + items[i].id + '">' + InfoStateToString(items[i].userInfoState) + '</td>' +
                         '<td style="text-align:center;">' +
                         '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick=\'Table.service('
@@ -69,6 +69,8 @@
         });
     };
     var service = function (id, loginId, realName, usableBalance, freezeBalance, creditAmount, companyName, companyAddress, contactQq, email, accountManager, remark) {
+        $('.alert-danger-modal').hide();
+        $('.alert-success-modal').hide();
         $('#user_id').val(id);
         $('#user_login_id').val(loginId);
         $('#user_real_name').val(realName);
@@ -116,7 +118,7 @@
         $.ajax({
             type: "DELETE",
             dataType: "json",
-            url: "/users/" + id ,
+            url: "/users/" + id,
             data: {},
             success: function (result) {
                 console.log(result);
@@ -133,6 +135,49 @@
             error: function (data) {
                 $('.alert-main').html("网络异常请联系管理员!");
                 $('.alert-main').show();
+                return;
+            }
+        });
+    };
+    var update = function () {
+        $('.alert-danger-modal').hide();
+        $('.alert-success-modal').hide();
+        var upUserId = $('#user_id').val();
+        var realName = $('#user_real_name').val();
+        var companyName = $('#user_company_name').val();
+        var companyAddress = $('#user_company_address').val();
+        var contactQq = $('#user_contact_qq').val();
+        var email = $('#user_email').val();
+        var accountManager = $('#user_account_manager').val();
+        var remark = $('#user_remark').val();
+
+        $.ajax({
+            type: "PUT",
+            dataType: "json",
+            url: "/users",
+            data: { Id: upUserId, RealName: realName, CompanyName: companyName, CompanyAddress: companyAddress, ContactQq: contactQq, Email: email, AccountManager: accountManager, Remark: remark },
+            success: function (result) {
+                console.log(result);
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert-danger-modal strong').html(result.message + "!");
+                    $('.alert-danger-modal').show();
+                    return;
+                }
+
+                $('.alert-success-modal strong').html(result.message);
+                $('.alert-success-modal').show();
+                $('#user_real_name_' + upUserId).html(result.data.realName);
+                $('#user_company_name_' + upUserId).html(result.data.companyName);
+                $('#user_company_address_' + upUserId).html(result.data.companyAddress);
+                $('#user_contact_qq_' + upUserId).html(result.data.contactQq);
+                $('#user_email_' + upUserId).html(result.data.email);
+                $('#user_account_manager_' + upUserId).html(result.data.accountManager);
+                $('#user_remark_' + upUserId).html(result.data.remark);
+            },
+            error: function (data) {
+                $('.alert-danger-modal').html("网络异常请联系管理员!");
+                $('.alert-danger-modal').show();
                 return;
             }
         });
@@ -160,6 +205,9 @@
         },
         delUser: function (id) {
             delUser(id);
+        },
+        update: function () {
+            update();
         },
         search: function () {
             search();
