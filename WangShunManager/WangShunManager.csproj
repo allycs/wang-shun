@@ -467,6 +467,7 @@
     <Compile Include="Dtos\SaleCustomerRowDto.cs" />
     <Compile Include="Dtos\SaleRowDto.cs" />
     <Compile Include="Dtos\CapitalDetailsRowDto.cs" />
+    <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Dtos\UserRowDto.cs" />
     <Compile Include="Models\BasePagesModel.cs" />
     <Compile Include="Models\OutStockLogModel.cs" />
@@ -479,6 +480,7 @@
     <Compile Include="Models\ProductsModel.cs" />
     <Compile Include="Models\SalesModel.cs" />
     <Compile Include="Models\CapitalDetailsModel.cs" />
+    <Compile Include="Models\UpdateUserModel.cs" />
     <Compile Include="Models\UsersModel.cs" />
     <Compile Include="Modules\ApiModules\ApiOutStockModule.cs" />
     <Compile Include="Modules\ApiModules\ApiMemberWidthdrawModule.cs" />
