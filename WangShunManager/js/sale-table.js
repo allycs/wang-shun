@@ -21,8 +21,8 @@
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].productId + '</td>' +
-                        '<td>' + items[i].maxPrice + '</td>' +
-                        '<td>' + items[i].minPrice + '</td>' +
+                        '<td id="sale_max_price_' + items[i].maxPrice + '">' + items[i].maxPrice + '</td>' +
+                        '<td id="sale_min_price_' + items[i].minPrice + '">' + items[i].minPrice + '</td>' +
                         '<td>' + items[i].remark + '</td>' +
                         '<td>' + items[i].product.id + '</td>' +
                         '<td>' + items[i].product.productName + '</td>' +
@@ -30,7 +30,16 @@
                         '<td>' + items[i].product.parValue + '</td>' +
                         '<td>' + InfoStateToString(items[i].product.state) + '</td>' +
                         '<td style="text-align:center">' +
-                        '<button type="button" class="btn btn-warning">修改</button>' +
+                        '<button type="button" class="btn btn-warning"data-toggle="modal" data-target="#myModal" onclick=\'Table.service('
+                        + items[i].id + ',"'
+                        + items[i].product.id + '","'
+                        + items[i].product.productName + '",'
+                        + items[i].product.categoryId + ','
+                        + items[i].product.parValue + ','
+                        + items[i].maxPrice + ',"'
+                        + items[i].minPrice + '","'
+                        + items[i].remark +
+                        '");\'>修改</button>' +
                         '</td>' +
                         '</tr>';
                 }
@@ -44,6 +53,19 @@
                 return;
             }
         });
+    };
+    var service = function (id, productId, productName, productCategoryId, productParValue, maxPrice, minPrice, remark) {
+        $('.alert-danger-modal').hide();
+        $('.alert-success-modal').hide();
+        $('#sale_id').val(id);
+        $('#sale_product_id').val(productId);
+        $('#sale_product_name').val(productName);
+        $('#sale_product_state').val(ProductCategoryToString(productCategoryId));
+        $('#sale_product_par_value').val(productParValue);
+        $('#sale_max_price').val(maxPrice);
+        $('#sale_min_price').val(minPrice);
+        $('#sale_remark').val(remark);
+
     };
     var handle = function () {
         getData(pageIndex, pageSize);
@@ -62,6 +84,9 @@
         getData: function () {
             search();
             //getData(pageIndex, pageSize, productName, categoryId, parValue, state);
+        },
+        service: function (id, productId, productName, productCategoryId, productParValue, maxPrice, minPrice, remark) {
+            service(id, productId, productName, productCategoryId, productParValue, maxPrice, minPrice, remark);
         },
         search: function () {
             search();
