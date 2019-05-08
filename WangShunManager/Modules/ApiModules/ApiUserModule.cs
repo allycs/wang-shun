@@ -14,8 +14,19 @@
         public ApiUserModule()
         {
             Get("/users", _ => GetUsersAsync());
-            Put("/users/{id:int}/{state:int}", p => SetUsersStateAsncAsync((int)p.id,(int)p.state));
+            Put("/users",_=>UpdateUserAsync());
+            Put("/users/{id:int}/{state:int}", p => SetUsersStateAsync((int)p.id,(int)p.state));
             Delete("users/{id:int}",p=>DeleteUserAsync((int)p.id));
+        }
+
+        private async Task<Response> UpdateUserAsync()
+        {
+            var model = this.Bind<UpdateUserModel>();
+            var result = await "http://vm.tongyun188.com:12009/manager"
+                         .AppendPathSegment("DeleteUser")
+                         .PostJsonAsync(model)
+                         .ReceiveJson<ResponseDto<UserDto>>().ConfigureAwait(false);
+            return Response.AsJson(result);
         }
 
         private async Task<Response> DeleteUserAsync(int id)
@@ -27,7 +38,7 @@
             return Response.AsJson(result);
         }
 
-        private async Task<Response> SetUsersStateAsncAsync(int id,int state)
+        private async Task<Response> SetUsersStateAsync(int id,int state)
         {
             var result = await "http://vm.tongyun188.com:12009/manager"
                        .AppendPathSegment("SetUser")
