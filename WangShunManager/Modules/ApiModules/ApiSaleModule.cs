@@ -4,6 +4,7 @@
     using Flurl.Http;
     using Nancy;
     using Nancy.ModelBinding;
+    using System;
     using System.Threading.Tasks;
     using WangShunManager.Dtos;
     using WangShunManager.Models;
@@ -13,7 +14,17 @@
         public ApiSaleModule()
         {
             Get("/sales", _ => GetSalesAsync());
+            Put("/sales", _ => UpdateSaleAsync());
             Get("/sales-customer", _ => GetSalesCustomerAsync());
+        }
+
+        private async Task<Response> UpdateSaleAsync()
+        {
+            var model = this.Bind<UpdateSaleModel>();
+            return Response.AsJson(await "http://vm.tongyun188.com:12009/ProductSale"
+                   .AppendPathSegment("SetDefaultProductSalePrice")
+                   .PostJsonAsync(model)
+                   .ReceiveJson<ResponseDto<string>>().ConfigureAwait(false));
         }
 
         private async Task<Response> GetSalesCustomerAsync()

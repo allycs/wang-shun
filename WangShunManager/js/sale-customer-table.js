@@ -8,8 +8,8 @@
             success: function (result) {
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
-                    $('.alert strong').html(result.message + "!");
-                    $('.alert').show();
+                    $('.alert-main strong').html(result.message + "!");
+                    $('.alert-main').show();
                     return;
                 }
                 var length = result.data.rows.length;
@@ -24,16 +24,25 @@
                         '<td>' + items[i].maxPrice + '</td>' +
                         '<td>' + items[i].minPrice + '</td>' +
                         '<td>' + items[i].remark + '</td>' +
-                    '<td>' + IsDelToString(items[i].isDel) + '</td>' +
+                        '<td>' + IsDelToString(items[i].isDel) + '</td>' +
                         '<td>' + items[i].createTime + '</td>' +
                         '<td>' + items[i].product.id + '</td>' +
                         '<td>' + items[i].product.productName + '</td>' +
-                    '<td>' + ProductCategoryToString(items[i].product.categoryId) + '</td>' +
+                        '<td>' + ProductCategoryToString(items[i].product.categoryId) + '</td>' +
                         '<td>' + items[i].product.parValue + '</td>' +
-                    '<td>' + InfoStateToString(items[i].product.state) + '</td>' +
+                        '<td>' + InfoStateToString(items[i].product.state) + '</td>' +
                         '<td>' +
                         '<button type="button" class="btn btn-info">新增</button>' +
-                        '<button type="button" class="btn btn-warning">修改</button>' +
+                    '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" onclick=\'Table.service('
+                    + items[i].id + ',"'
+                    + items[i].product.id + '","'
+                    + items[i].product.productName + '",'
+                    + items[i].product.categoryId + ','
+                    + items[i].product.parValue + ','
+                    + items[i].maxPrice + ',"'
+                    + items[i].minPrice + '","'
+                    + items[i].remark +
+                        '");\'>修改</button>' +
                         '<button type="button" class="btn btn-danger">删除</button>' +
                         '</td>' +
                         '</tr>';
@@ -43,8 +52,8 @@
                 CheckPage();
             },
             error: function (data) {
-                $('.alert').html("网络异常请联系管理员!");
-                $('.alert').show();
+                $('.alert-main').html("网络异常请联系管理员!");
+                $('.alert-main').show();
                 return;
             }
         });
@@ -58,59 +67,6 @@
         var searchParValue = $('#search_par_value').val();
         var searchState = $('#search_state option:selected').val();
         getData(pageIndex, pageSize, "" + searchProductName + "", searchCategory, searchParValue, searchState);
-    };
-    var handleSaleCustomer = function () {
-        var userInfo = localStorage.UserInfo;
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: "/sales-customer",
-            data: { PageIndex: 1, PageSize: 30 },
-            success: function (result) {
-                console.log(result);
-                if (result.state != 0) {
-                    if (result.message == '请重新登录') { window.location.href = '/login'; }
-                    $('.alert strong').html(result.message + "!");
-                    $('.alert').show();
-                    return;
-                }
-                var length = result.data.rows.length;
-                var items = result.data.rows;
-                console.log(items);
-                total = result.data.total;
-                //TestPage();
-                console.log(items[0]);
-                var tableHtml = '';
-                for (i = 0; i < length; i++) {
-                    tableHtml +=
-                    '<tr>' +
-                        '<td>'+items[i].id+'</td>' +
-                        '<td>' + items[i].productId +'</td>' +
-                        '<td>' + items[i].maxPrice +'</td>' +
-                        '<td>' + items[i].minPrice +'</td>' +
-                        '<td>' + items[i].remark + '</td>' +
-                        '<td>' + items[i].isDel + '</td>' +
-                        '<td>' + items[i].createTime + '</td>' +
-                        '<td>' + items[i].product.id +'</td>' +
-                        '<td>' + items[i].product.productName +'</td>' +
-                        '<td>' + items[i].product.categoryId + '</td>' +
-                        '<td>' + items[i].product.parValue + '</td>' +
-                        '<td>' + items[i].product.state +'</td>' +
-                        '<td>' +
-                            '<button type="button" class="btn btn-info">新增</button>' +
-                            '<button type="button" class="btn btn-warning">修改</button>' +
-                            '<button type="button" class="btn btn-danger">删除</button>' +
-                        '</td>' +
-                     '</tr>';
-                }
-                $('#sale_customer_table').html(tableHtml);
-            },
-            error: function (data) {
-                $('.alert').html("网络异常请联系管理员!");
-                $('.alert').show();
-                return;
-            }
-        });
     };
 
     return {

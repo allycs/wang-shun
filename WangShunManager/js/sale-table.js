@@ -8,8 +8,8 @@
             success: function (result) {
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
-                    $('.alert strong').html(result.message + "!");
-                    $('.alert').show();
+                    $('.alert-main strong').html(result.message + "!");
+                    $('.alert-main').show();
                     return;
                 }
                 var length = result.data.rows.length;
@@ -21,16 +21,16 @@
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].productId + '</td>' +
-                        '<td id="sale_max_price_' + items[i].maxPrice + '">' + items[i].maxPrice + '</td>' +
-                        '<td id="sale_min_price_' + items[i].minPrice + '">' + items[i].minPrice + '</td>' +
-                        '<td>' + items[i].remark + '</td>' +
+                        '<td id="sale_max_price_' + items[i].id + '">' + items[i].maxPrice + '</td>' +
+                        '<td id="sale_min_price_' + items[i].id + '">' + items[i].minPrice + '</td>' +
+                        '<td id="sale_remark_' + items[i].id + '">' + items[i].remark + '</td>' +
                         '<td>' + items[i].product.id + '</td>' +
                         '<td>' + items[i].product.productName + '</td>' +
                         '<td>' + ProductCategoryToString(items[i].product.categoryId) + '</td>' +
                         '<td>' + items[i].product.parValue + '</td>' +
                         '<td>' + InfoStateToString(items[i].product.state) + '</td>' +
                         '<td style="text-align:center">' +
-                        '<button type="button" class="btn btn-warning"data-toggle="modal" data-target="#myModal" onclick=\'Table.service('
+                        '<button id="sale_service_btn_' + items[i].id + '" type="button" class="btn btn-warning"data-toggle="modal" data-target="#myModal" onclick=\'Table.service('
                         + items[i].id + ',"'
                         + items[i].product.id + '","'
                         + items[i].product.productName + '",'
@@ -48,8 +48,8 @@
                 CheckPage();
             },
             error: function (data) {
-                $('.alert').html("网络异常请联系管理员!");
-                $('.alert').show();
+                $('.alert-main').html("网络异常请联系管理员!");
+                $('.alert-main').show();
                 return;
             }
         });
@@ -66,6 +66,41 @@
         $('#sale_min_price').val(minPrice);
         $('#sale_remark').val(remark);
 
+    };
+    var update = function () {
+        $('.alert-danger-modal').hide();
+        $('.alert-success-modal').hide();
+        var saleId = $('#sale_id').val();
+        var saleMaxPrice = $('#sale_max_price').val();
+        var saleMinPrice = $('#sale_min_price').val();
+        var saleRemark = $('#sale_remark').val();
+        $.ajax({
+            type: "PUT",
+            dataType: "json",
+            url: "/sales",
+            data: { Id: saleId, maxPrice: saleMaxPrice, minPrice: saleMinPrice, Remark: saleRemark },
+            success: function (result) {
+                console.log(result);
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert-danger-modal strong').html(result.message + "!");
+                    $('.alert-danger-modal').show();
+                    return;
+                }
+                $('.alert-success-modal strong').html(result.message);
+                $('.alert-success-modal').show();
+                $('#sale_max_price_' + saleId).html(saleMaxPrice);
+                $('#sale_min_price_' + saleId).html(saleMinPrice);
+                $('#sale_remark_' + saleId).html(saleRemark);
+
+
+            },
+            error: function (data) {
+                $('.alert-danger-modal').html("网络异常请联系管理员!");
+                $('.alert-danger-modal').show();
+                return;
+            }
+        });
     };
     var handle = function () {
         getData(pageIndex, pageSize);
@@ -87,6 +122,9 @@
         },
         service: function (id, productId, productName, productCategoryId, productParValue, maxPrice, minPrice, remark) {
             service(id, productId, productName, productCategoryId, productParValue, maxPrice, minPrice, remark);
+        },
+        update: function () {
+            update();
         },
         search: function () {
             search();
