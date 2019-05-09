@@ -1,4 +1,4 @@
-var pageIndex = 1;
+﻿var pageIndex = 1;
 var pageSize = 6;
 var total = 30;
 function nextPage() {

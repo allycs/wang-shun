@@ -1,4 +1,4 @@
-function localdb_save(str) {
+﻿function localdb_save(str) {
     localStorage.setItem('info', str);
 }
 

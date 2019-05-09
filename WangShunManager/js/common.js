@@ -1,4 +1,4 @@
-var common = function () {
+﻿var common = function () {
     var handle = function () {
         if (localStorage.UserInfo == undefined)
             window.location.href = '/login';

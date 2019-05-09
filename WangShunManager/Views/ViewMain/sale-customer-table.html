@@ -55,7 +55,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" onclick="Table.update();">保存</button>
+                    <button id="modal_sale_customer_primary_btn" type="button" class="btn btn-primary" onclick="Table.update();">保存</button>
                 </div>
             </div>
         </div>
@@ -153,6 +153,7 @@
 <!-- tables -->
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
 <script src="js/sale-customer-table.js"></script>
+<script src="js/date-format.js"></script>
 <script type="text/javascript">
     var productName = null;
     var categoryId = null;

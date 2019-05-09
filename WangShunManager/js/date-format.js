@@ -1,19 +1,19 @@
-
-// ∂‘Dateµƒ¿©’π£¨Ω´ Date ◊™ªØŒ™÷∏∂®∏Ò ΩµƒString
-// ‘¬(M)°¢»’(d)°¢–° ±(h)°¢∑÷(m)°¢√Î(s)°¢ºæ∂»(q) ø…“‘”√ 1-2 ∏ˆ’ºŒª∑˚£¨ 
-// ƒÍ(y)ø…“‘”√ 1-4 ∏ˆ’ºŒª∑˚£¨∫¡√Î(S)÷ªƒ‹”√ 1 ∏ˆ’ºŒª∑˚( « 1-3 Œªµƒ ˝◊÷) 
-// ¿˝◊”£∫ 
+Ôªø
+// ÂØπDateÁöÑÊâ©Â±ïÔºåÂ∞Ü Date ËΩ¨Âåñ‰∏∫ÊåáÂÆöÊ†ºÂºèÁöÑString
+// Êúà(M)„ÄÅÊó•(d)„ÄÅÂ∞èÊó∂(h)„ÄÅÂàÜ(m)„ÄÅÁßí(s)„ÄÅÂ≠£Â∫¶(q) ÂèØ‰ª•Áî® 1-2 ‰∏™Âç†‰ΩçÁ¨¶Ôºå 
+// Âπ¥(y)ÂèØ‰ª•Áî® 1-4 ‰∏™Âç†‰ΩçÁ¨¶ÔºåÊØ´Áßí(S)Âè™ËÉΩÁî® 1 ‰∏™Âç†‰ΩçÁ¨¶(ÊòØ 1-3 ‰ΩçÁöÑÊï∞Â≠ó) 
+// ‰æãÂ≠êÔºö 
 // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423 
 // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18 
 Date.prototype.Format = function (fmt) { //author: meizz 
     var o = {
-        "M+": this.getMonth() + 1, //‘¬∑› 
-        "d+": this.getDate(), //»’ 
-        "h+": this.getHours(), //–° ± 
-        "m+": this.getMinutes(), //∑÷ 
-        "s+": this.getSeconds(), //√Î 
-        "q+": Math.floor((this.getMonth() + 3) / 3), //ºæ∂» 
-        "S": this.getMilliseconds() //∫¡√Î 
+        "M+": this.getMonth() + 1, //Êúà‰ªΩ 
+        "d+": this.getDate(), //Êó• 
+        "h+": this.getHours(), //Â∞èÊó∂ 
+        "m+": this.getMinutes(), //ÂàÜ 
+        "s+": this.getSeconds(), //Áßí 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //Â≠£Â∫¶ 
+        "S": this.getMilliseconds() //ÊØ´Áßí 
     };
     if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (var k in o)

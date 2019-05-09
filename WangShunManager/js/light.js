@@ -1,4 +1,4 @@
-AmCharts.themes.light = {
+﻿AmCharts.themes.light = {
 
 	themeName:"light",
 

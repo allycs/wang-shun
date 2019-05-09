@@ -1,4 +1,4 @@
-var Login = function () {
+锘縱ar Login = function () {
     var handleLogin = function () {
         $("input[type ='submit']").keypress(function (e) {
             if (e.which == 13) {
@@ -28,7 +28,7 @@ var Login = function () {
                     self.location = "/main-page";
                 },
                 error: function (data) {
-                    $('.alert').html("网络异常请联系管理员!");
+                    $('.alert').html("缃戠粶寮傚父璇疯仈绯荤鐞嗗憳!");
                     $('.alert').show();
                     return;
                 }

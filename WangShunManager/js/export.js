@@ -1,4 +1,4 @@
-/*
+﻿/*
 Plugin Name: amCharts Export
 Description: Adds export capabilities to amCharts products
 Author: Benjamin Maertz, amCharts

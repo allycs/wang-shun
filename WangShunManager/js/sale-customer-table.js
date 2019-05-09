@@ -12,6 +12,7 @@
                     $('.alert-main').show();
                     return;
                 }
+                console.log(result);
                 var length = result.data.rows.length;
                 var items = result.data.rows;
                 total = result.data.total;
@@ -25,14 +26,14 @@
                         '<td>' + items[i].minPrice + '</td>' +
                         '<td>' + items[i].remark + '</td>' +
                         '<td>' + IsDelToString(items[i].isDel) + '</td>' +
-                        '<td>' + items[i].createTime + '</td>' +
+                        '<td>' + items[i].createTime.Format("yyyy-MM-dd hh:mm:ss.S") + '</td>' +
                         '<td>' + items[i].product.id + '</td>' +
                         '<td>' + items[i].product.productName + '</td>' +
                         '<td>' + ProductCategoryToString(items[i].product.categoryId) + '</td>' +
                         '<td>' + items[i].product.parValue + '</td>' +
                         '<td>' + InfoStateToString(items[i].product.state) + '</td>' +
                         '<td>' +
-                        '<button type="button" class="btn btn-info">新增</button>' +
+                        '<button type="button" class="btn btn-info" onclick="Table.get_insert_modal();">新增</button>' +
                         '<button id="sale_service_btn_' + items[i].id + '" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" onclick="Table.service('
                         + items[i].id + ',\''
                         + items[i].product.id + '\',\''
@@ -47,7 +48,7 @@
                         '</td>' +
                         '</tr>';
                 }
-                $('#sale_table').html(tableHtml);
+                $('#sale_customer_table').html(tableHtml);
                 $('#total').html("第" + pageIndex + "页-共" + total + "条");
                 CheckPage();
             },
@@ -129,7 +130,20 @@
         var searchState = $('#search_state option:selected').val();
         getData(pageIndex, pageSize, "" + searchProductName + "", searchCategory, searchParValue, searchState);
     };
-
+    var get_insert_modal = function () {
+        $('.alert-danger-modal').hide();
+        $('.alert-success-modal').hide();
+        $('#sale_id').val("");
+        $('#sale_product_id').val("");
+        $('#sale_product_name').val("");
+        $('#sale_product_category_id').val("");
+        $('#sale_product_par_value').val("");
+        $('#sale_max_price').val("");
+        $('#sale_min_price').val("");
+        $('#sale_remark').val("");
+        $("#modal_sale_customer_primary_btn").attr("onclick", "Table.insert();");
+        
+    };
     return {
         init: function () {
             handle();
@@ -146,6 +160,9 @@
         },
         search: function () {
             search();
+        },
+        get_insert_modal: function () {
+            get_insert_modal();
         }
     };
 }();

@@ -1,4 +1,4 @@
-/*
+﻿/*
 * prettyMaps 1.0.0
 *
 * Copyright 2014, Jean-Marc Goefpert - http://omgogepfert.com
