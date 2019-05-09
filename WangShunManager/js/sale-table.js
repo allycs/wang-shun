@@ -30,16 +30,16 @@
                         '<td>' + items[i].product.parValue + '</td>' +
                         '<td>' + InfoStateToString(items[i].product.state) + '</td>' +
                         '<td style="text-align:center">' +
-                        '<button id="sale_service_btn_' + items[i].id + '" type="button" class="btn btn-warning"data-toggle="modal" data-target="#myModal" onclick=\'Table.service('
-                        + items[i].id + ',"'
-                        + items[i].product.id + '","'
-                        + items[i].product.productName + '",'
+                        '<button id="sale_service_btn_' + items[i].id + '" type="button" class="btn btn-warning"data-toggle="modal" data-target="#myModal" onclick="Table.service('
+                        + items[i].id + ',\''
+                        + items[i].product.id + '\',\''
+                        + items[i].product.productName + '\','
                         + items[i].product.categoryId + ','
                         + items[i].product.parValue + ','
-                        + items[i].maxPrice + ',"'
-                        + items[i].minPrice + '","'
+                        + items[i].maxPrice + ',\''
+                        + items[i].minPrice + '\',\''
                         + items[i].remark +
-                        '");\'>修改</button>' +
+                        '\');">修改</button>' +
                         '</td>' +
                         '</tr>';
                 }
@@ -60,7 +60,7 @@
         $('#sale_id').val(id);
         $('#sale_product_id').val(productId);
         $('#sale_product_name').val(productName);
-        $('#sale_product_state').val(ProductCategoryToString(productCategoryId));
+        $('#sale_product_category_id').val(ProductCategoryToString(productCategoryId));
         $('#sale_product_par_value').val(productParValue);
         $('#sale_max_price').val(maxPrice);
         $('#sale_min_price').val(minPrice);
@@ -74,6 +74,11 @@
         var saleMaxPrice = $('#sale_max_price').val();
         var saleMinPrice = $('#sale_min_price').val();
         var saleRemark = $('#sale_remark').val();
+
+        var productId = $('#sale_product_id').val();
+        var productName = $('#sale_product_name').val();
+        var productCategoryId = ProductCategoryStringToValue($('#sale_product_category_id').val());
+        var parductParValue = $('#sale_product_par_value').val();
         $.ajax({
             type: "PUT",
             dataType: "json",
@@ -92,7 +97,16 @@
                 $('#sale_max_price_' + saleId).html(saleMaxPrice);
                 $('#sale_min_price_' + saleId).html(saleMinPrice);
                 $('#sale_remark_' + saleId).html(saleRemark);
-
+                $("#sale_service_btn_" + upUserId).attr("onclick", "Table.service("
+                    + saleId + ",'"
+                    + productId + "','"
+                    + productName + "',"
+                    + productCategoryId + ","
+                    + parductParValue + ","
+                    + saleMaxPrice + ",'"
+                    + saleMinPrice + "','"
+                    + saleRemark +
+                    "');");
 
             },
             error: function (data) {

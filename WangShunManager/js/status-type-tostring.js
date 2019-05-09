@@ -40,7 +40,18 @@ function ProductCategoryToString(type) {
             return "？";
     }
 };
-
+function ProductCategoryStringToValue(type) {
+    switch (type) {
+        case "移动":
+            return 0;
+        case "联动":
+            return 1;
+        case "电信":
+            return 2;
+        default:
+            return -1;
+    }
+};
 
 function MemberTypeToString(type) {
     switch (type) {
