@@ -22,11 +22,11 @@
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].productId + '</td>' +
-                        '<td>' + items[i].maxPrice + '</td>' +
-                        '<td>' + items[i].minPrice + '</td>' +
-                        '<td>' + items[i].remark + '</td>' +
-                    '<td>' + IsDelToString(items[i].isDel) + '</td>' +
-                    //'<td>' + items[i].createTime + '</td>' +
+                        '<td id="sale_max_price_' + items[i].id + '">' + items[i].maxPrice + '</td>' +
+                        '<td id="sale-min_price_' + items[i].id + '">' + items[i].minPrice + '</td>' +
+                        '<td id="sale_remark_' + items[i].id + '">' + items[i].remark + '</td>' +
+                        '<td>' + IsDelToString(items[i].isDel) + '</td>' +
+                        //'<td>' + items[i].createTime + '</td>' +
                         '<td>' + new Date(items[i].createTime).Format("yyyy-MM-dd hh:mm:ss.S") + '</td>' +
                         '<td>' + items[i].product.id + '</td>' +
                         '<td>' + items[i].product.productName + '</td>' +
@@ -41,10 +41,10 @@
                         + items[i].product.productName + '\','
                         + items[i].product.categoryId + ','
                         + items[i].product.parValue + ','
-                        + items[i].maxPrice + ',"'
+                        + items[i].maxPrice + ',\''
                         + items[i].minPrice + '\',\''
                         + items[i].remark +
-                        '\');">修改</button>' +
+                        '\');">维护</button>' +
                         '<button type="button" class="btn btn-danger">删除</button>' +
                         '</td>' +
                         '</tr>';

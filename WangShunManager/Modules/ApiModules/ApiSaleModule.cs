@@ -16,6 +16,16 @@
             Get("/sales", _ => GetSalesAsync());
             Put("/sales", _ => UpdateSaleAsync());
             Get("/sales-customer", _ => GetSalesCustomerAsync());
+            Put("/sales-customer", _ => UpdateSalesCustomerAsync());
+        }
+
+        private async Task<Response> UpdateSalesCustomerAsync()
+        {
+            var model = this.Bind<UpdateSaleCustomerModel>();
+            return Response.AsJson(await "http://vm.tongyun188.com:12009/ProductSale"
+                   .AppendPathSegment("SetCustomProductSalePrice")
+                   .PostJsonAsync(model)
+                   .ReceiveJson<ResponseDto<string>>().ConfigureAwait(false));
         }
 
         private async Task<Response> UpdateSaleAsync()
