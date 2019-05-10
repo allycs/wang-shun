@@ -34,7 +34,14 @@
                                     <label for="sale_product_name" class="col-sm-1 control-label">名称</label>
                                     <div class="col-sm-5"> <input type="text" class="form-control" disabled="disabled" id="sale_product_name"> </div>
                                     <label for="sale_product_category_id" class="col-sm-1 control-label">类型</label>
-                                    <div class="col-sm-5"> <input type="text" class="form-control" disabled="disabled" id="sale_product_category_id"> </div>
+                                    <div class="col-sm-5">
+                                        <select name="selector_category" disabled="disabled" id="sale_product_category_id" class="form-control1" placeholder="运营商">
+                                            <option value="-1">运行商不限</option>
+                                            <option value="0">移动</option>
+                                            <option value="1">联通</option>
+                                            <option value="2">电信</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="sale_product_par_value" class="col-sm-1 control-label">面值</label>
@@ -127,7 +134,7 @@
                             <th>产品类目</th>
                             <th>产品面值</th>
                             <th>产品状态</th>
-                            <th>操作</th>
+                            <th style="text-align:center;">操作</th>
                         </tr>
                     </thead>
                     <tbody id="sale_customer_table"></tbody>

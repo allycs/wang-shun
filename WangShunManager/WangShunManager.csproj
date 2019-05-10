@@ -480,6 +480,7 @@
     <Compile Include="Models\ProductsModel.cs" />
     <Compile Include="Models\SalesModel.cs" />
     <Compile Include="Models\CapitalDetailsModel.cs" />
+    <Compile Include="Models\InsertSaleCustomerModel.cs" />
     <Compile Include="Models\UpdateSaleCustomerModel.cs" />
     <Compile Include="Models\UpdateSaleModel.cs" />
     <Compile Include="Models\UpdateUserModel.cs" />

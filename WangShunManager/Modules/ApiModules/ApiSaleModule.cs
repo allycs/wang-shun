@@ -17,6 +17,26 @@
             Put("/sales", _ => UpdateSaleAsync());
             Get("/sales-customer", _ => GetSalesCustomerAsync());
             Put("/sales-customer", _ => UpdateSalesCustomerAsync());
+            Delete("sales-customer/{id:int}", p => DeleteSalesCustomerAsync((int)p.id));
+            Post("sales-customer", _ => InsertSalesCustomerAsync());
+        }
+
+        private async Task<Response> InsertSalesCustomerAsync()
+        {
+            var model = this.Bind<InsertSaleCustomerModel>();
+            return Response.AsJson(await "http://vm.tongyun188.com:12009/ProductSale"
+                   .AppendPathSegment("AddCustomProductSalePrice")
+                   .PostJsonAsync(model)
+                   .ReceiveJson<ResponseDto<string>>().ConfigureAwait(false));
+        }
+
+        private async Task<Response> DeleteSalesCustomerAsync(int id)
+        {
+            var result = await "http://vm.tongyun188.com:12009/ProductSale"
+                          .AppendPathSegment("DeleteCustomProductSalePrice")
+                          .PostJsonAsync(new { id })
+                          .ReceiveJson<ResponseDto<string>>().ConfigureAwait(false);
+            return Response.AsJson(result);
         }
 
         private async Task<Response> UpdateSalesCustomerAsync()
