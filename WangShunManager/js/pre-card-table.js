@@ -45,7 +45,7 @@
                         '<td>' + items[i].uploadBatch.currentDiscount + '</td>' +
                         '<td>' + items[i].uploadBatch.userRemark + '</td>' +
                         '<td>' + items[i].uploadBatch.pri + '</td>' +
-                        '<td>' + items[i].uploadBatch.productCategory + '</td>' +
+                        '<td>' + ProductCategoryToString(items[i].uploadBatch.productCategory) + '</td>' +
                         '<td>' + items[i].uploadBatch.cardInfos + '</td>' +
                         '</tr>';
                 }
