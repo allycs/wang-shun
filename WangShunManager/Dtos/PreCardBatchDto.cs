@@ -8,7 +8,6 @@
         public int ProductId { get; set; }
         public decimal TotalAmount { get; set; }
         public decimal ParValue { get; set; }
-        public int Count { get; set; }
         public DateTime CreateTime { get; set; }
         public int UsedNum { get; set; }
         public int UnUsedNum { get; set; }

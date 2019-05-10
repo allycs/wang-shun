@@ -23,11 +23,14 @@ namespace WangShunManager.Modules.ApiModules
         private async Task<Response> GetPreCardAsync()
         {
             var model = this.Bind<PreCardModel>();
-
-            return Response.AsJson(await "http://vm.tongyun188.com:12009/PreCard"
+            model.CardState = model.CardState == -1 ? null : model.CardState;
+            model.ManagedState = model.ManagedState == -1 ? null : model.ManagedState;
+            model.SettleState = model.SettleState == -1 ? null : model.SettleState;
+            var result = await "http://vm.tongyun188.com:12009/PreCard"
                     .AppendPathSegment("GetPreCardList")
                     .PostJsonAsync(model)
-                    .ReceiveJson<ResponseDto<PageDataDto<PreCardRowDto>>>().ConfigureAwait(false));
+                    .ReceiveJson<ResponseDto<PageDataDto<PreCardRowDto>>>().ConfigureAwait(false);
+            return Response.AsJson(result);
         }
 
         private async Task<Response> GetPreCardBatchAsync()
