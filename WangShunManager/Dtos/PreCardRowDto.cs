@@ -3,7 +3,7 @@
     public class PreCardRowDto
     {
         public long Id { get; set; }
-        public long BatchId { get; set; }
+        public string BatchId { get; set; }
         public string CardId { get; set; }
         public int CardState { get; set; }
         public int ManagedState { get; set; }

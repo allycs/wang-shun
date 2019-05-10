@@ -34,7 +34,7 @@
                         '<td>' + items[i].uploadBatch.productId + '</td>' +
                         '<td>' + items[i].uploadBatch.totalAmount + '</td>' +
                         '<td>' + items[i].uploadBatch.parValue + '</td>' +
-                        '<td>' + items[i].uploadBatch.createTime + '</td>' +
+                        '<td>' + new Date(items[i].uploadBatch.createTime).Format("yyyy-MM-dd hh:mm:ss.S") + '</td>' +
                         '<td>' + items[i].uploadBatch.usedNum + '</td>' +
                         '<td>' + items[i].uploadBatch.unUsedNum + '</td>' +
                         '<td>' + items[i].uploadBatch.errorNum + '</td>' +
