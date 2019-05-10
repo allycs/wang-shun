@@ -74,12 +74,12 @@
         });
     };
     var search = function () {
-        var searchProductName = $('#search_product_name').val();
-        var searchCategory = $('#search_categoryId option:selected').val();
-        var searchParValue = $('#search_par_value').val();
-        var searchState = $('#search_state option:selected').val();
+        productName = $('#search_product_name').val();
+        categoryId = $('#search_categoryId option:selected').val();
+        parValue = $('#search_par_value').val();
+        state = $('#search_state option:selected').val();
         //console.log("name:" + searchProductName + ";category:" + searchCategory + ";parValue:" + searchParValue + ";state:" + searchState);
-        getData(pageIndex, pageSize, ""+searchProductName+"", searchCategory, searchParValue, searchState);
+        getData(pageIndex, pageSize, "" + productName + "", categoryId, parValue, state);
     };
     return {
         init: function () {

@@ -34,13 +34,13 @@
                         '<td>' + items[i].uploadBatch.productId + '</td>' +
                         '<td>' + items[i].uploadBatch.totalAmount + '</td>' +
                         '<td>' + items[i].uploadBatch.parValue + '</td>' +
-                        '<td>' + new Date(items[i].uploadBatch.createTime).Format("yyyy-MM-dd hh:mm:ss.S") + '</td>' +
+                        '<td>' + new Date(items[i].uploadBatch.createTime).Format("yyyy/MM/dd") + '</td>' +
                         '<td>' + items[i].uploadBatch.usedNum + '</td>' +
                         '<td>' + items[i].uploadBatch.unUsedNum + '</td>' +
                         '<td>' + items[i].uploadBatch.errorNum + '</td>' +
                         '<td>' + items[i].uploadBatch.inUseNum + '</td>' +
                         '<td>' + items[i].uploadBatch.userId + '</td>' +
-                        '<td>' + items[i].uploadBatch.state + '</td>' +
+                        '<td>' + InfoStateToString(items[i].uploadBatch.state) + '</td>' +
                         '<td>' + items[i].uploadBatch.initialDiscount + '</td>' +
                         '<td>' + items[i].uploadBatch.currentDiscount + '</td>' +
                         '<td>' + items[i].uploadBatch.userRemark + '</td>' +
@@ -61,14 +61,14 @@
         });
     };
     var search = function () {
-        var searchBatchId = $('#search_batch_id').val();
-        var searchCardId = $('#search_card_id').val();
+        batchId = $('#search_batch_id').val();
+        cardId = $('#search_card_id').val();
 
-        var searchCardState = $('#search_card_state option:selected').val();
-        var searchManagedState = $('#search_managed_state option:selected').val();
-        var searchSettleState = $('#search_settle_state option:selected').val();
+        cardState = $('#search_card_state option:selected').val();
+        managedState = $('#search_managed_state option:selected').val();
+        settleState = $('#search_settle_state option:selected').val();
 
-        getData(pageIndex, pageSize, searchBatchId, searchCardId, searchCardState, searchManagedState, searchSettleState);
+        getData(pageIndex, pageSize, batchId, cardId, cardState, managedState, settleState);
     };
     return {
         init: function () {

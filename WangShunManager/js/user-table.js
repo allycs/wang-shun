@@ -199,11 +199,11 @@
         });
     };
     var search = function () {
-        var searchId = $('#search_id').val();
-        var searchLoginId = $('#search_login_id').val();
-        var searchState = $('#search_state option:selected').val();
+        userId = $('#search_id').val();
+        loginId = $('#search_login_id').val();
+        state = $('#search_state option:selected').val();
         //console.log("name:" + searchProductName + ";category:" + searchCategory + ";parValue:" + searchParValue + ";state:" + searchState);
-        getData(pageIndex, pageSize, searchId, searchLoginId, searchState);
+        getData(pageIndex, pageSize, userId, loginId, state);
     };
     return {
         init: function () {

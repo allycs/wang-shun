@@ -27,7 +27,7 @@
                         '<td id="sale_remark_' + items[i].id + '">' + items[i].remark + '</td>' +
                         '<td id="sales_customer_del_' + items[i].id + '">' + IsDelToString(items[i].isDel) + '</td>' +
                         //'<td>' + items[i].createTime + '</td>' +
-                        '<td>' + new Date(items[i].createTime).Format("yyyy-MM-dd hh:mm:ss.S") + '</td>' +
+                    '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd")  + '</td>' +
                         '<td>' + items[i].product.id + '</td>' +
                         '<td>' + items[i].product.productName + '</td>' +
                         '<td>' + ProductCategoryToString(items[i].product.categoryId) + '</td>' +
@@ -134,11 +134,11 @@
         getData(pageIndex, pageSize);
     };
     var search = function () {
-        var searchProductName = $('#search_product_name').val();
-        var searchCategory = $('#search_categoryId option:selected').val();
-        var searchParValue = $('#search_par_value').val();
-        var searchState = $('#search_state option:selected').val();
-        getData(pageIndex, pageSize, "" + searchProductName + "", searchCategory, searchParValue, searchState);
+        productName = $('#search_product_name').val();
+        categoryId = $('#search_categoryId option:selected').val();
+        parValue = $('#search_par_value').val();
+        state = $('#search_state option:selected').val();
+        getData(pageIndex, pageSize, "" + productName + "", categoryId, parValue, state);
     };
     var del_sales_customer = function (id) {
         $.ajax({
