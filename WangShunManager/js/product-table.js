@@ -22,7 +22,7 @@
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].productName + '</td>' +
-                        '<td>' + items[i].categoryId + '</td>' +
+                        '<td>' + ProductCategoryToString(items[i].categoryId) + '</td>' +
                         '<td>' + items[i].parValue + '</td>' +
                         '<td id="product_state_' + items[i].id + '">' + ProductStateToString(items[i].state) + '</td>' +
                         '<td>' + items[i].maxPrice + '</td>' +
