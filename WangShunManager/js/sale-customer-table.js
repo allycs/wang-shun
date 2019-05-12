@@ -27,7 +27,7 @@
                         '<td id="sale_remark_' + items[i].id + '">' + items[i].remark + '</td>' +
                         '<td id="sales_customer_del_' + items[i].id + '">' + IsDelToString(items[i].isDel) + '</td>' +
                         //'<td>' + items[i].createTime + '</td>' +
-                    '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd")  + '</td>' +
+                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd") + '</td>' +
                         '<td>' + items[i].product.id + '</td>' +
                         '<td>' + items[i].product.productName + '</td>' +
                         '<td>' + ProductCategoryToString(items[i].product.categoryId) + '</td>' +
@@ -91,7 +91,7 @@
 
         var productId = $('#sale_product_id').val();
         var productName = $('#sale_product_name').val();
-        
+
         var productCategoryId = $('#sale_product_category_id option:selected').val();
         var parductParValue = $('#sale_product_par_value').val();
         $.ajax({
@@ -179,7 +179,7 @@
         $("#modal_sale_customer_primary_btn").attr("onclick", "Table.new_item();");
 
         $("#sale_product_category_id").find("option[value='-1']").attr("selected", true);
-       
+
         $('#sale_product_category_id').attr("disabled", false);
         $('#sale_product_par_value').attr("disabled", false);
         //$('#sale_product_category_id').removeAttr("disabled")
@@ -190,7 +190,7 @@
         $('.alert-success-modal').hide();
         if (localStorage.UserInfo == undefined)
             window.location.href = '/login';
-        
+
         var saleMaxPrice = $('#sale_max_price').val();
         var saleMinPrice = $('#sale_min_price').val();
         var saleRemark = $('#sale_remark').val();
@@ -212,7 +212,7 @@
                 }
                 $('.alert-success-modal strong').html(result.message);
                 $('.alert-success-modal').show();
-               
+
             },
             error: function (data) {
                 $('.alert-danger-modal').html("网络异常请联系管理员!");

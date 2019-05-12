@@ -33,7 +33,7 @@ function ProductCategoryToString(type) {
         case 0:
             return "移动";
         case 1:
-            return "联动";
+            return "联通";
         case 2:
             return "电信";
         default:
@@ -44,7 +44,7 @@ function ProductCategoryStringToValue(type) {
     switch (type) {
         case "移动":
             return 0;
-        case "联动":
+        case "联通":
             return 1;
         case "电信":
             return 2;
