@@ -26,8 +26,8 @@
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].userId + '</td>' +
-                        '<td>' + items[i].amount + '</td>' +
-                        '<td>' + MemberWithdarwStateToString(items[i].state) + '</td>' +
+                    '<td>' + items[i].amount + '</td>' +
+                    '<td id="member_withdraw_state_' + items[i].id + '">' + MemberWithdarwStateToString(items[i].state) + '</td>' +
                         '<td>' + items[i].remark + '</td>' +
                         '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd") + '</td>' +
                         '<td>' + new Date(items[i].dealTime).Format("yyyy/MM/dd") + '</td>' +
@@ -35,10 +35,11 @@
                         '<td>' + items[i].settleChannel + '</td>' +
                         '<td>' + items[i].settleAccountHolder + '</td>' +
                         '<td>' + items[i].settleAccountNo + '</td>' +
-                        '<td>' +
-                        '<button type="button" class="btn btn-info">查看</button>' +
-                        '<button type="button" class="btn btn-warning">审核</button>' +
-                        '<button type="button" class="btn btn-danger">删除</button>' +
+                        '<td style="text-align:center;">';
+                    if (items[i].state == 0)
+                        tableHtml += '<button id="member_withdarw_cash_audit_btn_' + items[i].id + '" type="button" class="btn btn-warning" onclick="Table.cashAudit(' + items[i].id + ',' + items[i].state + ',' + items[i].settleOrderId+')">审核</button>';
+
+                    tableHtml +=
                         '</td>' +
                         '</tr>';
                 }
@@ -60,6 +61,30 @@
         state = $('#search_state option:selected').val();
         getData(pageIndex, pageSize, startTime, endTime, userId, state);
     };
+    var cashAudit = function (id,state, settleOrderId) {
+        $.ajax({
+            type: "PUT",
+            dataType: "json",
+            url: "/member-withdraw/cash-audit",
+            data: { Id: id,State:state, SettleOrderId: settleOrderId },
+            success: function (result) {
+                console.log(result);
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert-main strong').html(result.message + "!");
+                    $('.alert-main').show();
+                    return;
+                }
+                $('#member_withdraw_state_' + id).html("审核成功");
+                $("#member_withdarw_cash_audit_btn_" + id).remove();
+            },
+            error: function (data) {
+                $('.alert-main').html("网络异常请联系管理员!");
+                $('.alert-main').show();
+                return;
+            }
+        });
+    };
     return {
         init: function () {
             handle();
@@ -69,6 +94,9 @@
         },
         search: function () {
             search();
+        },
+        cashAudit: function (id, state, settleOrderId) {
+            cashAudit(id, state, settleOrderId);
         }
     };
 }();

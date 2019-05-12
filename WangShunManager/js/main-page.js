@@ -56,8 +56,8 @@
             type: "GET",
             dataType: "json",
             async: false,
-            url: "/member-withdraw",
-            data: { PageIndex: 1, PageSize: 1 },
+            url: "/member-withdraw-count",
+            data: {},
             success: function (result) {
                 console.log(result);
                 if (result.state != 0) {
