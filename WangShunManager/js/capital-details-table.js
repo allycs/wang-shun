@@ -1,13 +1,13 @@
 ﻿var Table = function () {
     var handle = function () {
-        getData(pageIndex, pageSize,startTime,endTime);
+        getData(pageIndex, pageSize, startTime, endTime);
     };
 
     var getData = function (pageIndex, pageSize, startTime, endTime, userId, type, status) {
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: "/pre-card-batch",
+            url: "/capital-details",
             data: { PageIndex: pageIndex, PageSize: pageSize, StartTime: startTime, EndTime: endTime, UserId: userId, Type: type, Status: status },
             success: function (result) {
                 if (result.state != 0) {
@@ -16,6 +16,7 @@
                     $('.alert-main').show();
                     return;
                 }
+                console.log(result);
                 var length = result.data.rows.length;
                 var items = result.data.rows;
                 total = result.data.total;
@@ -25,22 +26,17 @@
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].userId + '</td>' +
-                        '<td>' + items[i].createTime + '</td>' +
+                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd") + '</td>' +
                         '<td>' + items[i].bizId + '</td>' +
                         '<td>' + items[i].tradeAmount + '</td>' +
                         '<td>' + items[i].preBalance + '</td>' +
                         '<td>' + items[i].postBalance + '</td>' +
-                        '<td>' + items[i].type + '</td>' +
-                        '<td>' + items[i].status + '</td>' +
+                        '<td>' + CaptialDetailsTypeToString(items[i].type) + '</td>' +
+                        '<td>' + SettleStateToString(items[i].status) + '</td>' +
                         '<td>' + items[i].remark + '</td>' +
-                        '<td>' +
-                        '<button type="button" class="btn btn-info">查看</button>' +
-                        '<button type="button" class="btn btn-warning">修改</button>' +
-                        '<button type="button" class="btn btn-danger">删除</button>' +
-                        '</td>' +
                         '</tr>';
                 }
-                $('#pre_card_batch_table').html(tableHtml);
+                $('#capital_details_table').html(tableHtml);
                 $('#total').html("第" + pageIndex + "页-共" + total + "条");
                 CheckPage();
             },

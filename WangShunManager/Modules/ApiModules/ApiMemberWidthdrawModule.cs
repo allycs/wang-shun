@@ -18,6 +18,7 @@
         private async Task<Response> GetMemberWidthdrawAsync()
         {
             var model = this.Bind<MemberWithdrawModel>();
+            model.State = model.State == -1 ? null : model.State;
             if (model.StartTime == null && model.EndTime == null && model.UserId == null && model.State == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"

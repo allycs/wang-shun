@@ -80,3 +80,25 @@ function SettleStateToString(type) {
             return "？";
     }
 };
+function MemberWithdarwStateToString(type) {
+    switch (type) {
+        case 0:
+            return "待审核";
+        case 1:
+            return "审核成功";
+        case 2:
+            return "审核失败";
+        default:
+            return "？";
+    }
+};
+function CaptialDetailsTypeToString(type) {
+    switch (type) {
+        case 0:
+            return "充值卡结算";
+        case 1:
+            return "提现";
+        default:
+            return "？";
+    }
+};
