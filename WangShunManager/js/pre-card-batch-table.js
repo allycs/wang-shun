@@ -1,13 +1,13 @@
 ﻿var Table = function () {
     var handle = function () {
-        getData(pageIndex, pageSize);
+        getData(pageIndex, pageSize,startTime,endTime);
     };
-    var getData = function (pageIndex, pageSize, startTime, endTime, batchId, parValue, state) {
+    var getData = function (pageIndex, pageSize, startTime, endTime, batchId, categoryId, parValue, state) {
         $.ajax({
             type: "GET",
             dataType: "json",
             url: "/pre-card-batch",
-            data: { PageIndex: pageIndex, PageSize: pageSize, StartTime: startTime, EndTime: endTime, BatchId: batchId, ParValue: parValue, State: state },
+            data: { PageIndex: pageIndex, PageSize: pageSize, StartTime: startTime, EndTime: endTime, BatchId: batchId,CategoryId,categoryId, ParValue: parValue, State: state },
             success: function (result) {
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
@@ -61,7 +61,7 @@
         state = $('#search_state option:selected').val();
 
 
-        getData(pageIndex, pageSize, startTime, endTime, batchId, parValue, state);
+        getData(pageIndex, pageSize, startTime, endTime, batchId, categoryId, parValue, state);
     };
     return {
         init: function () {
