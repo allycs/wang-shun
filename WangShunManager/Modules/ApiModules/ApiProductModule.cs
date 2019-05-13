@@ -29,6 +29,7 @@
         private async Task<Response> GetProductsAsync()
         {
             var model = this.Bind<ProductsModel>();
+            model.ParValue = model.ParValue == -1 ? null : model.ParValue;
             model.CategoryId = model.CategoryId == -1 ? null : model.CategoryId;
             model.State = model.State == -1 ? null : model.State;
             if (string.IsNullOrWhiteSpace(model.ProductName) && model.CategoryId == null && model.ParValue == null && model.State == null)

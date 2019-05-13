@@ -31,6 +31,7 @@ namespace WangShunManager.Modules.ApiModules
         {
             
             var model = this.Bind<OutStockModel>();
+            model.ParValue = model.ParValue == -1 ? null : model.ParValue;
             model.State = model.State == -1 ? null : model.State;
             model.CategoryId = model.CategoryId == -1 ? null : model.CategoryId;
             return Response.AsJson(await "http://vm.tongyun188.com:12009/PreCardStock"

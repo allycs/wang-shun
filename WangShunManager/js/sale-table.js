@@ -122,7 +122,8 @@
     var search = function () {
         productName = $('#search_product_name').val();
         categoryId = $('#search_categoryId option:selected').val();
-        parValue = $('#search_par_value').val();
+        //parValue = $('#search_par_value').val();
+        parValue = $('#search_par_value option:selected').val();
         state = $('#search_state option:selected').val();
         getData(pageIndex, pageSize, "" + productName + "", categoryId, parValue, state);
     };

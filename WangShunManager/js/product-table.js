@@ -24,11 +24,11 @@
                         '<td>' + items[i].productName + '</td>' +
                         '<td>' + ProductCategoryToString(items[i].categoryId) + '</td>' +
                         '<td>' + items[i].parValue + '</td>' +
-                        '<td id="product_state_' + items[i].id + '">' + ProductStateToString(items[i].state) + '</td>' +
                         '<td>' + items[i].maxPrice + '</td>' +
                         '<td>' + items[i].minPrice + '</td>' +
-                        '<td>' + items[i].maxDiscount + '</td>' +
-                        '<td>' + items[i].minDiscount + '</td>' +
+                        //'<td>' + items[i].maxDiscount + '</td>' +
+                        //'<td>' + items[i].minDiscount + '</td>' +
+                        '<td id="product_state_' + items[i].id + '">' + ProductStateToString(items[i].state) + '</td>' +
                         '<td style="text-align:center;">' +
                         '<button id="product_state_btn_' + items[i].id + '" type="button" class="btn btn-warning" onclick="Table.setState(' + items[i].id + ',' + items[i].state + ')">' + ProductStateToString(Math.abs(items[i].state - 1)) + '</button>' +
                         '</td>' +
@@ -76,7 +76,8 @@
     var search = function () {
         productName = $('#search_product_name').val();
         categoryId = $('#search_categoryId option:selected').val();
-        parValue = $('#search_par_value').val();
+        parValue = $('#search_par_value option:selected').val();
+
         state = $('#search_state option:selected').val();
         //console.log("name:" + searchProductName + ";category:" + searchCategory + ";parValue:" + searchParValue + ";state:" + searchState);
         getData(pageIndex, pageSize, "" + productName + "", categoryId, parValue, state);

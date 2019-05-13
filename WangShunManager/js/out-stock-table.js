@@ -67,7 +67,8 @@
         userId = $('#search_user_id').val();
         userOrderId = $('#search_user_order_id').val();
         account = $('#search_account').val();
-        parValue = $('#search_par_value').val();
+        //parValue = $('#search_par_value').val();
+        parValue = $('#search_par_value option:selected').val();
         state = $('#search_state option:selected').val();
         categoryId = $('#search_category_id option:selected').val();
         channelId = $('#search_channel_id').val();

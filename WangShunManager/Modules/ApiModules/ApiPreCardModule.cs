@@ -36,6 +36,7 @@ namespace WangShunManager.Modules.ApiModules
         private async Task<Response> GetPreCardBatchAsync()
         {
             var model = this.Bind<PreCardBatchModel>();
+            model.ParValue = model.ParValue == -1 ? null : model.ParValue;
             model.CategoryId = model.CategoryId == -1 ? null : model.CategoryId;
             model.State = model.State == -1 ? null : model.State;
             //if (model.BatchId==null && model.CategoryId == null && model.ParValue == null && model.State == null)

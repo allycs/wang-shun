@@ -57,7 +57,8 @@
         endTime = $('#search_end_time').val();
         batchId = $('#search_batch_id').val();
         categoryId = $('#search_category_id option:selected').val();
-        parValue = $('#search_par_value').val();
+        //parValue = $('#search_par_value').val();
+        parValue = $('#search_par_value option:selected').val();
         state = $('#search_state option:selected').val();
 
 

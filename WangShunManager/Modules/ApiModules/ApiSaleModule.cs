@@ -60,6 +60,7 @@
         private async Task<Response> GetSalesCustomerAsync()
         {
             var model = this.Bind<SalesCustomerModel>();
+            model.ParValue = model.ParValue == -1 ? null : model.ParValue;
             model.CategoryId = model.CategoryId == -1 ? null : model.CategoryId;
             model.State = model.State == -1 ? null : model.State;
             if (string.IsNullOrWhiteSpace(model.ProductName) && model.CategoryId == null && model.ParValue == null && model.State == null)
@@ -171,6 +172,7 @@
         private async Task<Response> GetSalesAsync()
         {
             var model = this.Bind<SalesModel>();
+            model.ParValue = model.ParValue == -1 ? null : model.ParValue;
             model.CategoryId = model.CategoryId == -1 ? null : model.CategoryId;
             model.State = model.State == -1 ? null : model.State;
             if (model.CategoryId == null && model.ParValue == null && model.State == null)
