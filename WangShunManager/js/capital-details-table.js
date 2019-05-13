@@ -26,7 +26,7 @@
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].userId + '</td>' +
-                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd") + '</td>' +
+                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
                         '<td>' + items[i].bizId + '</td>' +
                         '<td>' + items[i].tradeAmount + '</td>' +
                         '<td>' + items[i].preBalance + '</td>' +

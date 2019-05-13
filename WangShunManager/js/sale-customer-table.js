@@ -27,7 +27,7 @@
                         '<td id="sale_remark_' + items[i].id + '">' + items[i].remark + '</td>' +
                         '<td id="sales_customer_del_' + items[i].id + '">' + IsDelToString(items[i].isDel) + '</td>' +
                         //'<td>' + items[i].createTime + '</td>' +
-                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd") + '</td>' +
+                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
                         '<td>' + items[i].product.id + '</td>' +
                         '<td>' + items[i].product.productName + '</td>' +
                         '<td>' + ProductCategoryToString(items[i].product.categoryId) + '</td>' +

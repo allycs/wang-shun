@@ -3,10 +3,60 @@
 @Section['page_style']
 <link rel="stylesheet" type="text/css" href="css/table-style.css" />
 <link rel="stylesheet" type="text/css" href="css/basictable.css" />
-<link href="css/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 @EndSection
 @Section['Content']
 <div class="inner_content">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="alert alert-danger alert-danger-modal" role="alert" style="display:none;">
+                <strong>数据请求存在错误!</strong>请再次检查请求的各项参数是否合法。
+            </div>
+            <div class="alert alert-success alert-success-modal" role="alert" style="display:none;">
+                <strong>操作成功！</strong>本次操作未发现异常。
+            </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">卡密出库操作日志列表</h4>
+                </div>
+                <div class="modal-body" style="padding:0;">
+                    <div class="grid-1">
+                        <div class="allycs-table-info agile_info_shadow" style="margin-bottom:0;">
+                            <h3 class="allycs_inner_tittle two">卡密出库操作日志列表</h3>
+                            <table id="modal-table">
+                                <thead>
+                                    <tr>
+                                        <th>日志编号</th>
+                                        <th>操作用户</th>
+                                        <th>用户类型</th>
+                                        <th>请求IP</th>
+                                        <th>卡密出库编号</th>
+                                        <th>创建时间</th>
+                                        <th>日志内容</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="out_stock_log_table"></tbody>
+                            </table>
+                            <nav class="modal" aria-label="...">
+                                <ul class="pager">
+                                    <li class="previous disabled"><a href="#javascript:;" onclick="previousModalPage();"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                                    <li><span aria-hidden="true" id="modal-total">共-条</span></li>
+                                    <li class="next"><a href="#javascript:;" onclick="nextModalPage();">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="Table.update();">更新</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- /inner_content_allycs_agile_info-->
     <!-- breadcrumbs -->
     <div class="allycs_agileits_breadcrumbs">
@@ -30,11 +80,11 @@
                         <h3 class="allycs_inner_tittle two">卡密出库列表</h3>
                     </div>
                     <div class="col-sm-10" style="padding-top: 0.5em;">
-                        <div class="col-sm-3">
-                            <div class="input-daterange input-group" id="datepicker">
-                                <input id="search_start_time" type="text" class="input-sm form-control" name="start" />
+                        <div class="col-sm-3" style="padding-left:0;padding-right:2px;">
+                            <div class="input-daterange input-group">
+                                <input id="search_start_time" readonly type="text" class="input-sm form-control form_datetime" name="start" />
                                 <span class="input-group-addon">到</span>
-                                <input id="search_end_time" type="text" class="input-sm form-control" name="end" />
+                                <input id="search_end_time" readonly type="text" class="input-sm form-control form_datetime" name="end" />
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -113,7 +163,7 @@
                     </thead>
                     <tbody id="out_stock_table"></tbody>
                 </table>
-                <nav aria-label="...">
+                <nav class="main" aria-label="...">
                     <ul class="pager">
                         <li class="previous disabled"><a href="#javascript:;" onclick="previousPage();"><span aria-hidden="true">&larr;</span> 上一页</a></li>
                         <li><span aria-hidden="true" id="total">共-条</span></li>
@@ -133,11 +183,12 @@
 @Section['page_script']
 <!-- tables -->
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
-<script src="js/bootstrap-datepicker.min.js"></script>
-<script src="js/bootstrap-datepicker.zh-CN.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/control-modal-page.js"></script>
 <script src="js/out-stock-table.js"></script>
 <script type="text/javascript">
-    var startTime = new Date().Format("yyyy/MM/dd");
+    var startTime = new Date().Format("yyyy/MM/dd hh:mm:ss");
     var endTime = startTime;
     var id = null;
     var userId = null;
@@ -153,8 +204,29 @@
     $("#search_end_time").val(endTime);
     $(document).ready(function () {
         $('#table').basictable();
-        $('.input-daterange').datepicker({
-            format: 'yyyy/mm/dd',
+        $('#modal-table').basictable();
+        $('#search_start_time').datetimepicker({
+            format: 'yyyy/mm/dd hh:ii:ss',
+            autoclose: true,
+            todayBtn: true,
+            startView: 2,
+            minView: 0,
+            maxView: 4,
+            showSecond: true,
+            showHours: true,
+            minuteStep: 15,
+            language: "zh-CN"
+        });
+        $('#search_end_time').datetimepicker({
+            format: 'yyyy/mm/dd hh:ii:ss',
+            autoclose: true,
+            todayBtn: true,
+            startView: 2,
+            minView: 0,
+            maxView: 4,
+            showSecond: true,
+            showHours: true,
+            minuteStep: 15,
             language: "zh-CN"
         });
         Table.init();

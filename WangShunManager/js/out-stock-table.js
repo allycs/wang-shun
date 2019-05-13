@@ -32,8 +32,8 @@
                         '<td>' + items[i].userOrderId + '</td>' +
                         '<td>' + items[i].account + '</td>' +
                         '<td>' + items[i].parValue + '</td>' +
-                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd") + '</td>' +
-                        '<td>' + new Date(items[i].completeTime).Format("yyyy/MM/dd") + '</td>' +
+                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
+                        '<td>' + new Date(items[i].completeTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
                         '<td>' + CardStateToString(items[i].state) + '</td>' +
                         '<td>' + items[i].notifyUrlId + '</td>' +
                         '<td>' + items[i].productId + '</td>' +
@@ -45,7 +45,7 @@
                         '<td>' + ProductCategoryToString(items[i].ispType) + '</td>' +
                         '<td>' + items[i].preCardId + '</td>' +
                         '<td>' +
-                        '<button type="button" class="btn btn-info">查看</button>' +
+                        '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" >查看</button>' +
                         '</td>' +
                         '</tr>';
                 }

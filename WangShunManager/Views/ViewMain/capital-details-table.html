@@ -3,7 +3,7 @@
 @Section['page_style']
 <link rel="stylesheet" type="text/css" href="css/table-style.css" />
 <link rel="stylesheet" type="text/css" href="css/basictable.css" />
-<link href="css/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 @EndSection
 @Section['Content']
 <div class="inner_content">
@@ -30,11 +30,11 @@
                         <h3 class="allycs_inner_tittle two">资金明细列表</h3>
                     </div>
                     <div class="col-sm-10" style="padding-top: 0.5em;">
-                        <div class="col-sm-3">
-                            <div class="input-daterange input-group" id="datepicker">
-                                <input id="search_start_time" type="text" class="input-sm form-control" name="start" />
+                        <div class="col-sm-3" style="padding-left:0;padding-right:2px;">
+                            <div class="input-daterange input-group">
+                                <input id="search_start_time" readonly type="text" class="input-sm form-control form_datetime" name="start" />
                                 <span class="input-group-addon">到</span>
-                                <input id="search_end_time" type="text" class="input-sm form-control" name="end" />
+                                <input id="search_end_time" readonly type="text" class="input-sm form-control form_datetime" name="end" />
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -76,7 +76,7 @@
                     </thead>
                     <tbody id="capital_details_table"></tbody>
                 </table>
-                <nav aria-label="...">
+                <nav class="main" aria-label="...">
                     <ul class="pager">
                         <li class="previous disabled"><a href="#javascript:;" onclick="previousPage();"><span aria-hidden="true">&larr;</span> 上一页</a></li>
                         <li><span aria-hidden="true" id="total">共-条</span></li>
@@ -97,10 +97,10 @@
 <!-- tables -->
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
 <script src="js/capital-details-table.js"></script>
-<script src="js/bootstrap-datepicker.min.js"></script>
-<script src="js/bootstrap-datepicker.zh-CN.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript">
-    var startTime = new Date().Format("yyyy/MM/dd");
+    var startTime = new Date().Format("yyyy/MM/dd hh:mm:ss");
     var endTime = startTime;
     var userId = null;
     var type = null;
@@ -109,8 +109,28 @@
     $("#search_end_time").val(endTime);
     $(document).ready(function () {
         $('#table').basictable();
-        $('.input-daterange').datepicker({
-            format: 'yyyy/mm/dd',
+        $('#search_start_time').datetimepicker({
+            format: 'yyyy/mm/dd hh:ii:ss',
+            autoclose: true,
+            todayBtn: true,
+            startView: 2,
+            minView: 0,
+            maxView: 4,
+            showSecond : true,
+            showHours: true,
+            minuteStep:15,
+            language: "zh-CN"
+        });
+         $('#search_end_time').datetimepicker({
+            format: 'yyyy/mm/dd hh:ii:ss',
+            autoclose: true,
+            todayBtn: true,
+            startView: 2,
+            minView: 0,
+            maxView: 4,
+            showSecond : true,
+            showHours: true,
+            minuteStep:15,
             language: "zh-CN"
         });
         Table.init();

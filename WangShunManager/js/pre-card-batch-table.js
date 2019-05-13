@@ -1,13 +1,13 @@
 ﻿var Table = function () {
     var handle = function () {
-        getData(pageIndex, pageSize,startTime,endTime);
+        getData(pageIndex, pageSize, startTime, endTime);
     };
     var getData = function (pageIndex, pageSize, startTime, endTime, batchId, categoryId, parValue, state) {
         $.ajax({
             type: "GET",
             dataType: "json",
             url: "/pre-card-batch",
-            data: { PageIndex: pageIndex, PageSize: pageSize, StartTime: startTime, EndTime: endTime, BatchId: batchId,CategoryId:categoryId, ParValue: parValue, State: state },
+            data: { PageIndex: pageIndex, PageSize: pageSize, StartTime: startTime, EndTime: endTime, BatchId: batchId, CategoryId: categoryId, ParValue: parValue, State: state },
             success: function (result) {
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
@@ -26,7 +26,7 @@
                         '<td>' + items[i].productId + '</td>' +
                         '<td>' + items[i].totalAmount + '</td>' +
                         '<td>' + items[i].parValue + '</td>' +
-                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd") + '</td>' +
+                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
                         '<td>' + items[i].usedNum + '</td>' +
                         '<td>' + items[i].unUsedNum + '</td>' +
                         '<td>' + items[i].errorNum + '</td>' +
