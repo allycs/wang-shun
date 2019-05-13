@@ -23,17 +23,17 @@
                         '<td id="user_id_' + items[i].id + '">' + items[i].id + '</td>' +
                         '<td>' + items[i].loginId + '</td>' +
                         '<td id="user_real_name_' + items[i].id + '">' + items[i].realName + '</td>' +
-                        '<td id="user_usable_balance_' + items[i].id + '">' + items[i].usableBalance + '</td>' +
-                        '<td id="user_freeze_balance_' + items[i].id + '">' + items[i].freezeBalance + '</td>' +
-                        '<td id="user_credit_amount_' + items[i].id + '">' + items[i].creditAmount + '</td>' +
                         '<td id="user_company_name_' + items[i].id + '">' + items[i].companyName + '</td>' +
                         '<td id="user_company_address_' + items[i].id + '">' + items[i].companyAddress + '</td>' +
                         '<td id="user_contact_qq_' + items[i].id + '">' + items[i].contactQq + '</td>' +
                         '<td id="user_email_' + items[i].id + '">' + items[i].email + '</td>' +
+                        '<td id="user_usable_balance_' + items[i].id + '">' + items[i].usableBalance + '</td>' +
+                        '<td id="user_freeze_balance_' + items[i].id + '">' + items[i].freezeBalance + '</td>' +
+                        '<td id="user_credit_amount_' + items[i].id + '">' + items[i].creditAmount + '</td>' +
+                        '<td id="user_state_' + items[i].id + '">' + InfoStateToString(items[i].userInfoState) + '</td>' +
                         '<td id="user_account_manager_' + items[i].id + '">' + items[i].accountManager + '</td>' +
                         '<td id="user_remark_' + items[i].id + '">' + items[i].remark + '</td>' +
-                        '<td id="user_del_' + items[i].id + '">' + IsDelToString(items[i].isDel) + '</td>' +
-                        '<td id="user_state_' + items[i].id + '">' + InfoStateToString(items[i].userInfoState) + '</td>' +
+                        //'<td id="user_del_' + items[i].id + '">' + IsDelToString(items[i].isDel) + '</td>' +
                         '<td style="text-align:center;">' +
                         '<button id="user_service_btn_' + items[i].id + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="Table.service('
                         + items[i].id + ',\''
@@ -48,7 +48,7 @@
                         + items[i].email + '\',\''
                         + items[i].accountManager + '\',\''
                         + items[i].remark +
-                        '\');">维护</button>' +
+                        '\');">编辑</button>' +
                         '<button id="user_state_btn_' + items[i].id + '" type="button" class="btn btn-warning" style="margin-left:2px;" onclick="Table.setState(' + items[i].id + ',' + items[i].userInfoState + ')">' + InfoStateToString(Math.abs(items[i].userInfoState - 1)) + '</button>';
                     if (!items[i].isDel) {
                         tableHtml += '<button id="user_del_btn_' + items[i].id + '" type="button" class="btn btn-danger" style="margin-left:2px;" onclick="Table.delUser(' + items[i].id + ')">删除</button>';
