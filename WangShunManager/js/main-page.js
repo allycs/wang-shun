@@ -3,6 +3,7 @@
         var userCount = 0;
         var productCount = 0;
         var memberWithdrawCount = 0;
+        var preCardCount = 0;
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -55,8 +56,8 @@
             type: "GET",
             dataType: "json",
             async: false,
-            url: "/member-withdraw",
-            data: { PageIndex: 1, PageSize: 1 },
+            url: "/member-withdraw-count",
+            data: {},
             success: function (result) {
                 console.log(result);
                 if (result.state != 0) {
@@ -76,13 +77,36 @@
                 return;
             }
         });
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            async: false,
+            url: "/pre-card",
+            data: { PageIndex: 1, PageSize: 1},
+            success: function (result) {
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert strong').html(result.message + "!");
+                    $('.alert').show();
+                    return;
+                }
+                total = result.data.total;
+                preCardCount = total;
+                $('#pre_card_count').html(total);
+            },
+            error: function (data) {
+                $('.alert').html("网络异常请联系管理员!");
+                $('.alert').show();
+                return;
+            }
+        });
         var chart = AmCharts.makeChart("chartdiv", {
             "theme": "light",
             "type": "serial",
             "startDuration": 2,
             "dataProvider": [{
                 "country": "卡密数",
-                "visits": 10,
+                "visits": preCardCount,
                 "color": "#FF0F00"
             }, {
                 "country": "卡密出库总数",

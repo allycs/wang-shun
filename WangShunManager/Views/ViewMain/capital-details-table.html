@@ -3,6 +3,7 @@
 @Section['page_style']
 <link rel="stylesheet" type="text/css" href="css/table-style.css" />
 <link rel="stylesheet" type="text/css" href="css/basictable.css" />
+<link href="css/bootstrap-datepicker.min.css" rel="stylesheet" />
 @EndSection
 @Section['Content']
 <div class="inner_content">
@@ -17,17 +18,47 @@
         </div>
     </div>
     <!-- //breadcrumbs -->
-
     <div class="inner_content_allycs_agile_info two_in">
-
         <!-- tables -->
-
         <div class="agile-tables">
-            <div class="alert alert-danger" role="alert" style="display:none;">
+            <div class="alert alert-danger alert-main" role="alert" style="display:none;">
                 <strong>数据请求存在错误!</strong>请再次检查请求的各项参数是否合法。
             </div>
             <div class="allycs-table-info agile_info_shadow">
-                <h3 class="allycs_inner_tittle two">资金明细列表</h3>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <h3 class="allycs_inner_tittle two">资金明细列表</h3>
+                    </div>
+                    <div class="col-sm-10" style="padding-top: 0.5em;">
+                        <div class="col-sm-3">
+                            <div class="input-daterange input-group" id="datepicker">
+                                <input id="search_start_time" type="text" class="input-sm form-control" name="start" />
+                                <span class="input-group-addon">到</span>
+                                <input id="search_end_time" type="text" class="input-sm form-control" name="end" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="search_user_id" type="text" class="form-control" placeholder="会员编号">
+                        </div>
+                        <div class="col-sm-2">
+                            <select name="selector_category" id="search_type" class="form-control1" placeholder="交易类型">
+                                <option value="-1">交易类型不限</option>
+                                <option value="0">充值卡结算</option>
+                                <option value="1">提现</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <select name="selector_state" id="search_status" class="form-control1" placeholder="结算状态">
+                                <option value="-1">结算状态不限</option>
+                                <option value="0">待结算 </option>
+                                <option value="1">已结算</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1">
+                            <button class="btn btn-default" type="button" style="margin-top:2px;" onclick="Table.search();">Go!</button>
+                        </div>
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
                 <table id="table">
                     <thead>
                         <tr>
@@ -41,7 +72,6 @@
                             <th>交易类型</th>
                             <th>结算状态</th>
                             <th>备注</th>
-                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody id="capital_details_table"></tbody>
@@ -67,10 +97,23 @@
 <!-- tables -->
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
 <script src="js/capital-details-table.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/bootstrap-datepicker.zh-CN.min.js"></script>
 <script type="text/javascript">
+    var startTime = new Date().Format("yyyy/MM/dd");
+    var endTime = startTime;
+    var userId = null;
+    var type = null;
+    var status = null;
+    $("#search_start_time").val(startTime);
+    $("#search_end_time").val(endTime);
     $(document).ready(function () {
         $('#table').basictable();
-        Capital_Details_Table.init();
+        $('.input-daterange').datepicker({
+            format: 'yyyy/mm/dd',
+            language: "zh-CN"
+        });
+        Table.init();
     });
 </script>
 @EndSection

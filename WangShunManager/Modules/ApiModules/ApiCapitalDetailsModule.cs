@@ -18,6 +18,8 @@ namespace WangShunManager.Modules.ApiModules
         private async Task<Response> GetCapitalDetailsAsync()
         {
             var model = this.Bind<CapitalDetailsModel>();
+            model.Type = model.Type == -1 ? null : model.Type;
+            model.Status = model.Status == -1 ? null : model.Status;
             if (model.UserId == null && model.Status == null && model.Type == null)
             {
                 var result = await "http://vm.tongyun188.com:12009/Finance"

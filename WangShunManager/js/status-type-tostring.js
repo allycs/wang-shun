@@ -33,7 +33,7 @@ function ProductCategoryToString(type) {
         case 0:
             return "移动";
         case 1:
-            return "联动";
+            return "联通";
         case 2:
             return "电信";
         default:
@@ -44,7 +44,7 @@ function ProductCategoryStringToValue(type) {
     switch (type) {
         case "移动":
             return 0;
-        case "联动":
+        case "联通":
             return 1;
         case "电信":
             return 2;
@@ -76,6 +76,28 @@ function SettleStateToString(type) {
             return "未结算";
         case 1:
             return "已结算";
+        default:
+            return "？";
+    }
+};
+function MemberWithdarwStateToString(type) {
+    switch (type) {
+        case 0:
+            return "待审核";
+        case 1:
+            return "审核成功";
+        case 2:
+            return "审核失败";
+        default:
+            return "？";
+    }
+};
+function CaptialDetailsTypeToString(type) {
+    switch (type) {
+        case 0:
+            return "充值卡结算";
+        case 1:
+            return "提现";
         default:
             return "？";
     }
