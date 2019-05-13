@@ -1,5 +1,5 @@
 ﻿var pageIndex = 1;
-var pageSize = 6;
+var pageSize = 10;
 var total = 30;
 function nextPage() {
     if ((Number(pageIndex) * Number(pageSize)) >= total) {

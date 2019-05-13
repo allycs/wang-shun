@@ -34,7 +34,7 @@
                         '<td id="user_account_manager_' + items[i].id + '">' + items[i].accountManager + '</td>' +
                         '<td id="user_remark_' + items[i].id + '">' + items[i].remark + '</td>' +
                         //'<td id="user_del_' + items[i].id + '">' + IsDelToString(items[i].isDel) + '</td>' +
-                        '<td style="text-align:center;">' +
+                        '<td style="text-align:right;">' +
                         '<button id="user_service_btn_' + items[i].id + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="Table.service('
                         + items[i].id + ',\''
                         + items[i].loginId + '\',\''
