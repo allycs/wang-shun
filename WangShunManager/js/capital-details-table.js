@@ -16,7 +16,6 @@
                     $('.alert-main').show();
                     return;
                 }
-                console.log(result);
                 var length = result.data.rows.length;
                 var items = result.data.rows;
                 total = result.data.total;

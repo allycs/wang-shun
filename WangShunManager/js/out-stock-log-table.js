@@ -6,7 +6,6 @@
             url: "/out-stock-log",
             data: { PageIndex: 1, PageSize: 30,Id:id },
             success: function (result) {
-                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
                     $('.alert strong').html(result.message + "!");

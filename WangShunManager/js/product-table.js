@@ -14,7 +14,6 @@
                 }
                 var length = result.data.rows.length;
                 var items = result.data.rows;
-                console.log(items);
                 total = result.data.total;
                 var tableHtml = '';
                 for (i = 0; i < length; i++) {
@@ -79,7 +78,6 @@
         parValue = $('#search_par_value option:selected').val();
 
         state = $('#search_state option:selected').val();
-        //console.log("name:" + searchProductName + ";category:" + searchCategory + ";parValue:" + searchParValue + ";state:" + searchState);
         getData(pageIndex, pageSize, "" + productName + "", categoryId, parValue, state);
     };
     return {

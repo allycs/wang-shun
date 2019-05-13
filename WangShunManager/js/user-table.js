@@ -121,7 +121,6 @@
             url: "/users/" + id,
             data: {},
             success: function (result) {
-                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
                     $('.alert-main strong').html(result.message + "!");
@@ -202,7 +201,6 @@
         userId = $('#search_id').val();
         loginId = $('#search_login_id').val();
         state = $('#search_state option:selected').val();
-        //console.log("name:" + searchProductName + ";category:" + searchCategory + ";parValue:" + searchParValue + ";state:" + searchState);
         getData(pageIndex, pageSize, userId, loginId, state);
     };
     return {

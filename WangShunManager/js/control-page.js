@@ -17,7 +17,6 @@ function previousPage() {
     return pageIndex;
 };
 function CheckPage() {
-    //console.log(pageIndex + ";" + pageSize + ";" + total);
     if (total > (pageIndex * pageSize))
         $(".main .next").removeClass("disabled");
     else

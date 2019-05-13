@@ -85,7 +85,6 @@
             url: "/sales",
             data: { Id: saleId, maxPrice: saleMaxPrice, minPrice: saleMinPrice, Remark: saleRemark },
             success: function (result) {
-                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
                     $('.alert-danger-modal strong').html(result.message + "!");

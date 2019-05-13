@@ -17,7 +17,6 @@
                 url: "/login",
                 data: {Name: name,Password: password },
                 success: function (result) {
-                    console.log(result);
                     if (result.state != 0) {
                         $('.alert strong').html(result.message+"!");
                         $('.alert').show();

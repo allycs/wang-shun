@@ -12,7 +12,6 @@
                     $('.alert-main').show();
                     return;
                 }
-                console.log(result);
                 var length = result.data.rows.length;
                 var items = result.data.rows;
                 total = result.data.total;
@@ -100,7 +99,6 @@
             url: "/sales-customer",
             data: { Id: saleId, maxPrice: saleMaxPrice, minPrice: saleMinPrice, Remark: saleRemark },
             success: function (result) {
-                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
                     $('.alert-danger-modal strong').html(result.message + "!");
@@ -148,7 +146,6 @@
             url: "/sales-customer/" + id,
             data: {},
             success: function (result) {
-                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
                     $('.alert-main strong').html(result.message + "!");
@@ -204,7 +201,6 @@
             url: "/sales-customer",
             data: { Id: userInfo.id, CategoryId: productCategoryId, ParValue: parductParValue, maxPrice: saleMaxPrice, minPrice: saleMinPrice, Remark: saleRemark },
             success: function (result) {
-                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
                     $('.alert-danger-modal strong').html(result.message + "!");
