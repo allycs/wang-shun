@@ -3,6 +3,7 @@
 @Section['page_style']
 <link rel="stylesheet" type="text/css" href="css/table-style.css" />
 <link rel="stylesheet" type="text/css" href="css/basictable.css" />
+<link href="css/bootstrap-datepicker.min.css" rel="stylesheet" />
 @EndSection
 @Section['Content']
 <div class="inner_content">
@@ -12,26 +13,85 @@
         <div class="allycs_agileits_breadcrumbs_inner">
             <ul>
                 @Partial['breadcrumbs_main-page.html'];
-                <li>卡密管理<span>«</span>卡密批次列表</li>
+                <li>出库管理<span>«</span>出库列表</li>
             </ul>
         </div>
     </div>
     <!-- //breadcrumbs -->
-
     <div class="inner_content_allycs_agile_info two_in">
-
         <!-- tables -->
-
         <div class="agile-tables">
-            <div class="alert alert-danger" role="alert" style="display:none;">
+            <div class="alert alert-danger alert-main" role="alert" style="display:none;">
                 <strong>数据请求存在错误!</strong>请再次检查请求的各项参数是否合法。
             </div>
             <div class="allycs-table-info agile_info_shadow">
-                <h3 class="allycs_inner_tittle two">卡密批次列表</h3>
-                <table id="table">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <h3 class="allycs_inner_tittle two">卡密出库列表</h3>
+                    </div>
+                    <div class="col-sm-10" style="padding-top: 0.5em;">
+                        <div class="col-sm-3">
+                            <div class="input-daterange input-group" id="datepicker">
+                                <input id="search_start_time" type="text" class="input-sm form-control" name="start" />
+                                <span class="input-group-addon">到</span>
+                                <input id="search_end_time" type="text" class="input-sm form-control" name="end" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="search_id" type="text" class="form-control" placeholder="卡密出库编号">
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="search_user_id" type="text" class="form-control" placeholder="会员编号">
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="search_user_order_id" type="text" class="form-control" placeholder="订单号">
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="search_account" type="text" class="form-control" placeholder="充值号码">
+                        </div>
+
+                        <div class="col-sm-1">
+                            <button class="btn btn-default" type="button" style="margin-top:2px;" onclick="Table.search();">Go!</button>
+                        </div>
+                    </div>
+                    <div div class="col-sm-10 col-sm-offset-2">
+                        <div class="col-sm-2">
+                            <input id="search_par_value" type="text" class="form-control" placeholder="面值">
+                        </div>
+                        <div class="col-sm-2">
+                            <select name="selector_state" id="search_state" class="form-control1" placeholder="卡密状态">
+                                <option value="-1">状态不限</option>
+                                <option value="0">未使用 </option>
+                                <option value="1">已使用</option>
+                                <option value="2">使用中 </option>
+                                <option value="3">未知</option>
+                                <option value="4">密码错误</option>
+                                <option value="5">未激活</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <select name="selector_category" id="search_category_id" class="form-control1" placeholder="运营商">
+                                <option value="-1">运行商不限</option>
+                                <option value="0">移动</option>
+                                <option value="1">联通</option>
+                                <option value="2">电信</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="search_channel_id" type="text" class="form-control" placeholder="渠道ID">
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="search_location" type="text" class="form-control" placeholder="归属地">
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="search_pre_card_id" type="text" class="form-control" placeholder="充值卡号">
+                        </div>
+                    </div>
+                </div><!-- /.row -->
+                <table id="table" style="margin-top:0.5em;">
                     <thead>
                         <tr>
-                            <th>系统订单号</th>
+                            <th>出库编号</th>
                             <th>用户编号</th>
                             <th>用户订单号</th>
                             <th>充值帐号</th>
@@ -73,11 +133,31 @@
 @Section['page_script']
 <!-- tables -->
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/bootstrap-datepicker.zh-CN.min.js"></script>
 <script src="js/out-stock-table.js"></script>
 <script type="text/javascript">
+    var startTime = new Date().Format("yyyy/MM/dd");
+    var endTime = startTime;
+    var id = null;
+    var userId = null;
+    var userOrderId = null;
+    var account = null;
+    var parValue = null;
+    var state = -1;
+    var categoryId = -1;
+    var channelId = null;
+    var qCellCore = null;
+    var preCardId = null;
+    $("#search_start_time").val(startTime);
+    $("#search_end_time").val(endTime);
     $(document).ready(function () {
         $('#table').basictable();
-        Out_Stock_Table.init();
+        $('.input-daterange').datepicker({
+            format: 'yyyy/mm/dd',
+            language: "zh-CN"
+        });
+        Table.init();
     });
 </script>
 @EndSection

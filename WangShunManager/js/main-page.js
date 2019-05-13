@@ -4,6 +4,7 @@
         var productCount = 0;
         var memberWithdrawCount = 0;
         var preCardCount = 0;
+        var outStockCount = 0;
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -34,7 +35,6 @@
             url: "/products",
             data: { PageIndex: 1, PageSize: 1 },
             success: function (result) {
-                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
                     $('.alert strong').html(result.message + "!");
@@ -59,7 +59,6 @@
             url: "/member-withdraw-count",
             data: {},
             success: function (result) {
-                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
                     $('.alert strong').html(result.message + "!");
@@ -69,7 +68,6 @@
                 total = result.data.total;
                 memberWithdrawCount = total;
                 $('#member_withdraw_count').html(total);
-
             },
             error: function (data) {
                 $('.alert').html("网络异常请联系管理员!");
@@ -100,6 +98,29 @@
                 return;
             }
         });
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            async: false,
+            url: "/out-stock-count",
+            data: {},
+            success: function (result) {
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert-main strong').html(result.message + "!");
+                    $('.alert-main').show();
+                    return;
+                }
+                total = result.data.total;
+                outStockCount = total;
+                $('#out_stock_count').html(total);
+            },
+            error: function (data) {
+                $('.alert-main').html("网络异常请联系管理员!");
+                $('.alert-main').show();
+                return;
+            }
+        });
         var chart = AmCharts.makeChart("chartdiv", {
             "theme": "light",
             "type": "serial",
@@ -110,7 +131,7 @@
                 "color": "#FF0F00"
             }, {
                 "country": "卡密出库总数",
-                "visits": 20,
+                    "visits": outStockCount,
                 "color": "#FF6600"
             }, {
                 "country": "用户提现总数",

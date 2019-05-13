@@ -52,6 +52,20 @@ function ProductCategoryStringToValue(type) {
             return -1;
     }
 };
+function ProductTypeToString(type) {
+    switch (type) {
+        case 1:
+            return "话费";
+        case 2:
+            return "流量";
+        case 3:
+            return "加油卡";
+        case 4:
+            return "Q币";
+        default:
+            return "？";
+    }
+};
 function CardStateToString(type) {
     switch (type) {
         case 0:
