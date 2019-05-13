@@ -20,20 +20,21 @@
                     tableHtml +=
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
-                        '<td>' + items[i].productId + '</td>' +
-                        '<td id="sale_max_price_' + items[i].id + '">' + items[i].maxPrice + '</td>' +
-                        '<td id="sale-min_price_' + items[i].id + '">' + items[i].minPrice + '</td>' +
-                        '<td id="sale_remark_' + items[i].id + '">' + items[i].remark + '</td>' +
-                        '<td id="sales_customer_del_' + items[i].id + '">' + IsDelToString(items[i].isDel) + '</td>' +
-                        //'<td>' + items[i].createTime + '</td>' +
-                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
+                        '<td>' + items[i].userId + '</td>' +
+                        //'<td>' + items[i].productId + '</td>' +
                         '<td>' + items[i].product.id + '</td>' +
                         '<td>' + items[i].product.productName + '</td>' +
                         '<td>' + ProductCategoryToString(items[i].product.categoryId) + '</td>' +
                         '<td>' + items[i].product.parValue + '</td>' +
+                        '<td id="sale_max_price_' + items[i].id + '">' + items[i].maxPrice + '</td>' +
+                        '<td id="sale-min_price_' + items[i].id + '">' + items[i].minPrice + '</td>' +
+                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
                         '<td>' + InfoStateToString(items[i].product.state) + '</td>' +
+                        '<td id="sale_remark_' + items[i].id + '">' + items[i].remark + '</td>' +
+                        //'<td id="sales_customer_del_' + items[i].id + '">' + IsDelToString(items[i].isDel) + '</td>' +
+
                         '<td style="text-align:center;">' +
-                        '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="Table.get_insert_modal();">新增</button>' +
+                        //'<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="Table.get_insert_modal();">新增</button>' +
                         '<button id="sale_service_btn_' + items[i].id + '" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" style="margin-left:2px;" onclick="Table.service('
                         + items[i].id + ',\''
                         + items[i].product.id + '\',\''
@@ -43,7 +44,7 @@
                         + items[i].maxPrice + ',\''
                         + items[i].minPrice + '\',\''
                         + items[i].remark +
-                        '\');">维护</button>';
+                        '\');">修改</button>';
                     if (!items[i].isDel) {
                         tableHtml += '<button id="sales_customer_del_btn_' + items[i].id + '" type="button" class="btn btn-danger" style="margin-left:2px;" onclick="Table.del_sales_customer(' + items[i].id + ')">删除</button>';
                     }

@@ -22,19 +22,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="grid-1">
-                        <div class="form-body">
+                        <div class="form-body" style="padding:8px;padding-right:16px;padding-left:-2px;">
                             <form class="form-horizontal">
                                 <div class="form-group">
-                                    <label for="sale_id" class="col-sm-1 control-label">售价ID</label>
-                                    <div class="col-sm-5"> <input type="text" class="form-control" disabled="disabled" id="sale_id"> </div>
-                                    <label for="sale_product_id" class="col-sm-1 control-label">产品ID</label>
-                                    <div class="col-sm-5"> <input type="text" class="form-control" disabled="disabled" id="sale_product_id"> </div>
+                                    <label for="sale_id" class="col-sm-2 control-label">售价编号</label>
+                                    <div class="col-sm-4"> <input type="text" class="form-control" disabled="disabled" id="sale_id"> </div>
+                                    <label for="sale_product_id" class="col-sm-2 control-label">产品编号</label>
+                                    <div class="col-sm-4"> <input type="text" class="form-control" disabled="disabled" id="sale_product_id"> </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="sale_product_name" class="col-sm-1 control-label">名称</label>
-                                    <div class="col-sm-5"> <input type="text" class="form-control" disabled="disabled" id="sale_product_name"> </div>
-                                    <label for="sale_product_category_id" class="col-sm-1 control-label">类型</label>
-                                    <div class="col-sm-5">
+                                    <label for="sale_product_name" class="col-sm-2 control-label">产品名称</label>
+                                    <div class="col-sm-4"> <input type="text" class="form-control" disabled="disabled" id="sale_product_name"> </div>
+                                    <label for="sale_product_category_id" class="col-sm-2 control-label">产品类型</label>
+                                    <div class="col-sm-4">
                                         <select name="selector_category" disabled="disabled" id="sale_product_category_id" class="form-control1" placeholder="运营商">
                                             <option value="-1">运行商不限</option>
                                             <option value="0">移动</option>
@@ -44,16 +44,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="sale_product_par_value" class="col-sm-1 control-label">面值</label>
-                                    <div class="col-sm-3"> <input type="text" class="form-control" disabled="disabled" id="sale_product_par_value"> </div>
-                                    <label for="sale_max_price" class="col-sm-1 control-label">最高价</label>
-                                    <div class="col-sm-3"> <input type="number" min="0.00" step="0.01" class="form-control" id="sale_max_price"> </div>
-                                    <label for="sale_min_price" class="col-sm-1 control-label">最低价</label>
-                                    <div class="col-sm-3"> <input type="number" min="0.00" step="0.01" class="form-control" id="sale_min_price"> </div>
+                                    <label for="sale_product_par_value" class="col-sm-2 control-label">产品面值</label>
+                                    <div class="col-sm-2"> <input type="text" class="form-control" disabled="disabled" id="sale_product_par_value"> </div>
+                                    <label for="sale_max_price" class="col-sm-2 control-label">最高售价</label>
+                                    <div class="col-sm-2"> <input type="number" min="0.00" step="0.01" class="form-control" id="sale_max_price"> </div>
+                                    <label for="sale_min_price" class="col-sm-2 control-label">最低售价</label>
+                                    <div class="col-sm-2"> <input type="number" min="0.00" step="0.01" class="form-control" id="sale_min_price"> </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="sale_remark" class="col-sm-3 control-label">备注</label>
-                                    <div class="col-sm-9"> <input type="text" class="form-control" id="sale_remark"> </div>
+                                    <label for="sale_remark" class="col-sm-2 control-label">售价备注</label>
+                                    <div class="col-sm-10"> <input type="text" class="form-control" id="sale_remark"> </div>
                                 </div>
                             </form>
                         </div>
@@ -133,18 +133,19 @@
                 <table id="table">
                     <thead>
                         <tr>
-                            <th>售价主键</th>
-                            <th>产品主键</th>
-                            <th>最高售价</th>
-                            <th>最低售价</th>
-                            <th>备注信息</th>
-                            <th>是否删除</th>
-                            <th>创建时间</th>
+                            <th>编号</th>
+                            <th>会员编号</th>
+                            <!--<th>产品主键</th>-->
                             <th>产品编号</th>
                             <th>产品名称</th>
                             <th>产品类目</th>
                             <th>产品面值</th>
+                            <th>最高售价</th>
+                            <th>最低售价</th>
+                            <th>创建时间</th>
                             <th>产品状态</th>
+                            <th>备注信息</th>
+                            <!--<th>是否删除</th>-->
                             <th style="text-align:center;">操作</th>
                         </tr>
                     </thead>
