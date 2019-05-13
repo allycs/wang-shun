@@ -7,7 +7,7 @@
             type: "GET",
             dataType: "json",
             url: "/pre-card-batch",
-            data: { PageIndex: pageIndex, PageSize: pageSize, StartTime: startTime, EndTime: endTime, BatchId: batchId,CategoryId,categoryId, ParValue: parValue, State: state },
+            data: { PageIndex: pageIndex, PageSize: pageSize, StartTime: startTime, EndTime: endTime, BatchId: batchId,CategoryId:categoryId, ParValue: parValue, State: state },
             success: function (result) {
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
