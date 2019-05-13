@@ -45,7 +45,7 @@
                         '<td>' + ProductCategoryToString(items[i].ispType) + '</td>' +
                         '<td>' + items[i].preCardId + '</td>' +
                         '<td>' +
-                        '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" >查看</button>' +
+                        '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"  onclick="Table.serviceModal(' + items[i].id + ')">查看</button>' +
                         '</td>' +
                         '</tr>';
                 }
@@ -75,6 +75,48 @@
         preCardId = $('#search_pre_card_id').val();
         getData(pageIndex, pageSize, startTime, endTime, id, userId, userOrderId, account, parValue, state, categoryId, channelId, qCellCore, preCardId);
     };
+    var getModalData = function (id) {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/out-stock-log",
+            data: { PageIndex: pageModalIndex, PageSize: pageModalSize, Id: id },
+            success: function (result) {
+                console.log(result);
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert-danger-moda strong').html(result.message + "!");
+                    $('.alert-danger-moda').show();
+                    return;
+                }
+                var length = result.data.rows.length;
+                var items = result.data.rows;
+                totalModal = result.data.total;
+                var tableHtml = '';
+                for (i = 0; i < length; i++) {
+                    tableHtml +=
+                        '<tr>' +
+                        '<td>' + items[i].id + '</td>' +
+                        '<td>' + items[i].userName + '</td>' +
+                        '<td>' + items[i].preCardAccountType + '</td>' +
+                        '<td>' + items[i].requestIp + '</td>' +
+                        '<td>' + items[i].stockId + '</td>' +
+                        '<td>' + items[i].createTime + '</td>' +
+                        '<td>' + items[i].Message + '</td>' +
+                        '</tr>';
+                }
+                $('#out_stock_log_modal_table').html(tableHtml);
+                $('#modal_total').html("第" + pageModalIndex + "页-共" + totalModal + "条");
+                CheckModalPage();
+            },
+            error: function (data) {
+                $('.alert-danger-moda').html("网络异常请联系管理员!");
+                $('.alert-danger-moda').show();
+                return;
+            }
+        });
+
+    };
     return {
         init: function () {
             handle();
@@ -84,6 +126,14 @@
         },
         search: function () {
             search();
+        },
+        serviceModal: function (id) {
+            $('.alert-danger-modal').hide();
+            $('.alert-success-modal').hide();
+            pageModalIndex = 1;
+            $('#out_stock_log_modal_table').html("");
+            $('#modal_total').html("页-共-条");
+            getModalData(id);
         }
     };
 }();

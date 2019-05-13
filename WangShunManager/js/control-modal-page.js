@@ -1,29 +1,28 @@
-﻿var pageIndex = 1;
-var pageSize = 6;
-var total = 30;
-function nextPage() {
-    if ((Number(pageIndex) * Number(pageSize)) >= total) {
-        return pageIndex;
+﻿var pageModalIndex = 1;
+var pageModalSize = 6;
+var totalModal = 30;
+function nexModaltPage() {
+    if ((Number(pageModalIndex) * Number(pageModalSize)) >= total) {
+        return pageModalIndex;
     }
-    pageIndex = pageIndex + 1;
-    Table.getData();
-    return pageIndex;
+    pageModalIndex = pageModalIndex + 1;
+    Table.getModalData();
+    return pageModalIndex;
 };
-function previousPage() {
-    pageIndex = pageIndex - 1;
-    if (pageIndex < 1)
-        pageIndex = 1;
-    Table.getData();
-    return pageIndex;
+function previousModalPage() {
+    pageModalIndex = pageModalIndex - 1;
+    if (pageModalIndex < 1)
+        pageModalIndex = 1;
+    Table.getModalData();
+    return pageModalIndex;
 };
-function CheckPage() {
-    //console.log(pageIndex + ";" + pageSize + ";" + total);
-    if (total > (pageIndex * pageSize))
-        $(".main .next").removeClass("disabled");
+function CheckModalPage() {
+    if (total > (pageModalIndex * pageModalSize))
+        $(".modal .next").removeClass("disabled");
     else
-        $(".main .next").addClass("disabled");
+        $(".modal .next").addClass("disabled");
     if (pageIndex > 1)
-        $(".main .previous").removeClass("disabled");
+        $(".modal .previous").removeClass("disabled");
     else
-        $(".main .previous").addClass("disabled");
+        $(".modal .previous").addClass("disabled");
 };

@@ -11,7 +11,7 @@ namespace WangShunManager.Dtos
         public string UserName { get; set; }
         public int PreCardAccountType { get; set; }
         public string RequestId { get; set; }
-        public long StockId { get; set; }
+        public string StockId { get; set; }
         public DateTime CreateTime { get; set; }
         public string Message { get; set; }
     }
