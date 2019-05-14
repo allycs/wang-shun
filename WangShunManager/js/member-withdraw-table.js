@@ -26,14 +26,14 @@
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].userId + '</td>' +
                         '<td>' + items[i].amount + '</td>' +
-                        '<td id="member_withdraw_state_' + items[i].id + '">' + MemberWithdarwStateToString(items[i].state) + '</td>' +
-                        '<td>' + items[i].remark + '</td>' +
+                        '<td>' + items[i].settleChannel + '</td>' +
+                        '<td>' + items[i].settleAccountNo + '</td>' +
+                        '<td>' + items[i].settleAccountHolder + '</td>' +
                         '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
                         '<td>' + new Date(items[i].dealTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
                         '<td>' + items[i].settleOrderId + '</td>' +
-                        '<td>' + items[i].settleChannel + '</td>' +
-                        '<td>' + items[i].settleAccountHolder + '</td>' +
-                        '<td>' + items[i].settleAccountNo + '</td>' +
+                        '<td id="member_withdraw_state_' + items[i].id + '">' + MemberWithdarwStateToString(items[i].state) + '</td>' +
+                        '<td>' + items[i].remark + '</td>' +
                         '<td style="text-align:center;">';
                     if (items[i].state == 0)
                         tableHtml += '<button id="member_withdarw_cash_audit_btn_' + items[i].id + '" type="button" class="btn btn-warning" onclick="Table.cashAudit(' + items[i].id + ',' + items[i].state + ',' + items[i].settleOrderId + ')">审核</button>';
