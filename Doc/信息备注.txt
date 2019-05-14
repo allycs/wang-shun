@@ -10,3 +10,8 @@ http://note.youdao.com/noteshare?id=1e5fca13f7aedf839bbdeff53fbba6df&sub=5D03FA5
 
 测试环境的接口地址: http://vm.tongyun188.com:12000/  管理平台的端口号改成12009
 13371375915  aa11bb22 0000
+
+
+http://note.youdao.com/noteshare?id=d33801dcf2056c73ad1d8ce255bad6ce&sub=58BC6D56C5FF463E8DCA09F6351C8CC9
+
+http://note.youdao.com/noteshare?id=1106a78ce3388053023c6601a4e42577&sub=4D93AE78AAC241DFB5F566098059F62B

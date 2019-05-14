@@ -25,27 +25,33 @@
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].batchId + '</td>' +
                         '<td>' + items[i].cardId + '</td>' +
+                        '<td>' + items[i].uploadBatch.parValue + '</td>' +
+                        '<td>' + new Date(items[i].uploadBatch.createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
+                        '<td>' + items[i].uploadBatch.userId + '</td>' +
+                        '<td>' + items[i].uploadBatch.currentDiscount + '</td>' +
+                        '<td>' + ProductCategoryToString(items[i].uploadBatch.productCategory) + '</td>' +
+                        '<td>' + items[i].useNum + '</td>' +
                         '<td>' + CardStateToString(items[i].cardState) + '</td>' +
                         '<td>' + InfoStateToString(items[i].managedState) + '</td>' +
                         '<td>' + SettleStateToString(items[i].settleState) + '</td>' +
-                        '<td>' + items[i].useNum + '</td>' +
-                        '<td>' + items[i].uploadBatch.id + '</td>' +
-                        '<td>' + items[i].uploadBatch.productId + '</td>' +
-                        '<td>' + items[i].uploadBatch.totalAmount + '</td>' +
-                        '<td>' + items[i].uploadBatch.parValue + '</td>' +
-                        '<td>' + new Date(items[i].uploadBatch.createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
-                        '<td>' + items[i].uploadBatch.usedNum + '</td>' +
-                        '<td>' + items[i].uploadBatch.unUsedNum + '</td>' +
-                        '<td>' + items[i].uploadBatch.errorNum + '</td>' +
-                        '<td>' + items[i].uploadBatch.inUseNum + '</td>' +
-                        '<td>' + items[i].uploadBatch.userId + '</td>' +
-                        '<td>' + InfoStateToString(items[i].uploadBatch.state) + '</td>' +
-                        '<td>' + items[i].uploadBatch.initialDiscount + '</td>' +
-                        '<td>' + items[i].uploadBatch.currentDiscount + '</td>' +
+                        //'<td>' + items[i].uploadBatch.id + '</td>' +
+                        //'<td>' + items[i].uploadBatch.productId + '</td>' +
+                        //'<td>' + items[i].uploadBatch.totalAmount + '</td>' +
+                        //'<td>' + items[i].uploadBatch.usedNum + '</td>' +
+                        //'<td>' + items[i].uploadBatch.unUsedNum + '</td>' +
+                        //'<td>' + items[i].uploadBatch.errorNum + '</td>' +
+                        //'<td>' + items[i].uploadBatch.inUseNum + '</td>' +
+                        //'<td>' + InfoStateToString(items[i].uploadBatch.state) + '</td>' +
+                        //'<td>' + items[i].uploadBatch.initialDiscount + '</td>' +
                         '<td>' + items[i].uploadBatch.userRemark + '</td>' +
-                        '<td>' + items[i].uploadBatch.pri + '</td>' +
-                        '<td>' + ProductCategoryToString(items[i].uploadBatch.productCategory) + '</td>' +
-                        '<td>' + items[i].uploadBatch.cardInfos + '</td>' +
+                        //'<td>' + items[i].uploadBatch.pri + '</td>' +
+                        //'<td>' + items[i].uploadBatch.cardInfos + '</td>' +
+                        '<td style="text-align:center">' +
+                        '<button id="sale_service_btn_' + items[i].id + '" type="button" class="btn btn-info"data-toggle="modal" data-target="#myModal" onclick="Table.service('
+                        + items[i].id + ');">查看</button>' +
+                        '<button id="sale_service_btn_' + items[i].id + '" type="button" class="btn btn-warning"data-toggle="modal" data-target="#myModal" style="margin-left:2px;"  onclick="Table.service('
+                        + items[i].id + ');">编辑</button>' +
+                        '</td>' +
                         '</tr>';
                 }
                 $('#pre_card_table').html(tableHtml);

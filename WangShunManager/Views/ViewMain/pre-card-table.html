@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-sm-2">
                             <select name="selector_state" id="search_card_state" class="form-control1" placeholder="卡密状态">
-                                <option value="-1">状态不限</option>
+                                <option value="-1">卡密状态不限</option>
                                 <option value="0">未使用 </option>
                                 <option value="1">已使用</option>
                                 <option value="2">使用中 </option>
@@ -48,14 +48,14 @@
                         </div>
                         <div class="col-sm-2">
                             <select name="selector_state" id="search_managed_state" class="form-control1" placeholder="托管状">
-                                <option value="-1">状态不限</option>
+                                <option value="-1">托管状态不限</option>
                                 <option value="0">禁用 </option>
                                 <option value="1">正常</option>
                             </select>
                         </div>
                         <div class="col-sm-2">
                             <select name="selector_state" id="search_settle_state" class="form-control1" placeholder="结算状态">
-                                <option value="-1">状态不限</option>
+                                <option value="-1">结算状态不限</option>
                                 <option value="0">未结算 </option>
                                 <option value="1">已结算</option>
                             </select>
@@ -68,30 +68,31 @@
                 <table id="table">
                     <thead>
                         <tr>
-                            <th>卡密编号</th>
-                            <th>批次主键</th>
+                            <th>编号</th>
+                            <th>批次号</th>
                             <th>充值卡号</th>
+                            <th>面值</th>
+                            <th>上传时间</th>
+                            <th>会员编号</th>
+                            <th>销售折扣</th>
+                            <th>产品类目</th>
+                            <th>使用次数</th>
                             <th>卡密状态</th>
                             <th>托管状态</th>
                             <th>结算状态</th>
-                            <th>使用次数</th>
-                            <th>批次主键</th>
+                            <!--<th>批次主键</th>
                             <th>产品主键</th>
                             <th>总金额</th>
-                            <th>面值</th>
-                            <th>上传时间</th>
                             <th>已用数量</th>
                             <th>未用数量</th>
                             <th>错误数</th>
-                            <th>在用书</th>
-                            <th>上传用户主键</th>
+                            <th>在用数</th>
                             <th>批次状态</th>
-                            <th>初始折扣</th>
-                            <th>当前折扣</th>
+                            <th>初始折扣</th>-->
                             <th>用户备注</th>
-                            <th>优先级</th>
-                            <th>产品类目</th>
-                            <th>卡密信息</th>
+                            <!--<th>优先级</th>
+                            <th>卡密信息</th>-->
+                            <th style="text-align:center;">操作</th>
                         </tr>
                     </thead>
                     <tbody id="pre_card_table"></tbody>

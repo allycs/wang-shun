@@ -5,8 +5,8 @@
         var userInfo = JSON.parse(localStorage.UserInfo);
         $('#common').html(
             '<div style="width:100%;text-align:left;">' + userInfo.realName + '</div>' +
-            '<div style = "width:100%;text-align:left;">' + userInfo.email + '</div >' +
-            '<div style="width:100%;text-align:left;">' + userInfo.remark + '</div>'
+            '<div style = "width:100%;text-align:left;">' + userInfo.loginId + '</div >'
+            //+'<div style="width:100%;text-align:left;">' + userInfo.remark + '</div>'
         );
     };
 

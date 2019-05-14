@@ -27,22 +27,22 @@
                     tableHtml +=
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
-                        '<td>' + items[i].userId + '</td>' +
+                        '<td>' + items[i].preCardId + '</td>' +
                         '<td>' + items[i].userOrderId + '</td>' +
+                        '<td>' + items[i].channelId + '</td>' +
                         '<td>' + items[i].account + '</td>' +
                         '<td>' + items[i].parValue + '</td>' +
+                        '<td>' + items[i].location + '</td>' +
+                        '<td>' + ProductCategoryToString(items[i].ispType) + '</td>' +
+                        '<td>' + items[i].productName + '</td>' +
+                        '<td>' + ProductTypeToString(items[i].productType) + '</td>' +
+                        '<td>' + items[i].userId + '</td>' +
                         '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
                         '<td>' + new Date(items[i].completeTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
                         '<td>' + CardStateToString(items[i].state) + '</td>' +
-                        '<td>' + items[i].notifyUrlId + '</td>' +
-                        '<td>' + items[i].productId + '</td>' +
-                        '<td>' + ProductTypeToString(items[i].productType) + '</td>' +
-                        '<td>' + items[i].channelId + '</td>' +
+                        //'<td>' + items[i].notifyUrlId + '</td>' +
+                        //'<td>' + items[i].productId + '</td>' +
                         '<td>' + items[i].remark + '</td>' +
-                        '<td>' + items[i].productName + '</td>' +
-                        '<td>' + items[i].location + '</td>' +
-                        '<td>' + ProductCategoryToString(items[i].ispType) + '</td>' +
-                        '<td>' + items[i].preCardId + '</td>' +
                         '<td>' +
                         '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"  onclick="Table.serviceModal(' + items[i].id + ')">查看</button>' +
                         '</td>' +

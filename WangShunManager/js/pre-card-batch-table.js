@@ -23,22 +23,27 @@
                     tableHtml +=
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
-                        '<td>' + items[i].productId + '</td>' +
+                        '<td>' + ProductCategoryToString(items[i].productCategory) + '</td>' +
                         '<td>' + items[i].totalAmount + '</td>' +
                         '<td>' + items[i].parValue + '</td>' +
-                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
+                        '<td>' + items[i].count + '</td>' +
                         '<td>' + items[i].usedNum + '</td>' +
                         '<td>' + items[i].unUsedNum + '</td>' +
                         '<td>' + items[i].errorNum + '</td>' +
                         '<td>' + items[i].inUseNum + '</td>' +
                         '<td>' + items[i].userId + '</td>' +
                         '<td>' + InfoStateToString(items[i].state) + '</td>' +
-                        '<td>' + items[i].initialDiscount + '</td>' +
+                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
                         '<td>' + items[i].currentDiscount + '</td>' +
-                        '<td>' + items[i].userRemark + '</td>' +
                         '<td>' + items[i].pri + '</td>' +
-                        '<td>' + ProductCategoryToString(items[i].productCategory) + '</td>' +
-                        '<td>' + items[i].cardInfos + '</td>' +
+                        '<td>' + items[i].userRemark + '</td>' +
+                        //'<td>' + items[i].productId + '</td>' +
+                        //'<td>' + items[i].initialDiscount + '</td>' +
+                        //'<td>' + items[i].cardInfos + '</td>' +
+                        '<td style="text-align:center">' +
+                        '<button id="sale_service_btn_' + items[i].id + '" type="button" class="btn btn-warning"data-toggle="modal" data-target="#myModal" style="margin-left:2px;"  onclick="Table.service('
+                        + items[i].id + ');">编辑</button>' +
+                        '</td>' +
                         '</tr>';
                 }
                 $('#pre_card_batch_table').html(tableHtml);
