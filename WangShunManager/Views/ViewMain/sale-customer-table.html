@@ -52,8 +52,10 @@
                                     <div class="col-sm-2"> <input type="number" min="0.00" step="0.01" class="form-control" id="sale_min_price"> </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="sale_user_id" class="col-sm-2 control-label">会员编号</label>
+                                    <div class="col-sm-4"> <input type="text" class="form-control" disabled="disabled" id="sale_user_id"> </div>
                                     <label for="sale_remark" class="col-sm-2 control-label">售价备注</label>
-                                    <div class="col-sm-10"> <input type="text" class="form-control" id="sale_remark"> </div>
+                                    <div class="col-sm-4"> <input type="text" class="form-control" id="sale_remark"> </div>
                                 </div>
                             </form>
                         </div>
@@ -93,6 +95,9 @@
                         <h3 class="allycs_inner_tittle two">自定义售价信息列表</h3>
                     </div>
                     <div class="col-sm-10" style="padding-top: 0.5em;">
+                        <div class="col-sm-2">
+                            <input id="search_user_id" type="text" class="form-control" placeholder="会员编号">
+                        </div>
                         <div class="col-sm-2">
                             <input id="search_product_name" type="text" class="form-control" placeholder="产品名称">
                         </div>
@@ -174,6 +179,7 @@
 <script src="js/sale-customer-table.js"></script>
 <script src="js/date-format.js"></script>
 <script type="text/javascript">
+    var userId = null;
     var productName = null;
     var categoryId = null;
     var parValue = null;
