@@ -99,9 +99,8 @@
 <script src="js/capital-details-table.js"></script>
 <script src="js/bootstrap-datetimepicker.min.js"></script>
 <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/init.search.date.js"></script>
 <script type="text/javascript">
-    var startTime = new Date().Format("yyyy/MM/dd hh:mm:ss");
-    var endTime = startTime;
     var userId = null;
     var type = null;
     var status = null;
@@ -116,21 +115,21 @@
             startView: 2,
             minView: 0,
             maxView: 4,
-            showSecond : true,
+            showSecond: true,
             showHours: true,
-            minuteStep:15,
+            minuteStep: 15,
             language: "zh-CN"
         });
-         $('#search_end_time').datetimepicker({
+        $('#search_end_time').datetimepicker({
             format: 'yyyy/mm/dd hh:ii:ss',
             autoclose: true,
             todayBtn: true,
             startView: 2,
             minView: 0,
             maxView: 4,
-            showSecond : true,
+            showSecond: true,
             showHours: true,
-            minuteStep:15,
+            minuteStep: 15,
             language: "zh-CN"
         });
         Table.init();
