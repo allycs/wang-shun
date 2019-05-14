@@ -1,5 +1,28 @@
-﻿var Main_Page = function () {
+﻿(function ($) {
+    $.getUrlParam
+        = function (name) {
+            var reg
+                = new RegExp("(^|&)" +
+                    name + "=([^&]*)(&|$)");
+            var r
+                = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+})(jQuery);
+var Main_Page = function () {
     var handleMain = function () {
+        if (localStorage.UserInfo == undefined)
+            window.location.href = '/login';
+        var userInfo = JSON.parse(localStorage.UserInfo);
+        $('#main_user_id').val(userInfo.id);
+        $('#main_user_login_id').val(userInfo.loginId);
+        $('#mian_user_real_name').val(userInfo.realName);
+        $('#main_account_anager').val(userInfo.accountManager);
+        $('#main_user_contact_qq').val(userInfo.contactQq);
+        $('#main_user_email').val(userInfo.email);
+        var anchorPoint = $.getUrlParam('anchor_point');
+        if (anchorPoint != null)
+            $("html, body").animate({ scrollTop: $("#" + anchorPoint).offset().top }, 1000);
         var userCount = 0;
         var productCount = 0;
         var memberWithdrawCount = 0;
@@ -80,7 +103,7 @@
             dataType: "json",
             async: false,
             url: "/pre-card",
-            data: { PageIndex: 1, PageSize: 1},
+            data: { PageIndex: 1, PageSize: 1 },
             success: function (result) {
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
@@ -131,7 +154,7 @@
                 "color": "#FF0F00"
             }, {
                 "country": "卡密出库总数",
-                    "visits": outStockCount,
+                "visits": outStockCount,
                 "color": "#FF6600"
             }, {
                 "country": "用户提现总数",

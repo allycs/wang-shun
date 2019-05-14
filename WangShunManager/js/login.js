@@ -24,8 +24,8 @@
                     }
                     localStorage.clear();
                     localStorage.setItem('UserInfo',(JSON.stringify(result.data)));
-                    //self.location = "/main-page";
-                    self.location = "/user-table";
+                    self.location = "/main-page";
+                   /* self.location = "/user-table"*/;
                 },
                 error: function (data) {
                     $('.alert').html("网络异常请联系管理员!");
