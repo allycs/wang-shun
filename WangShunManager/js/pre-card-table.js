@@ -2,12 +2,12 @@
     var handle = function () {
         getData(pageIndex, pageSize);
     };
-    var getData = function (pageIndex, pageSize, batchId, cardId, cardState, managedState, settleState) {
+    var getData = function (pageIndex, pageSize, startTime, endTime, batchId, cardId, cardState, managedState, settleState) {
         $.ajax({
             type: "GET",
             dataType: "json",
             url: "/pre-card",
-            data: { PageIndex: pageIndex, PageSize: pageSize, BatchId: batchId, CardId: cardId, CardState: cardState, ManagedState: managedState, SettleState: settleState },
+            data: { PageIndex: pageIndex, PageSize: pageSize, startTime, endTime, BatchId: batchId, CardId: cardId, CardState: cardState, ManagedState: managedState, SettleState: settleState },
             success: function (result) {
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
@@ -66,6 +66,8 @@
         });
     };
     var search = function () {
+        startTime = $('#search_start_time').val();
+        endTime = $('#search_end_time').val();
         batchId = $('#search_batch_id').val();
         cardId = $('#search_card_id').val();
 
@@ -73,7 +75,7 @@
         managedState = $('#search_managed_state option:selected').val();
         settleState = $('#search_settle_state option:selected').val();
 
-        getData(pageIndex, pageSize, batchId, cardId, cardState, managedState, settleState);
+        getData(pageIndex, pageSize, startTime, endTime, batchId, cardId, cardState, managedState, settleState);
     };
     return {
         init: function () {

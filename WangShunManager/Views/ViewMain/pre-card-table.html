@@ -3,6 +3,7 @@
 @Section['page_style']
 <link rel="stylesheet" type="text/css" href="css/table-style.css" />
 <link rel="stylesheet" type="text/css" href="css/basictable.css" />
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 @EndSection
 @Section['Content']
 <div class="inner_content">
@@ -29,40 +30,52 @@
                         <h3 class="allycs_inner_tittle two">卡密列表</h3>
                     </div>
                     <div class="col-sm-10" style="padding-top: 0.5em;">
-                        <div class="col-sm-2">
-                            <input id="search_batch_id" type="text" class="form-control" placeholder="批次号">
+                        <div class="row">
+                            <div class="col-sm-3" style="padding-left:0;padding-right:2px;">
+                                <div class="input-daterange input-group">
+                                    <input id="search_start_time" readonly type="text" class="input-sm form-control form_datetime" name="start" />
+                                    <span class="input-group-addon">到</span>
+                                    <input id="search_end_time" readonly type="text" class="input-sm form-control form_datetime" name="end" />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <input id="search_batch_id" type="text" class="form-control" placeholder="批次号">
+                            </div>
+                            <div class="col-sm-2">
+                                <input id="search_card_id" type="text" class="form-control" placeholder="充值卡号">
+                            </div>
                         </div>
-                        <div class="col-sm-2">
-                            <input id="search_card_id" type="text" class="form-control" placeholder="卡号">
+                        <div class="row">
+                            <div class="col-sm-2 col-sm-offset-3">
+                                <select name="selector_state" id="search_card_state" class="form-control1" placeholder="卡密状态">
+                                    <option value="-1">卡密状态不限</option>
+                                    <option value="0">未使用 </option>
+                                    <option value="1">已使用</option>
+                                    <option value="2">使用中 </option>
+                                    <option value="3">未知</option>
+                                    <option value="4">密码错误</option>
+                                    <option value="5">未激活</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <select name="selector_state" id="search_managed_state" class="form-control1" placeholder="托管状">
+                                    <option value="-1">托管状态不限</option>
+                                    <option value="0">禁用 </option>
+                                    <option value="1">正常</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <select name="selector_state" id="search_settle_state" class="form-control1" placeholder="结算状态">
+                                    <option value="-1">结算状态不限</option>
+                                    <option value="0">未结算 </option>
+                                    <option value="1">已结算</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-1">
+                                <button class="btn btn-default" type="button" style="margin-top:2px;" onclick="Table.search();">Go!</button>
+                            </div>
                         </div>
-                        <div class="col-sm-2">
-                            <select name="selector_state" id="search_card_state" class="form-control1" placeholder="卡密状态">
-                                <option value="-1">卡密状态不限</option>
-                                <option value="0">未使用 </option>
-                                <option value="1">已使用</option>
-                                <option value="2">使用中 </option>
-                                <option value="3">未知</option>
-                                <option value="4">密码错误</option>
-                                <option value="5">未激活</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-2">
-                            <select name="selector_state" id="search_managed_state" class="form-control1" placeholder="托管状">
-                                <option value="-1">托管状态不限</option>
-                                <option value="0">禁用 </option>
-                                <option value="1">正常</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-2">
-                            <select name="selector_state" id="search_settle_state" class="form-control1" placeholder="结算状态">
-                                <option value="-1">结算状态不限</option>
-                                <option value="0">未结算 </option>
-                                <option value="1">已结算</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-1">
-                            <button class="btn btn-default" type="button" style="margin-top:2px;" onclick="Table.search();">Go!</button>
-                        </div>
+
                     </div><!-- /.col-lg-6 -->
                 </div><!-- /.row -->
                 <table id="table">
@@ -117,6 +130,9 @@
 @Section['page_script']
 <!-- tables -->
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/init.search.date.js"></script>
 <script src="js/pre-card-table.js"></script>
 <script type="text/javascript">
     var batchId = null;
@@ -126,6 +142,30 @@
     var settleState = null;
     $(document).ready(function () {
         $('#table').basictable();
+        $('#search_start_time').datetimepicker({
+            format: 'yyyy/mm/dd hh:ii:ss',
+            autoclose: true,
+            todayBtn: true,
+            startView: 2,
+            minView: 0,
+            maxView: 4,
+            showSecond: true,
+            showHours: true,
+            minuteStep: 15,
+            language: "zh-CN"
+        });
+        $('#search_end_time').datetimepicker({
+            format: 'yyyy/mm/dd hh:ii:ss',
+            autoclose: true,
+            todayBtn: true,
+            startView: 2,
+            minView: 0,
+            maxView: 4,
+            showSecond: true,
+            showHours: true,
+            minuteStep: 15,
+            language: "zh-CN"
+        });
         Table.init();
     });
 </script>
