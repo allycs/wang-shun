@@ -104,7 +104,43 @@ author email: allycs@126.com
     <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
     <script src="js/login.js"></script>
     <script>
+        (function ($) {
+            $.getUrlParam
+                = function (name) {
+                    var reg
+                        = new RegExp("(^|&)" +
+                            name + "=([^&]*)(&|$)");
+                    var r
+                        = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]); return null;
+                }
+        })(jQuery);
         jQuery(document).ready(function () {
+            var loginType = $.getUrlParam('type');
+            if (loginType == "logout") {
+                localStorage.clear();
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "/logout",
+                    data: {},
+                    success: function (result) {
+                        if (result.state != 0) {
+                            $('.alert strong').html(result.message + "!");
+                            $('.alert').show();
+                            return;
+                        }
+                        localStorage.clear();
+                        $('.alert strong').html(result.message + "；请重新登录");
+                        $('.alert').show();
+                    },
+                    error: function (data) {
+                        $('.alert').html("注销过程中服务端发成异常!");
+                        $('.alert').show();
+                        return;
+                    }
+                });
+            }
             Login.init();
         });
     </script>

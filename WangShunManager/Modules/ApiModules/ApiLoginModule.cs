@@ -4,6 +4,7 @@
     using Flurl.Http;
     using Nancy;
     using Nancy.ModelBinding;
+    using System;
     using System.Threading.Tasks;
     using WangShunManager.Dtos;
     using WangShunManager.Models;
@@ -13,6 +14,15 @@
         public ApiLoginModule()
         {
             Post("/login", _ => DoLoginAsync());
+            Get("/logout", _ => DoLogoutAsync());
+        }
+
+        private async Task<Response> DoLogoutAsync()
+        {
+            var result = await "http://vm.tongyun188.com:12009/manager"
+                    .AppendPathSegment("Logout")
+                    .GetJsonAsync<ResponseDto<string>>().ConfigureAwait(false);
+            return Response.AsJson(result);
         }
 
         private async Task<Response> DoLoginAsync()
