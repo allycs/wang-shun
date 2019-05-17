@@ -16,10 +16,15 @@
     <div class="inner_content_allycs_agile_info">
         <!-- /agile_top_allycs_grids-->
         <div class="agile_top_allycs_grids">
+            <div class="alert alert-danger alert-danger-main" role="alert" style="display:none;">
+                <strong>数据请求存在错误!</strong>请再次检查请求的各项参数是否合法。
+            </div>
+            <div class="alert alert-success alert-success-main" role="alert" style="display:none;">
+                <strong>操作成功！</strong>本次操作未发现异常。
+            </div>
             <ul class="ca-menu">
                 <li>
                     <a href="#">
-
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         <div class="ca-content">
                             <h4 class="ca-main" id="product_count">--</h4>
@@ -96,18 +101,18 @@
                                     <label for="user_company_name" class="col-sm-2 control-label">联系邮箱</label>
                                     <div class="col-sm-4"> <input type="text" class="form-control" disabled="disabled" id="main_user_email"> </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="user_real_name" class="col-sm-2 control-label">公司名称</label>
+                                    <div class="col-sm-10"> <input type="text" class="form-control" disabled="disabled" id="main_company_name"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_company_name" class="col-sm-2 control-label">公司地址</label>
+                                    <div class="col-sm-10"> <input type="text" class="form-control" disabled="disabled" id="main_company_address"> </div>
+                                </div>
                                 <br />
                                 <div class="form-group">
-                                    <label for="user_company_address" class="col-sm-2 control-label">原密码</label>
-                                    <div class="col-sm-10"> <input type="password" class="form-control" id="user_company_address"> </div>
-                                </div>
-                                <div class="form-group">
                                     <label for="user_company_address" class="col-sm-2 control-label">新密码</label>
-                                    <div class="col-sm-10"> <input type="password" class="form-control" id="user_company_address"> </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="user_company_address" class="col-sm-2 control-label">密码确认</label>
-                                    <div class="col-sm-10"> <input type="password" class="form-control" id="user_company_address"> </div>
+                                    <div class="col-sm-10"> <input type="password" class="form-control" id="main_new_password"> </div>
                                 </div>
                                 <div class="form-group" style="text-align:center;">
                                     <button type="button" class="btn btn-success">更新密码</button>
@@ -184,6 +189,8 @@
 <script src="js/main-page.js"></script>
 <script>
     jQuery(document).ready(function () {
+        $('.alert-danger-main').hide();
+        $('.alert-success-main').hide();
         Main_Page.init();
     });
 </script>

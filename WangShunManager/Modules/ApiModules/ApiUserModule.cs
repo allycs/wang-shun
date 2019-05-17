@@ -17,6 +17,16 @@
             Put("/users",_=>UpdateUserAsync());
             Put("/users/{id:int}/{state:int}", p => SetUsersStateAsync((int)p.id,(int)p.state));
             Delete("users/{id:int}",p=>DeleteUserAsync((int)p.id));
+            Put("/users/password/{password}", p => UpdateUserPassword((string)p.password));
+        }
+
+        private async Task<Response> UpdateUserPassword(string password)
+        {
+            var result = await "http://vm.tongyun188.com:12009/manager"
+                         .AppendPathSegment("ModifyLoginPassword")
+                         .PostJsonAsync(new { NewPassword=password})
+                         .ReceiveJson<ResponseDto<UserDto>>().ConfigureAwait(false);
+            return Response.AsJson(result);
         }
 
         private async Task<Response> UpdateUserAsync()
