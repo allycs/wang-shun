@@ -17,7 +17,17 @@ namespace WangShunManager.Modules.ApiModules
         public ApiPreCardModule()
         {
             Get("/pre-card", _ => GetPreCardAsync());
+            Get("/pre-card-log", _ => GetPreCardLockAsync());
             Get("/pre-card-batch", _ => GetPreCardBatchAsync());
+        }
+
+        private async Task<Response> GetPreCardLockAsync()
+        {
+            var model = this.Bind<PreCardLogModel>();
+            return Response.AsJson(await "http://vm.tongyun188.com:12009/PreCard"
+                    .AppendPathSegment("GetPreCardLog")
+                    .PostJsonAsync(new { PreCardId = model.Id})
+                    .ReceiveJson<ResponseDto<PageDataDto<OutStockLogRowDto>>>().ConfigureAwait(false));
         }
 
         private async Task<Response> GetPreCardAsync()

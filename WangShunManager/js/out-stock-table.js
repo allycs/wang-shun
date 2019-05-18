@@ -44,7 +44,7 @@
                         //'<td>' + items[i].productId + '</td>' +
                         '<td>' + items[i].remark + '</td>' +
                         '<td>' +
-                        '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"  onclick="Table.serviceModal(' + items[i].id + ')">查看</button>' +
+                        '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#logModal"  onclick="Table.serviceModal(' + items[i].id + ')">查看</button>' +
                         '</td>' +
                         '</tr>';
                 }
@@ -130,7 +130,7 @@
             $('.alert-danger-modal').hide();
             $('.alert-success-modal').hide();
             pageModalIndex = 1;
-            $('#out_stock_log_modal_table').html("");
+            $('#log_modal_table').html("");
             $('#modal_total').html("页-共-条");
             getModalData(id);
         }
