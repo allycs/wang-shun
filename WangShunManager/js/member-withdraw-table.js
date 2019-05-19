@@ -29,8 +29,8 @@
                         '<td>' + items[i].settleAccountNo + '</td>' +
                         '<td>' + items[i].settleAccountHolder + '</td>' +
                         '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
-                    '<td>' + new Date(items[i].dealTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
-                    '<td><input id="member_withdraw_settle_order_id_' + items[i].id + '" type="text" class="form-control" placeholder="结算流水" value="' + items[i].settleOrderId + '"></td>' +
+                        '<td>' + new Date(items[i].dealTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
+                        '<td><input id="member_withdraw_settle_order_id_' + items[i].id + '" type="text" class="form-control" placeholder="结算流水" value="' + items[i].settleOrderId + '"></td>' +
                         '<td id="member_withdraw_state_' + items[i].id + '">' + MemberWithdarwStateToString(items[i].state) + '</td>' +
                         '<td>' + items[i].remark + '</td>' +
                         '<td style="text-align:center;">';

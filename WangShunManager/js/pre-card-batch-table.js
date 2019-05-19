@@ -32,18 +32,46 @@
                         '<td>' + items[i].errorNum + '</td>' +
                         '<td>' + items[i].inUseNum + '</td>' +
                         '<td>' + items[i].userId + '</td>' +
-                        '<td>' + InfoStateToString(items[i].state) + '</td>' +
+                        '<td style="text-align:center">' +
+                        '<select name="selector_state" id="pre_card_batch_state_' + items[i].id + '" class="form-control1" placeholder="批次状态">';
+                    switch (items[i].state) {
+                        case 0:
+                            tableHtml +=
+                                '<option value="0" selected>禁用 </option>' +
+                                '<option value="1">启用</option>';
+                            break;
+                        case 1:
+                            tableHtml +=
+                                '<option value="0">禁用 </option>' +
+                                '<option value="1" selected>启用</option>';
+                            break;
+                        default:
+                            tableHtml +=
+                                '<option value="-1">未知 </option>' +
+                                '<option value="0">禁用 </option>' +
+                                '<option value="1">启用</option>';
+                            break;
+                    }
+                    tableHtml +=
+                        '</select>' +
+                        '</td>' +
+                        //'<td>' + InfoStateToString(items[i].state) + '</td>' +
                         '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
-                        '<td>' + items[i].currentDiscount + '</td>' +
-                        '<td>' + items[i].pri + '</td>' +
-                        '<td>' + items[i].userRemark + '</td>' +
+                        //'<td>' + items[i].currentDiscount + '</td>' +
+                        '<td><input id="pre_card_batch_current_discount_' + items[i].id + '" type="number" class="form-control" placeholder="当前折扣" value="' + items[i].currentDiscount + '"></td>' +
+                        //'<td>' + items[i].pri + '</td>' +
+                        '<td><input id="pre_card_batch_pri_' + items[i].id + '" type="number" class="form-control" placeholder="优先级" value="' + items[i].pri + '"></td>' +
+
+                        //'<td>' + items[i].userRemark + '</td>' +
+                        '<td><input id="pre_card_batch_user_remark_' + items[i].id + '" type="text" class="form-control" placeholder="备注" value="' + items[i].userRemark + '"></td>' +
+
                         //'<td>' + items[i].productId + '</td>' +
                         //'<td>' + items[i].initialDiscount + '</td>' +
                         //'<td>' + items[i].cardInfos + '</td>' +
                         '<td style="text-align:center">' +
                         '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#logModal"  onclick="Table.serviceModal(' + items[i].id + ')">查看</button>' +
-                        '<button id="sale_service_btn_' + items[i].id + '" type="button" class="btn btn-warning"data-toggle="modal" data-target="#myModal" style="margin-left:2px;"  onclick="Table.service('
-                        + items[i].id + ');">编辑</button>' +
+                        '<button id="pre_card_batch_btn_update_' + items[i].id + '" type="button" class="btn btn-warning" style="margin-left:2px;"  onclick="Table.updateInfo('
+                        + items[i].id + ',' + items[i].version + ');"  data-container="body" data-toggle="popover" data-placement="left" data-content="更新成功！">更新</button>' +
                         '</td>' +
                         '</tr>';
                 }
@@ -70,7 +98,36 @@
 
         getData(pageIndex, pageSize, startTime, endTime, batchId, categoryId, parValue, state);
     };
-
+    var updateInfo = function (id, version) {
+        batchState = $('#pre_card_batch_state_' + id + ' option:selected').val();
+        discount = $('#pre_card_batch_current_discount_' + id).val();
+        pri = $('#pre_card_batch_pri_' + id).val();
+        remark = $('#pre_card_batch_user_remark_' + id).val();
+        
+        $.ajax({
+            type: "PUT",
+            dataType: "json",
+            url: "/pre-card-batch/info",
+            data: { Id: id, Version: version, BatchState: batchState, Discount: discount, Pri: pri, Remark: remark },
+            success: function (result) {
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert-main strong').html(result.message + "!");
+                    $('.alert-main').show();
+                    return;
+                }
+                $("#pre_card_batch_btn_update_" + id).popover("show");
+                setTimeout(function () {
+                    $("#pre_card_batch_btn_update_" + id).popover("hide");
+                }, 100);
+            },
+            error: function (data) {
+                $('.alert-main').html("网络异常请联系管理员!");
+                $('.alert-main').show();
+                return;
+            }
+        });
+    };
     var getModalData = function (id) {
         $.ajax({
             type: "GET",
@@ -121,6 +178,9 @@
         },
         search: function () {
             search();
+        },
+        updateInfo: function (id,version) {
+            updateInfo(id, version);
         },
         serviceModal: function (id) {
             $('.alert-danger-modal').hide();

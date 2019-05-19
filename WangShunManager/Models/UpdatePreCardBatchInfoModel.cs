@@ -5,11 +5,13 @@ using System.Web;
 
 namespace WangShunManager.Models
 {
-    public class UpdatePreCardCardPasswordModel
+    public class UpdatePreCardBatchInfoModel
     {
         public string Id { get; set; }
         public string Version { get; set; }
-        public string CardPassword { get; set; }
-        public int CardState { get; set; }
+        public int BatchState { get; set; }
+        public int Pri { get; set; }
+        public decimal Discount { get; set; }
+        public string Remark { get; set; }
     }
 }

@@ -407,6 +407,8 @@
     <Compile Include="Bootstrapper.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Dtos\PreCardBatchLogRowDto.cs" />
+    <Compile Include="Dtos\PreCardLogRowDto.cs" />
     <Compile Include="Dtos\PreCardBatchDto.cs" />
     <Compile Include="Dtos\PreCardBatchRowDto.cs" />
     <Compile Include="Dtos\MemberWidthdrawRowDto.cs" />
@@ -425,6 +427,7 @@
     <Compile Include="Dtos\UserRowDto.cs" />
     <Compile Include="Models\BasePagesModel.cs" />
     <Compile Include="Models\MemberWithdrawCashAditModel.cs" />
+    <Compile Include="Models\PreCardBatchLogModel.cs" />
     <Compile Include="Models\PreCardLogModel.cs" />
     <Compile Include="Models\OutStockLogModel.cs" />
     <Compile Include="Models\OutStockModel.cs" />
@@ -437,6 +440,7 @@
     <Compile Include="Models\SalesModel.cs" />
     <Compile Include="Models\CapitalDetailsModel.cs" />
     <Compile Include="Models\InsertSaleCustomerModel.cs" />
+    <Compile Include="Models\UpdatePreCardBatchInfoModel.cs" />
     <Compile Include="Models\UpdateSaleCustomerModel.cs" />
     <Compile Include="Models\UpdatePreCardCardPasswordModel.cs" />
     <Compile Include="Models\UpdateSaleModel.cs" />

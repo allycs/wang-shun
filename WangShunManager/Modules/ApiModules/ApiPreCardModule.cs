@@ -22,6 +22,16 @@ namespace WangShunManager.Modules.ApiModules
             Get("/pre-card-batch-log", _ => GetPreCardBatchLockAsync());
             Put("/pre-card/info-state/{id:int}/{version}/{state:int}", p => SetPreCardManagedStateAsncAsync((int)p.id,(string)p.version, (int)p.state));
             Put("/pre-card/card-password", _ => UpdatePreCardCardPasswordAsync());
+            Put("/pre-card-batch/info", _ => UpdatePreCardBatchInfoAsync());
+        }
+
+        private async Task<Response> UpdatePreCardBatchInfoAsync()
+        {
+            var model = this.Bind<UpdatePreCardBatchInfoModel>();
+            return Response.AsJson(await "http://vm.tongyun188.com:12009/PreCard"
+                    .AppendPathSegment("UpdateUploadBatch")
+                    .PostJsonAsync(model)
+                    .ReceiveJson<ResponseDto<string>>().ConfigureAwait(false));
         }
 
         private async Task<Response> GetPreCardBatchLockAsync()
