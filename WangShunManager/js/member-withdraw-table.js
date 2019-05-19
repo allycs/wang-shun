@@ -36,7 +36,9 @@
                         '<td>' + items[i].remark + '</td>' +
                         '<td style="text-align:center;">';
                     if (items[i].state == 0)
-                        tableHtml += '<button id="member_withdarw_cash_audit_btn_' + items[i].id + '" type="button" class="btn btn-warning" onclick="Table.cashAudit(' + items[i].id + ',' + items[i].state + ',' + items[i].settleOrderId + ')">审核</button>';
+                        tableHtml +=
+                            '<button class="btn btn-success member_withdarw_cash_audit_btn_' + items[i].id + '" onclick="Table.cashAudit(' + items[i].id + ',1,' + items[i].settleOrderId + ')">成功</button>' +
+                        '<button type="button" class="btn btn-warning member_withdarw_cash_audit_btn_' + items[i].id + '" style="margin-left:2px;" onclick="Table.cashAudit(' + items[i].id + ',2,' + items[i].settleOrderId + ')">失败</button>';
 
                     tableHtml +=
                         '</td>' +
@@ -80,7 +82,7 @@
                     return;
                 }
                 $('#member_withdraw_state_' + id).html("审核成功");
-                $("#member_withdarw_cash_audit_btn_" + id).remove();
+                $(".member_withdarw_cash_audit_btn_" + id).remove();
             },
             error: function (data) {
                 $('.alert-main').html("网络异常请联系管理员!");
