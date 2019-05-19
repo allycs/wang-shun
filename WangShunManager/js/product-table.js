@@ -23,8 +23,8 @@
                         '<td>' + items[i].productName + '</td>' +
                         '<td>' + ProductCategoryToString(items[i].categoryId) + '</td>' +
                         '<td>' + items[i].parValue + '</td>' +
-                        '<td>' + items[i].maxPrice + '</td>' +
-                        '<td>' + items[i].minPrice + '</td>' +
+                        //'<td>' + items[i].maxPrice + '</td>' +
+                        //'<td>' + items[i].minPrice + '</td>' +
                         //'<td>' + items[i].maxDiscount + '</td>' +
                         //'<td>' + items[i].minDiscount + '</td>' +
                         '<td id="product_state_' + items[i].id + '">' + ProductStateToString(items[i].state) + '</td>' +
