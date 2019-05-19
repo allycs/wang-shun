@@ -9,6 +9,7 @@
         public int ManagedState { get; set; }
         public int SettleState { get; set; }
         public int UseNum { get; set; }
+        public string Version { get; set; }
         public PreCardBatchDto UploadBatch { get; set; }
     }
 }

@@ -438,6 +438,7 @@
     <Compile Include="Models\CapitalDetailsModel.cs" />
     <Compile Include="Models\InsertSaleCustomerModel.cs" />
     <Compile Include="Models\UpdateSaleCustomerModel.cs" />
+    <Compile Include="Models\UpdatePreCardCardPasswordModel.cs" />
     <Compile Include="Models\UpdateSaleModel.cs" />
     <Compile Include="Models\UpdateUserModel.cs" />
     <Compile Include="Models\UsersModel.cs" />
