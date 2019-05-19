@@ -1,4 +1,16 @@
-﻿function IsDelToString(type) {
+﻿function PreCardAccountTypeToString(type) {
+    switch (Number(type)) {
+        case 0:
+            return "前台用户";
+        case 1:
+            return "后台用户";
+        case 2:
+            return "API";
+        default:
+            return "？";
+    }
+};
+function IsDelToString(type) {
     switch (type) {
         case false:
             return "正常";
@@ -9,7 +21,7 @@
     }
 };
 function InfoStateToString(type) {
-    switch (type) {
+    switch (Number(type)) {
         case 0:
             return "禁用";
         case 1:
@@ -19,7 +31,7 @@ function InfoStateToString(type) {
     }
 };
 function ProductStateToString(type) {
-    switch (type) {
+    switch (Number(type)) {
         case 0:
             return "下架";
         case 1:
@@ -29,7 +41,7 @@ function ProductStateToString(type) {
     }
 };
 function ProductCategoryToString(type) {
-    switch (type) {
+    switch (Number(type)) {
         case 0:
             return "移动";
         case 1:
@@ -53,7 +65,7 @@ function ProductCategoryStringToValue(type) {
     }
 };
 function ProductTypeToString(type) {
-    switch (type) {
+    switch (Number(type)) {
         case 1:
             return "话费";
         case 2:
@@ -67,7 +79,7 @@ function ProductTypeToString(type) {
     }
 };
 function CardStateToString(type) {
-    switch (type) {
+    switch (Number(type)) {
         case 0:
             return "未使用";
         case 1:
@@ -85,7 +97,7 @@ function CardStateToString(type) {
     }
 };
 function SettleStateToString(type) {
-    switch (type) {
+    switch (Number(type)) {
         case 0:
             return "未结算";
         case 1:
@@ -95,7 +107,7 @@ function SettleStateToString(type) {
     }
 };
 function MemberWithdarwStateToString(type) {
-    switch (type) {
+    switch (Number(type)) {
         case 0:
             return "待审核";
         case 1:
@@ -107,7 +119,7 @@ function MemberWithdarwStateToString(type) {
     }
 };
 function CaptialDetailsTypeToString(type) {
-    switch (type) {
+    switch (Number(type)) {
         case 0:
             return "充值卡结算";
         case 1:

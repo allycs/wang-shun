@@ -4,7 +4,7 @@
 
     public class PreCardBatchDto
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public int ProductId { get; set; }
         public decimal TotalAmount { get; set; }
         public decimal ParValue { get; set; }

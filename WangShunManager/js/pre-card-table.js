@@ -47,11 +47,11 @@
                         //'<td>' + items[i].uploadBatch.pri + '</td>' +
                         //'<td>' + items[i].uploadBatch.cardInfos + '</td>' +
                         '<td style="text-align:center">' +
-                        '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#logModal"  onclick="Table.serviceModal(' + items[i].id + ')">查看</button>' +
-                        '<button id="pre_card_info_state_btn_' + items[i].id + '" type="button" class="btn btn-warning" style="margin-left:2px;" onclick="Table.setInfoState(' + items[i].id + ',' + items[i].version + ',' + items[i].managedState + ')">' + InfoStateToString(Math.abs(items[i].managedState - 1)) + '</button>' +
+                        '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#logModal"  onclick="Table.serviceModal(\'' + items[i].cardId + '\')">查看</button>' +
+                        '<button id="pre_card_info_state_btn_' + items[i].id + '" type="button" class="btn btn-warning" style="margin-left:2px;" onclick="Table.setInfoState(\'' + items[i].id + '\',' + items[i].version + ',' + items[i].managedState + ')">' + InfoStateToString(Math.abs(items[i].managedState - 1)) + '</button>' +
 
-                        '<button id="pre_card_info_edit_' + items[i].id + '" type="button" class="btn btn-danger"data-toggle="modal" data-target="#editModal" style="margin-left:2px;"  onclick="Table.serviceEditModel('
-                        + items[i].id + ',' + items[i].version + ',' + items[i].cardState + ');">编辑</button>' +
+                        '<button id="pre_card_info_edit_' + items[i].id + '" type="button" class="btn btn-danger"data-toggle="modal" data-target="#editModal" style="margin-left:2px;"  onclick="Table.serviceEditModel(\''
+                        + items[i].id + '\',' + items[i].version + ',' + items[i].cardState + ');">编辑</button>' +
                         '</td>' +
                         '</tr>';
                 }
@@ -107,8 +107,8 @@
                 }
                 $('.alert-success-edit-modal strong').html(result.message);
                 $('.alert-success-edit-modal').show();
-
                 $('#pre_card_card_state_' + id).html(CardStateToString(state));
+                $("#pre_card_info_edit_" + id).attr("onclick", "Table.serviceEditModel('" + id + "'," + version + "," + state + "); ");
             },
             error: function (data) {
                 $('.alert-danger-edit-modal').html("网络异常请联系管理员!");
@@ -133,13 +133,14 @@
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: "/out-stock-log",
-            data: { PageIndex: pageModalIndex, PageSize: pageModalSize, Id: id },
+            url: "/pre-card-log",
+            data: { PageIndex: pageModalIndex, PageSize: pageModalSize, PreCardId: id },
             success: function (result) {
+                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
-                    $('.alert-danger-moda strong').html(result.message + "!");
-                    $('.alert-danger-moda').show();
+                    $('.alert-danger-modal strong').html(result.message + "!");
+                    $('.alert-danger-modal').show();
                     return;
                 }
                 var length = result.data.rows.length;
@@ -151,11 +152,11 @@
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].userName + '</td>' +
-                        '<td>' + items[i].preCardAccountType + '</td>' +
+                        '<td>' + PreCardAccountTypeToString(items[i].preCardAccountType) + '</td>' +
                         '<td>' + items[i].requestIp + '</td>' +
                         '<td>' + items[i].preCardId + '</td>' +
-                        '<td>' + items[i].createTime + '</td>' +
-                        '<td>' + items[i].Message + '</td>' +
+                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
+                        '<td>' + items[i].message + '</td>' +
                         '</tr>';
                 }
                 $('#log_modal_table').html(tableHtml);
@@ -163,8 +164,8 @@
                 CheckModalPage();
             },
             error: function (data) {
-                $('.alert-danger-moda').html("网络异常请联系管理员!");
-                $('.alert-danger-moda').show();
+                $('.alert-danger-modal').html("网络异常请联系管理员!");
+                $('.alert-danger-modal').show();
                 return;
             }
         });
@@ -191,7 +192,11 @@
             $('#pre_card_card_password').val("");
             $('#pre_card_card_state').val(carState);
         },
-        updateCardPassword: function (id, version, password, state) {
+        updateCardPassword: function () {
+            var id = $('#pre_card_id').val();
+            var version = $('#pre_card_version').val();
+            var password = $('#pre_card_card_password').val();
+            var state = $('#pre_card_card_state option:selected').val();
             updateCardPassword(id, version, password, state);
         },
         serviceModal: function (id) {

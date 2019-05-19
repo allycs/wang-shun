@@ -84,8 +84,8 @@
             success: function (result) {
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
-                    $('.alert-danger-moda strong').html(result.message + "!");
-                    $('.alert-danger-moda').show();
+                    $('.alert-danger-modal strong').html(result.message + "!");
+                    $('.alert-danger-modal').show();
                     return;
                 }
                 var length = result.data.rows.length;
@@ -97,11 +97,11 @@
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].userName + '</td>' +
-                        '<td>' + items[i].preCardAccountType + '</td>' +
+                        '<td>' + PreCardAccountTypeToString(items[i].preCardAccountType) + '</td>' +
                         '<td>' + items[i].requestIp + '</td>' +
                         '<td>' + items[i].stockId + '</td>' +
-                        '<td>' + items[i].createTime + '</td>' +
-                        '<td>' + items[i].Message + '</td>' +
+                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
+                        '<td>' + items[i].message + '</td>' +
                         '</tr>';
                 }
                 $('#log_modal_table').html(tableHtml);
@@ -109,8 +109,8 @@
                 CheckModalPage();
             },
             error: function (data) {
-                $('.alert-danger-moda').html("网络异常请联系管理员!");
-                $('.alert-danger-moda').show();
+                $('.alert-danger-modal').html("网络异常请联系管理员!");
+                $('.alert-danger-modal').show();
                 return;
             }
         });

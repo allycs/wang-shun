@@ -140,10 +140,11 @@
                       .ReceiveJson<ResponseDto<PageDataDto<MemberWithdrawRowDto>>>().ConfigureAwait(false);
                 return Response.AsJson(result);
             }
-            return Response.AsJson(await "http://vm.tongyun188.com:12009/Finance"
+            var response = await "http://vm.tongyun188.com:12009/Finance"
                     .AppendPathSegment("GetWithdrawList")
                     .PostJsonAsync(model)
-                    .ReceiveJson<ResponseDto<PageDataDto<MemberWithdrawRowDto>>>().ConfigureAwait(false));
+                    .ReceiveJson<ResponseDto<PageDataDto<MemberWithdrawRowDto>>>().ConfigureAwait(false);
+            return Response.AsJson(response);
         }
     }
 }

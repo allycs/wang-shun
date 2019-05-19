@@ -69,9 +69,9 @@
                         //'<td>' + items[i].initialDiscount + '</td>' +
                         //'<td>' + items[i].cardInfos + '</td>' +
                         '<td style="text-align:center">' +
-                        '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#logModal"  onclick="Table.serviceModal(' + items[i].id + ')">查看</button>' +
-                        '<button id="pre_card_batch_btn_update_' + items[i].id + '" type="button" class="btn btn-warning" style="margin-left:2px;"  onclick="Table.updateInfo('
-                        + items[i].id + ',' + items[i].version + ');"  data-container="body" data-toggle="popover" data-placement="left" data-content="更新成功！">更新</button>' +
+                        '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#logModal"  onclick="Table.serviceModal(\'' + items[i].id + '\')">查看</button>' +
+                        '<button id="pre_card_batch_btn_update_' + items[i].id + '" type="button" class="btn btn-warning" style="margin-left:2px;"  onclick="Table.updateInfo(\''
+                        + items[i].id + '\',' + items[i].version + ');"  data-container="body" data-toggle="popover" data-placement="left" data-content="更新成功！">更新</button>' +
                         '</td>' +
                         '</tr>';
                 }
@@ -103,7 +103,7 @@
         discount = $('#pre_card_batch_current_discount_' + id).val();
         pri = $('#pre_card_batch_pri_' + id).val();
         remark = $('#pre_card_batch_user_remark_' + id).val();
-        
+        console.log(id);
         $.ajax({
             type: "PUT",
             dataType: "json",
@@ -135,10 +135,11 @@
             url: "/pre-card-batch-log",
             data: { PageIndex: pageModalIndex, PageSize: pageModalSize, Id: id },
             success: function (result) {
+                console.log(result);
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
-                    $('.alert-danger-moda strong').html(result.message + "!");
-                    $('.alert-danger-moda').show();
+                    $('.alert-danger-modal strong').html(result.message + "!");
+                    $('.alert-danger-modal').show();
                     return;
                 }
                 var length = result.data.rows.length;
@@ -150,11 +151,11 @@
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
                         '<td>' + items[i].userName + '</td>' +
-                        '<td>' + items[i].preCardAccountType + '</td>' +
+                        '<td>' + PreCardAccountTypeToString(items[i].preCardAccountType) + '</td>' +
                         '<td>' + items[i].requestIp + '</td>' +
                         '<td>' + items[i].uploadBatchId + '</td>' +
-                        '<td>' + items[i].createTime + '</td>' +
-                        '<td>' + items[i].Message + '</td>' +
+                        '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
+                        '<td>' + items[i].message + '</td>' +
                         '</tr>';
                 }
                 $('#log_modal_table').html(tableHtml);
@@ -162,8 +163,8 @@
                 CheckModalPage();
             },
             error: function (data) {
-                $('.alert-danger-moda').html("网络异常请联系管理员!");
-                $('.alert-danger-moda').show();
+                $('.alert-danger-modal').html("网络异常请联系管理员!");
+                $('.alert-danger-modal').show();
                 return;
             }
         });
@@ -179,7 +180,7 @@
         search: function () {
             search();
         },
-        updateInfo: function (id,version) {
+        updateInfo: function (id, version) {
             updateInfo(id, version);
         },
         serviceModal: function (id) {

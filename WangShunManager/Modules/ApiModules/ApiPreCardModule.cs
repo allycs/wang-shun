@@ -39,7 +39,7 @@ namespace WangShunManager.Modules.ApiModules
             var model = this.Bind<PreCardBatchLogModel>();
             return Response.AsJson(await "http://vm.tongyun188.com:12009/PreCard"
                     .AppendPathSegment("GetUploadBatchLog")
-                    .PostJsonAsync(new { PreCardId = model.Id })
+                    .PostJsonAsync(model)
                     .ReceiveJson<ResponseDto<PageDataDto<PreCardBatchLogRowDto>>>().ConfigureAwait(false));
         }
 
@@ -47,7 +47,7 @@ namespace WangShunManager.Modules.ApiModules
         {
             var model = this.Bind<UpdatePreCardCardPasswordModel>();
             var result = await "http://vm.tongyun188.com:12009/PreCard"
-                          .AppendPathSegment("SetManagedState")
+                          .AppendPathSegment("UpdatePreCard")
                           .PostJsonAsync(model)
                           .ReceiveJson<ResponseDto<string>>().ConfigureAwait(false);
             return Response.AsJson(result);
@@ -67,7 +67,7 @@ namespace WangShunManager.Modules.ApiModules
             var model = this.Bind<PreCardLogModel>();
             return Response.AsJson(await "http://vm.tongyun188.com:12009/PreCard"
                     .AppendPathSegment("GetPreCardLog")
-                    .PostJsonAsync(new { PreCardId = model.Id})
+                    .PostJsonAsync(model)
                     .ReceiveJson<ResponseDto<PageDataDto<PreCardLogRowDto>>>().ConfigureAwait(false));
         }
 

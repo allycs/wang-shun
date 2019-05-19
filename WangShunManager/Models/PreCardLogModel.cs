@@ -4,6 +4,6 @@
 
     public class PreCardLogModel : BasePagesModel
     {
-        public string Id { get; set; }
+        public string PreCardId { get; set; }
     }
 }
