@@ -4,7 +4,6 @@
     using Flurl.Http;
     using Nancy;
     using Nancy.ModelBinding;
-    using System;
     using System.Threading.Tasks;
     using WangShunManager.Dtos;
     using WangShunManager.Models;
@@ -14,9 +13,9 @@
         public ApiUserModule()
         {
             Get("/users", _ => GetUsersAsync());
-            Put("/users",_=>UpdateUserAsync());
-            Put("/users/{id:int}/{state:int}", p => SetUsersStateAsync((int)p.id,(int)p.state));
-            Delete("users/{id:int}",p=>DeleteUserAsync((int)p.id));
+            Put("/users", _ => UpdateUserAsync());
+            Put("/users/{id:int}/{state:int}", p => SetUsersStateAsync((int)p.id, (int)p.state));
+            Delete("users/{id:int}", p => DeleteUserAsync((int)p.id));
             Put("/users/password/{password}", p => UpdateUserPassword((string)p.password));
         }
 
@@ -24,7 +23,7 @@
         {
             var result = await "http://vm.tongyun188.com:12009/manager"
                          .AppendPathSegment("ModifyLoginPassword")
-                         .PostJsonAsync(new { NewPassword=password})
+                         .PostJsonAsync(new { NewPassword = password })
                          .ReceiveJson<ResponseDto<UserDto>>().ConfigureAwait(false);
             return Response.AsJson(result);
         }
@@ -48,7 +47,7 @@
             return Response.AsJson(result);
         }
 
-        private async Task<Response> SetUsersStateAsync(int id,int state)
+        private async Task<Response> SetUsersStateAsync(int id, int state)
         {
             var result = await "http://vm.tongyun188.com:12009/manager"
                        .AppendPathSegment("SetUser")

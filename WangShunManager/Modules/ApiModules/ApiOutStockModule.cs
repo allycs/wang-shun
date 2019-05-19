@@ -1,9 +1,9 @@
-﻿using Flurl;
-using Flurl.Http;
-using Nancy;
-using Nancy.ModelBinding;
-namespace WangShunManager.Modules.ApiModules
+﻿namespace WangShunManager.Modules.ApiModules
 {
+    using Flurl;
+    using Flurl.Http;
+    using Nancy;
+    using Nancy.ModelBinding;
     using System;
     using System.Threading.Tasks;
     using WangShunManager.Dtos;
@@ -29,7 +29,6 @@ namespace WangShunManager.Modules.ApiModules
 
         private async Task<Response> GetOutStockAsync()
         {
-            
             var model = this.Bind<OutStockModel>();
             model.ParValue = model.ParValue == -1 ? null : model.ParValue;
             model.State = model.State == -1 ? null : model.State;
@@ -39,6 +38,7 @@ namespace WangShunManager.Modules.ApiModules
                     .PostJsonAsync(model)
                     .ReceiveJson<ResponseDto<PageDataDto<OutStockRowDto>>>().ConfigureAwait(false));
         }
+
         private async Task<Response> GetOutStockLockAsync()
         {
             var model = this.Bind<OutStockLogModel>();

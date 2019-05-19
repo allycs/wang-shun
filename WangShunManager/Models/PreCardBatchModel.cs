@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace WangShunManager.Models
+﻿namespace WangShunManager.Models
 {
+    using System;
+
     public class PreCardBatchModel : BasePagesModel
     {
         public DateTime StartTime { get; set; } = DateTime.Now.AddDays(-7);

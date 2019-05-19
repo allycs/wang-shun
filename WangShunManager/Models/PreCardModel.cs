@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace WangShunManager.Models
+﻿namespace WangShunManager.Models
 {
+    using System;
+
     public class PreCardModel : BasePagesModel
     {
         public DateTime StartTime { get; set; } = new DateTime(2015, 01, 01, 0, 0, 0, 0);

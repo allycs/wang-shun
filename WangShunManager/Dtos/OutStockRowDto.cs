@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace WangShunManager.Dtos
+﻿namespace WangShunManager.Dtos
 {
+    using System;
+
     public class OutStockRowDto
     {
         public string Id { get; set; }

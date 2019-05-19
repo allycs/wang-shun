@@ -1,17 +1,13 @@
-﻿using Flurl;
-using Flurl.Http;
-using Nancy;
-using Nancy.ModelBinding;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using WangShunManager.Dtos;
-using WangShunManager.Models;
-
-namespace WangShunManager.Modules.ApiModules
+﻿namespace WangShunManager.Modules.ApiModules
 {
+    using Flurl;
+    using Flurl.Http;
+    using Nancy;
+    using Nancy.ModelBinding;
+    using System.Threading.Tasks;
+    using WangShunManager.Dtos;
+    using WangShunManager.Models;
+
     public class ApiPreCardModule : BaseModule
     {
         public ApiPreCardModule()
@@ -20,7 +16,7 @@ namespace WangShunManager.Modules.ApiModules
             Get("/pre-card-log", _ => GetPreCardLogAsync());
             Get("/pre-card-batch", _ => GetPreCardBatchAsync());
             Get("/pre-card-batch-log", _ => GetPreCardBatchLockAsync());
-            Put("/pre-card/info-state/{id:int}/{version}/{state:int}", p => SetPreCardManagedStateAsncAsync((int)p.id,(string)p.version, (int)p.state));
+            Put("/pre-card/info-state/{id:int}/{version}/{state:int}", p => SetPreCardManagedStateAsncAsync((int)p.id, (string)p.version, (int)p.state));
             Put("/pre-card/card-password", _ => UpdatePreCardCardPasswordAsync());
             Put("/pre-card-batch/info", _ => UpdatePreCardBatchInfoAsync());
         }
@@ -57,7 +53,7 @@ namespace WangShunManager.Modules.ApiModules
         {
             var result = await "http://vm.tongyun188.com:12009/PreCard"
                           .AppendPathSegment("SetManagedState")
-                          .PostJsonAsync(new { id,Version=version, ManagedState = state })
+                          .PostJsonAsync(new { id, Version = version, ManagedState = state })
                           .ReceiveJson<ResponseDto<string>>().ConfigureAwait(false);
             return Response.AsJson(result);
         }
