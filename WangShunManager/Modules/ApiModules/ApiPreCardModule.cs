@@ -17,10 +17,20 @@ namespace WangShunManager.Modules.ApiModules
         public ApiPreCardModule()
         {
             Get("/pre-card", _ => GetPreCardAsync());
-            Get("/pre-card-log", _ => GetPreCardLockAsync());
+            Get("/pre-card-log", _ => GetPreCardLogAsync());
             Get("/pre-card-batch", _ => GetPreCardBatchAsync());
+            Get("/pre-card-batch-log", _ => GetPreCardBatchLockAsync());
             Put("/pre-card/info-state/{id:int}/{version}/{state:int}", p => SetPreCardManagedStateAsncAsync((int)p.id,(string)p.version, (int)p.state));
             Put("/pre-card/card-password", _ => UpdatePreCardCardPasswordAsync());
+        }
+
+        private async Task<Response> GetPreCardBatchLockAsync()
+        {
+            var model = this.Bind<PreCardBatchLogModel>();
+            return Response.AsJson(await "http://vm.tongyun188.com:12009/PreCard"
+                    .AppendPathSegment("GetUploadBatchLog")
+                    .PostJsonAsync(new { PreCardId = model.Id })
+                    .ReceiveJson<ResponseDto<PageDataDto<PreCardBatchLogRowDto>>>().ConfigureAwait(false));
         }
 
         private async Task<Response> UpdatePreCardCardPasswordAsync()
@@ -42,13 +52,13 @@ namespace WangShunManager.Modules.ApiModules
             return Response.AsJson(result);
         }
 
-        private async Task<Response> GetPreCardLockAsync()
+        private async Task<Response> GetPreCardLogAsync()
         {
             var model = this.Bind<PreCardLogModel>();
             return Response.AsJson(await "http://vm.tongyun188.com:12009/PreCard"
                     .AppendPathSegment("GetPreCardLog")
                     .PostJsonAsync(new { PreCardId = model.Id})
-                    .ReceiveJson<ResponseDto<PageDataDto<OutStockLogRowDto>>>().ConfigureAwait(false));
+                    .ReceiveJson<ResponseDto<PageDataDto<PreCardLogRowDto>>>().ConfigureAwait(false));
         }
 
         private async Task<Response> GetPreCardAsync()

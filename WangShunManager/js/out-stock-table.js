@@ -104,7 +104,7 @@
                         '<td>' + items[i].Message + '</td>' +
                         '</tr>';
                 }
-                $('#out_stock_log_modal_table').html(tableHtml);
+                $('#log_modal_table').html(tableHtml);
                 $('#modal_total').html("第" + pageModalIndex + "页-共" + totalModal + "条");
                 CheckModalPage();
             },
