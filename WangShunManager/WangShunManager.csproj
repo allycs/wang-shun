@@ -425,6 +425,7 @@
     <Compile Include="Dtos\UserRowDto.cs" />
     <Compile Include="Models\BasePagesModel.cs" />
     <Compile Include="Models\MemberWithdrawCashAditModel.cs" />
+    <Compile Include="Models\PreCardLogModel.cs" />
     <Compile Include="Models\OutStockLogModel.cs" />
     <Compile Include="Models\OutStockModel.cs" />
     <Compile Include="Models\MemberWithdrawModel.cs" />

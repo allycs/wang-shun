@@ -43,7 +43,7 @@
                         //'<td>' + items[i].uploadBatch.inUseNum + '</td>' +
                         //'<td>' + InfoStateToString(items[i].uploadBatch.state) + '</td>' +
                         //'<td>' + items[i].uploadBatch.initialDiscount + '</td>' +
-                        '<td>' + items[i].uploadBatch.userRemark + '</td>' +
+                        //'<td>' + items[i].uploadBatch.userRemark + '</td>' +
                         //'<td>' + items[i].uploadBatch.pri + '</td>' +
                         //'<td>' + items[i].uploadBatch.cardInfos + '</td>' +
                         '<td style="text-align:center">' +
