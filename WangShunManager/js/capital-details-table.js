@@ -52,7 +52,7 @@
         userId = $('#search_user_id').val();
         type = $('#search_type option:selected').val();
         status = $('#search_status option:selected').val();
-
+        $('.alert').hide();
 
         getData(pageIndex, pageSize, startTime, endTime, userId, type, status);
     };

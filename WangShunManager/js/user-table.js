@@ -201,6 +201,7 @@
         userId = $('#search_id').val();
         loginId = $('#search_login_id').val();
         state = $('#search_state option:selected').val();
+        $('.alert').hide();
         getData(pageIndex, pageSize, userId, loginId, state);
     };
     return {

@@ -96,6 +96,20 @@ function CardStateToString(type) {
             return "？";
     }
 };
+function StockStateToString(type) {
+    switch (Number(type)) {
+        case 0:
+            return "充值中";
+        case 1:
+            return "充值成功";
+        case 2:
+            return "充值失败";
+        case 3:
+            return "未知";
+        default:
+            return "？";
+    }
+};
 function SettleStateToString(type) {
     switch (Number(type)) {
         case 0:

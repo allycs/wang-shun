@@ -60,6 +60,7 @@
         endTime = $('#search_end_time').val();
         userId = $('#search_user_id').val();
         state = $('#search_state option:selected').val();
+        $('.alert').hide();
         getData(pageIndex, pageSize, startTime, endTime, userId, state);
     };
     var cashAudit = function (id, state, settleOrderId) {

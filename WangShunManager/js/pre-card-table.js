@@ -50,8 +50,8 @@
                         '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#logModal"  onclick="Table.serviceModal(\'' + items[i].cardId + '\')">查看</button>' +
                         '<button id="pre_card_info_state_btn_' + items[i].id + '" type="button" class="btn btn-warning" style="margin-left:2px;" onclick="Table.setInfoState(\'' + items[i].id + '\',' + items[i].version + ',' + items[i].managedState + ')">' + InfoStateToString(Math.abs(items[i].managedState - 1)) + '</button>' +
 
-                    '<button id="pre_card_info_edit_' + items[i].id + '" type="button" class="btn btn-danger"data-toggle="modal" data-target="#editModal" style="margin-left:2px;"  onclick="Table.serviceEditModel(\''
-                    + items[i].id + '\',' + items[i].version + ',' + items[i].cardId+',' + items[i].cardState + ');">编辑</button>' +
+                        '<button id="pre_card_info_edit_' + items[i].id + '" type="button" class="btn btn-danger"data-toggle="modal" data-target="#editModal" style="margin-left:2px;"  onclick="Table.serviceEditModel(\''
+                        + items[i].id + '\',' + items[i].version + ',' + items[i].cardId + ',' + items[i].cardState + ');">编辑</button>' +
                         '</td>' +
                         '</tr>';
                 }
@@ -92,7 +92,7 @@
             }
         });
     };
-    var updateCardPassword = function (id, version,cardId, password, state) {
+    var updateCardPassword = function (id, version, cardId, password, state) {
         $.ajax({
             type: "PUT",
             dataType: "json",
@@ -108,7 +108,7 @@
                 $('.alert-success-edit-modal strong').html(result.message);
                 $('.alert-success-edit-modal').show();
                 $('#pre_card_card_state_' + id).html(CardStateToString(state));
-                $("#pre_card_info_edit_" + id).attr("onclick", "Table.serviceEditModel('" + id + "'," + version + "," + cardId+"," + state + "); ");
+                $("#pre_card_info_edit_" + id).attr("onclick", "Table.serviceEditModel('" + id + "'," + version + "," + cardId + "," + state + "); ");
             },
             error: function (data) {
                 $('.alert-danger-edit-modal').html("网络异常请联系管理员!");
@@ -126,7 +126,7 @@
         cardState = $('#search_card_state option:selected').val();
         managedState = $('#search_managed_state option:selected').val();
         settleState = $('#search_settle_state option:selected').val();
-
+        $('.alert').hide();
         getData(pageIndex, pageSize, startTime, endTime, batchId, cardId, cardState, managedState, settleState);
     };
     var getModalData = function (id) {
@@ -184,7 +184,7 @@
         setInfoState: function (id, version, state) {
             setInfoState(id, version, state);
         },
-        serviceEditModel: function (id, version,cardId, carState) {
+        serviceEditModel: function (id, version, cardId, carState) {
             $('.alert-danger-edit-modal').hide();
             $('.alert-success-edit-modal').hide();
             $('#pre_card_id').val(id);
@@ -199,7 +199,7 @@
             var password = $('#pre_card_card_password').val();
             var state = $('#pre_card_card_state option:selected').val();
             var cardId = $('#pre_card_card_id').val();
-            updateCardPassword(id, version, password,cardId, state);
+            updateCardPassword(id, version, password, cardId, state);
         },
         serviceModal: function (id) {
             $('.alert-danger-modal').hide();

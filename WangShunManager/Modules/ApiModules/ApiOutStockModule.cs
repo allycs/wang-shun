@@ -16,6 +16,27 @@
             Get("/out-stock", _ => GetOutStockAsync());
             Get("/out-stock-count", _ => CountOutStockAsync());
             Get("/out-stock-log", _ => GetOutStockLockAsync());
+            Put("/out-stock/remark", _ => UpdateOutStockRemarkAsync());
+            Put("/out-stock/state", _ => UpdateOutStockStateAsync());
+        }
+
+        private async Task<Response> UpdateOutStockStateAsync()
+        {
+            var model = this.Bind<UpdateOutStockInfoModel>();
+            return Response.AsJson(await "http://vm.tongyun188.com:12009/PreCardStock"
+                    .AppendPathSegment("GetPreCardStockList")
+                    .PostJsonAsync(new { Id=model.Id,Version=model.Version,StockState=model.StockState})
+                    .ReceiveJson<ResponseDto<PageDataDto<OutStockRowDto>>>().ConfigureAwait(false));
+        }
+
+        private async Task<Response> UpdateOutStockRemarkAsync()
+        {
+            var model = this.Bind<UpdateOutStockInfoModel>();
+            return Response.AsJson(await "http://vm.tongyun188.com:12009/PreCardStock"
+                   .AppendPathSegment("SetRemark")
+                   .PostJsonAsync(new { Id = model.Id, Version = model.Version,Remark=model.Remark })
+                   .ReceiveJson<ResponseDto<string>>().ConfigureAwait(false));
+
         }
 
         private async Task<Response> CountOutStockAsync()

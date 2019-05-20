@@ -446,6 +446,7 @@
     <Compile Include="Models\SalesModel.cs" />
     <Compile Include="Models\CapitalDetailsModel.cs" />
     <Compile Include="Models\InsertSaleCustomerModel.cs" />
+    <Compile Include="Models\UpdateOutStockInfoModel.cs" />
     <Compile Include="Models\UpdatePreCardBatchInfoModel.cs" />
     <Compile Include="Models\UpdateSaleCustomerModel.cs" />
     <Compile Include="Models\UpdatePreCardCardPasswordModel.cs" />

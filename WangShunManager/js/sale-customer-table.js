@@ -141,6 +141,7 @@
         //parValue = $('#search_par_value').val();
         parValue = $('#search_par_value option:selected').val();
         state = $('#search_state option:selected').val();
+        $('.alert').hide();
         getData(pageIndex, pageSize,userId, "" + productName + "", categoryId, parValue, state);
     };
     var del_sales_customer = function (id) {

@@ -21,5 +21,6 @@
         public string Location { get; set; }
         public int? IspType { get; set; }
         public string PreCardId { get; set; }
+        public string Version { get; set; }
     }
 }

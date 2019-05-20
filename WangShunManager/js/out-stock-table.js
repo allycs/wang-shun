@@ -19,6 +19,7 @@
                     $('.alert-main').show();
                     return;
                 }
+                console.log(result);
                 var length = result.data.rows.length;
                 var items = result.data.rows;
                 total = result.data.total;
@@ -39,12 +40,14 @@
                         '<td>' + items[i].userId + '</td>' +
                         '<td>' + new Date(items[i].createTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
                         '<td>' + new Date(items[i].completeTime).Format("yyyy/MM/dd hh:mm:ss") + '</td>' +
-                        '<td>' + CardStateToString(items[i].state) + '</td>' +
+                        '<td>' + StockStateToString(items[i].state) + '</td>' +
                         //'<td>' + items[i].notifyUrlId + '</td>' +
                         //'<td>' + items[i].productId + '</td>' +
                         '<td>' + items[i].remark + '</td>' +
                         '<td>' +
                         '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#logModal"  onclick="Table.serviceModal(' + items[i].id + ')">查看</button>' +
+                        '<button id="out_stock_info_edit_' + items[i].id + '" type="button" class="btn btn-danger"data-toggle="modal" data-target="#editModal" style="margin-left:2px;"  onclick="Table.serviceEditModel(\''
+                        + items[i].id + '\',' + items[i].version + ',' + items[i].preCardId + ',\'' + items[i].remark + '\',' + items[i].state + ');">编辑</button>' +
                         '</td>' +
                         '</tr>';
                 }
@@ -55,6 +58,54 @@
             error: function (data) {
                 $('.alert-main').html("网络异常请联系管理员!");
                 $('.alert-main').show();
+                return;
+            }
+        });
+    };
+    var updateOutStockInfo = function (id, version, preCardId, remark, state) {
+        $.ajax({
+            type: "PUT",
+            dataType: "json",
+            url: "/out-stock/remark",
+            data: { Id: id, Version: version, Remark: remark, StockState: state },
+            success: function (result) {
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert-danger-edit-modal strong').html(result.message + "!");
+                    $('.alert-danger-edit-modal').show();
+                    return;
+                }
+                $('.alert-success-edit-modal strong').html(result.message);
+                $('.alert-success-edit-modal').show();
+                $('#out_stock_state' + id).html(StockStateToString(state));
+                $("#out_stock_info_edit_" + id).attr("onclick", "Table.serviceEditModel('" + id + "'," + version + "," + preCardId + "," + remark + "," + state + "); ");
+            },
+            error: function (data) {
+                $('.alert-danger-edit-modal').html("网络异常请联系管理员!");
+                $('.alert-danger-edit-modal').show();
+                return;
+            }
+        });
+        $.ajax({
+            type: "PUT",
+            dataType: "json",
+            url: "/out-stock/remark",
+            data: { Id: id, Version: version, Remark: remark, StockState: state },
+            success: function (result) {
+                if (result.state != 0) {
+                    if (result.message == '请重新登录') { window.location.href = '/login'; }
+                    $('.alert-danger-edit-modal strong').html(result.message + "!");
+                    $('.alert-danger-edit-modal').show();
+                    return;
+                }
+                $('.alert-success-edit-modal strong').html(result.message);
+                $('.alert-success-edit-modal').show();
+                $('#out_stock_state' + id).html(StockStateToString(state));
+                $("#out_stock_info_edit_" + id).attr("onclick", "Table.serviceEditModel('" + id + "'," + version + "," + preCardId + "," + remark + "," + state + "); ");
+            },
+            error: function (data) {
+                $('.alert-danger-edit-modal').html("网络异常请联系管理员!");
+                $('.alert-danger-edit-modal').show();
                 return;
             }
         });
@@ -73,6 +124,7 @@
         channelId = $('#search_channel_id').val();
         qCellCore = $('#search_location').val();
         preCardId = $('#search_pre_card_id').val();
+        $('.alert').hide();
         getData(pageIndex, pageSize, startTime, endTime, id, userId, userOrderId, account, parValue, state, categoryId, channelId, qCellCore, preCardId);
     };
     var getModalData = function (id) {
@@ -125,6 +177,23 @@
         },
         search: function () {
             search();
+        },
+        serviceEditModel: function (id, version, preCardId,remark, stockState) {
+            $('.alert-danger-edit-modal').hide();
+            $('.alert-success-edit-modal').hide();
+            $('#out_stock_id').val(id);
+            $('#out_stock_version').val(version);
+            $('#out_stock_pre_card_id').val(preCardId);
+            $('#out_stock_remark').val(remark);
+            $('#out_stock_state').val(stockState);
+        },
+        updateOutStockInfo: function () {
+            var id = $('#out_stock_id').val();
+            var version = $('#out_stock_version').val();
+            var preCardId = $('#out_stock_pre_card_id').val();
+            var state = $('#out_stock_state option:selected').val();
+            var remark = $('#out_stock_remark').val();
+            updateOutStockInfo(id, version, preCardId, remark, state);
         },
         serviceModal: function (id) {
             $('.alert-danger-modal').hide();
