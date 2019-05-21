@@ -6,6 +6,7 @@
     {
         public DateTime StartTime { get; set; } = DateTime.Now.AddDays(-7);
         public DateTime EndTime { get; set; } = DateTime.Now;
+        public string Id { get; set; }
         public int? UserId { get; set; }
         public string UserOrderId { get; set; }
         public string Account { get; set; }

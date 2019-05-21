@@ -1,10 +1,10 @@
 ﻿var Table = function () {
-    var getData = function (pageIndex, pageSize, userId,productName, categoryId, parValue, state) {
+    var getData = function (pageIndex, pageSize, userId, productName, categoryId, parValue, state) {
         $.ajax({
             type: "GET",
             dataType: "json",
             url: "/sales-customer",
-            data: { PageIndex: pageIndex, PageSize: pageSize,UserId:userId, ProductName: productName, CategoryId: categoryId, ParValue: parValue, State: state },
+            data: { PageIndex: pageIndex, PageSize: pageSize, UserId: userId, ProductName: productName, CategoryId: categoryId, ParValue: parValue, State: state },
             success: function (result) {
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
@@ -17,6 +17,8 @@
                 total = result.data.total;
                 var tableHtml = '';
                 for (i = 0; i < length; i++) {
+                    console.log(items[i].isDel);
+                    console.log(!items[i].isDel);
                     tableHtml +=
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
@@ -36,8 +38,8 @@
                         '<td style="text-align:center;">' +
                         //'<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="Table.get_insert_modal();">新增</button>' +
                         '<button id="sale_service_btn_' + items[i].id + '" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" style="margin-left:2px;" onclick="Table.service('
-                    + items[i].id + ','
-                    + items[i].userId + ',\''
+                        + items[i].id + ','
+                        + items[i].userId + ',\''
                         + items[i].product.id + '\',\''
                         + items[i].product.productName + '\','
                         + items[i].product.categoryId + ','
@@ -64,7 +66,7 @@
             }
         });
     };
-    var service = function (id, userId,productId, productName, productCategoryId, productParValue, maxPrice, minPrice, remark) {
+    var service = function (id, userId, productId, productName, productCategoryId, productParValue, maxPrice, minPrice, remark) {
         $('.alert-danger-modal').hide();
         $('.alert-success-modal').hide();
         $('#sale_id').val(id);
@@ -135,6 +137,8 @@
         getData(pageIndex, pageSize);
     };
     var search = function () {
+
+        $('.alert-main').hide();
         userId = $('#search_user_id').val();
         productName = $('#search_product_name').val();
         categoryId = $('#search_categoryId option:selected').val();
@@ -142,7 +146,7 @@
         parValue = $('#search_par_value option:selected').val();
         state = $('#search_state option:selected').val();
         $('.alert').hide();
-        getData(pageIndex, pageSize,userId, "" + productName + "", categoryId, parValue, state);
+        getData(pageIndex, pageSize, userId, "" + productName + "", categoryId, parValue, state);
     };
     var del_sales_customer = function (id) {
         $.ajax({

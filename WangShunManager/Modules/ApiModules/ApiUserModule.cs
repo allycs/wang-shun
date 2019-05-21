@@ -32,7 +32,7 @@
         {
             var model = this.Bind<UpdateUserModel>();
             var result = await "http://vm.tongyun188.com:12009/manager"
-                         .AppendPathSegment("DeleteUser")
+                         .AppendPathSegment("editUser")
                          .PostJsonAsync(model)
                          .ReceiveJson<ResponseDto<UserDto>>().ConfigureAwait(false);
             return Response.AsJson(result);

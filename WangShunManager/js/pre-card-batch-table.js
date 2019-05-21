@@ -63,8 +63,8 @@
                         '<td><input id="pre_card_batch_pri_' + items[i].id + '" type="number" class="form-control" placeholder="优先级" value="' + items[i].pri + '"></td>' +
 
                         //'<td>' + items[i].userRemark + '</td>' +
-                        '<td><input id="pre_card_batch_user_remark_' + items[i].id + '" type="text" class="form-control" placeholder="备注" value="' + items[i].userRemark + '"></td>' +
-
+                        //改为下面//'<td><input id="pre_card_batch_user_remark_' + items[i].id + '" type="text" class="form-control" placeholder="备注" value="' + items[i].userRemark + '"></td>' +
+                        '<td><input id="pre_card_batch_user_remark_' + items[i].id + '" type="text" class="form-control" placeholder="备注" value="' + items[i].adminRemark + '"></td>' +
                         //'<td>' + items[i].productId + '</td>' +
                         //'<td>' + items[i].initialDiscount + '</td>' +
                         //'<td>' + items[i].cardInfos + '</td>' +
@@ -87,6 +87,7 @@
         });
     };
     var search = function () {
+        $('.alert-main').hide();
         startTime = $('#search_start_time').val();
         endTime = $('#search_end_time').val();
         batchId = $('#search_batch_id').val();
@@ -103,7 +104,6 @@
         discount = $('#pre_card_batch_current_discount_' + id).val();
         pri = $('#pre_card_batch_pri_' + id).val();
         remark = $('#pre_card_batch_user_remark_' + id).val();
-        console.log(id);
         $.ajax({
             type: "PUT",
             dataType: "json",
@@ -116,10 +116,11 @@
                     $('.alert-main').show();
                     return;
                 }
+                console.log(result)
                 $("#pre_card_batch_btn_update_" + id).popover("show");
                 setTimeout(function () {
                     $("#pre_card_batch_btn_update_" + id).popover("hide");
-                }, 100);
+                }, 900);
             },
             error: function (data) {
                 $('.alert-main').html("网络异常请联系管理员!");

@@ -33,12 +33,13 @@
                         '<td>' + dealTime + '</td>' +
                         '<td><input id="member_withdraw_settle_order_id_' + items[i].id + '" type="text" class="form-control" placeholder="结算流水" value="' + items[i].settleOrderId + '"></td>' +
                         '<td id="member_withdraw_state_' + items[i].id + '">' + MemberWithdarwStateToString(items[i].state) + '</td>' +
-                        '<td>' + items[i].remark + '</td>' +
+                        //'<td>' + items[i].remark + '</td>' +
+                        '<td>' + items[i].auditor + '</td>' +
                         '<td style="text-align:center;">';
                     if (items[i].state == 0)
                         tableHtml +=
                             '<button class="btn btn-success member_withdarw_cash_audit_btn_' + items[i].id + '" onclick="Table.cashAudit(' + items[i].id + ',1,' + items[i].settleOrderId + ')">成功</button>' +
-                        '<button type="button" class="btn btn-warning member_withdarw_cash_audit_btn_' + items[i].id + '" style="margin-left:2px;" onclick="Table.cashAudit(' + items[i].id + ',2,' + items[i].settleOrderId + ')">失败</button>';
+                            '<button type="button" class="btn btn-warning member_withdarw_cash_audit_btn_' + items[i].id + '" style="margin-left:2px;" onclick="Table.cashAudit(' + items[i].id + ',2,' + items[i].settleOrderId + ')">失败</button>';
 
                     tableHtml +=
                         '</td>' +
@@ -56,6 +57,7 @@
         });
     };
     var search = function () {
+        $('.alert-main').hide();
         startTime = $('#search_start_time').val();
         endTime = $('#search_end_time').val();
         userId = $('#search_user_id').val();

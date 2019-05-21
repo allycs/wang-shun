@@ -75,63 +75,6 @@
             model.ParValue = model.ParValue == -1 ? null : model.ParValue;
             model.CategoryId = model.CategoryId == -1 ? null : model.CategoryId;
             model.State = model.State == -1 ? null : model.State;
-            if (model.CategoryId == null && model.ParValue == null && model.State == null)
-            {
-                var result = await "http://vm.tongyun188.com:12009/ProductSale"
-                      .AppendPathSegment("GetDefaultProductSaleList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize })
-                      .ReceiveJson<ResponseDto<PageDataDto<SaleRowDto>>>().ConfigureAwait(false);
-                return Response.AsJson(result);
-            }
-            if (model.CategoryId == null && model.ParValue == null)
-            {
-                var result = await "http://vm.tongyun188.com:12009/ProductSale"
-                   .AppendPathSegment("GetDefaultProductSaleList")
-                   .PostJsonAsync(new { model.PageIndex, model.PageSize, model.State })
-                   .ReceiveJson<ResponseDto<PageDataDto<SaleRowDto>>>().ConfigureAwait(false);
-                return Response.AsJson(result);
-            }
-            if (model.CategoryId == null && model.State == null)
-            {
-                var result = await "http://vm.tongyun188.com:12009/ProductSale"
-                  .AppendPathSegment("GetDefaultProductSaleList")
-                  .PostJsonAsync(new { model.PageIndex, model.PageSize, model.ParValue })
-                  .ReceiveJson<ResponseDto<PageDataDto<SaleRowDto>>>().ConfigureAwait(false);
-                return Response.AsJson(result);
-            }
-            if (model.ParValue == null && model.State == null)
-            {
-                var result = await "http://vm.tongyun188.com:12009/ProductSale"
-                  .AppendPathSegment("GetDefaultProductSaleList")
-                  .PostJsonAsync(new { model.PageIndex, model.PageSize, model.CategoryId })
-                  .ReceiveJson<ResponseDto<PageDataDto<SaleRowDto>>>().ConfigureAwait(false);
-                return Response.AsJson(result);
-            }
-            if (model.CategoryId == null)
-            {
-                var result = await "http://vm.tongyun188.com:12009/ProductSale"
-                      .AppendPathSegment("GetDefaultProductSaleList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.ParValue, model.State })
-                      .ReceiveJson<ResponseDto<PageDataDto<SaleRowDto>>>().ConfigureAwait(false);
-                return Response.AsJson(result);
-            }
-            if (model.State == null)
-            {
-                var result = await "http://vm.tongyun188.com:12009/ProductSale"
-                      .AppendPathSegment("GetDefaultProductSaleList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.ParValue, model.CategoryId })
-                      .ReceiveJson<ResponseDto<PageDataDto<SaleRowDto>>>().ConfigureAwait(false);
-                return Response.AsJson(result);
-            }
-            if (model.ParValue == null)
-            {
-                var result = await "http://vm.tongyun188.com:12009/ProductSale"
-                      .AppendPathSegment("GetDefaultProductSaleList")
-                      .PostJsonAsync(new { model.PageIndex, model.PageSize, model.State, model.CategoryId })
-                      .ReceiveJson<ResponseDto<PageDataDto<SaleRowDto>>>().ConfigureAwait(false);
-                return Response.AsJson(result);
-            }
-
             return Response.AsJson(await "http://vm.tongyun188.com:12009/ProductSale"
                     .AppendPathSegment("GetDefaultProductSaleList")
                     .PostJsonAsync(model)

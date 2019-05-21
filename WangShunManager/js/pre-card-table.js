@@ -1,6 +1,6 @@
 ﻿var Table = function () {
     var handle = function () {
-        getData(pageIndex, pageSize);
+        getData(pageIndex, pageSize, startTime, endTime);
     };
     var getData = function (pageIndex, pageSize, startTime, endTime, batchId, cardId, cardState, managedState, settleState) {
         $.ajax({
@@ -82,7 +82,7 @@
                 }
 
                 $('#pre_card_info_state_' + id).html(InfoStateToString(state));
-                $("#pre_card_info_state_btn_" + id).attr("onclick", "Table.setInfoState(" + id + "," + state + ");");
+                $("#pre_card_info_state_btn_" + id).attr("onclick", "Table.setInfoState(" + id + "," + version + "," + state + ");");
                 $("#pre_card_info_state_btn_" + id).html(InfoStateToString(Math.abs(state - 1)));
             },
             error: function (data) {
@@ -118,6 +118,8 @@
         });
     };
     var search = function () {
+
+        $('.alert-main').hide();
         startTime = $('#search_start_time').val();
         endTime = $('#search_end_time').val();
         batchId = $('#search_batch_id').val();
@@ -127,6 +129,7 @@
         managedState = $('#search_managed_state option:selected').val();
         settleState = $('#search_settle_state option:selected').val();
         $('.alert').hide();
+
         getData(pageIndex, pageSize, startTime, endTime, batchId, cardId, cardState, managedState, settleState);
     };
     var getModalData = function (id) {

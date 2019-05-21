@@ -63,6 +63,7 @@
         });
     };
     var updateOutStockInfo = function (id, version, preCardId, remark, state) {
+        console.log("Version:" + version);
         $.ajax({
             type: "PUT",
             dataType: "json",

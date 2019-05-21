@@ -26,8 +26,8 @@
                         '<td>' + ProductCategoryToString(items[i].product.categoryId) + '</td>' +
                         '<td>' + items[i].product.parValue + '</td>' +
                         '<td id="sale_max_price_' + items[i].id + '">' + items[i].maxPrice + '</td>' +
-                    '<td id="sale_min_price_' + items[i].id + '">' + items[i].minPrice + '</td>' +
-                    '<td>' + InfoStateToString(items[i].product.state) + '</td>' +
+                        '<td id="sale_min_price_' + items[i].id + '">' + items[i].minPrice + '</td>' +
+                        '<td>' + InfoStateToString(items[i].product.state) + '</td>' +
                         '<td id="sale_remark_' + items[i].id + '">' + items[i].remark + '</td>' +
                         '<td style="text-align:center">' +
                         '<button id="sale_service_btn_' + items[i].id + '" type="button" class="btn btn-warning"data-toggle="modal" data-target="#myModal" onclick="Table.service('

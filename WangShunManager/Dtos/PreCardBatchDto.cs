@@ -19,6 +19,7 @@
         public decimal InitialDiscount { get; set; }
         public decimal CurrentDiscount { get; set; }
         public string UserRemark { get; set; }
+        public string AdminRemark { get; set; }
         public int Pri { get; set; }
         public int ProductCategory { get; set; }
         public string CardInfos { get; set; }
