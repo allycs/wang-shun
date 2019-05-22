@@ -17,8 +17,6 @@
                 total = result.data.total;
                 var tableHtml = '';
                 for (i = 0; i < length; i++) {
-                    console.log(items[i].isDel);
-                    console.log(!items[i].isDel);
                     tableHtml +=
                         '<tr>' +
                         '<td>' + items[i].id + '</td>' +
@@ -173,57 +171,63 @@
         });
     };
     var get_insert_modal = function () {
-        $('.alert-danger-modal').hide();
-        $('.alert-success-modal').hide();
-        $('#sale_id').val("");
-        $('#sale_product_id').val("");
-        $('#sale_product_name').val("");
-        //$('#sale_product_category_id').val("");
-        $('#sale_product_par_value').val("");
-        $('#sale_max_price').val("");
-        $('#sale_min_price').val("");
-        $('#sale_user_id').val("");
-        $('#sale_remark').val("");
-        $("#modal_sale_customer_primary_btn").attr("onclick", "Table.new_item();");
+        $('.alert-danger-new-modal').hide();
+        $('.alert-success-new-modal').hide();
 
-        $("#sale_product_category_id").find("option[value='-1']").attr("selected", true);
+        $("#sale_product_category_id_new").find("option[value='-1']").attr("selected", true);
+        $('#sale_product_par_value_new').val("");
+        $('#sale_max_price_new').val("");
+        $('#sale_min_price_new').val("");
+        $('#sale_remark_new').val("");
 
-        $('#sale_product_category_id').attr("disabled", false);
-        $('#sale_product_par_value').attr("disabled", false);
-        //$('#sale_product_category_id').removeAttr("disabled")
-        //$('#sale_product_par_value').removeAttr("disabled")
+        //$('#sale_id').val("");
+        //$('#sale_product_id').val("");
+        //$('#sale_product_name').val("");
+        ////$('#sale_product_category_id').val("");
+        //$('#sale_product_par_value').val("");
+        //$('#sale_max_price').val("");
+        //$('#sale_min_price').val("");
+        //$('#sale_user_id').val("");
+        //$('#sale_remark').val("");
+        //$("#modal_sale_customer_primary_btn").attr("onclick", "Table.new_item();");
+
+
+        //$('#sale_product_category_id').attr("disabled", false);
+        //$('#sale_product_par_value').attr("disabled", false);
+        ////$('#sale_product_category_id').removeAttr("disabled")
+        ////$('#sale_product_par_value').removeAttr("disabled")
     };
     var new_item = function () {
-        $('.alert-danger-modal').hide();
-        $('.alert-success-modal').hide();
+        $('.alert-danger-new-modal').hide();
+        $('.alert-success-new-modal').hide();
         if (localStorage.UserInfo == undefined)
             window.location.href = '/login';
 
-        var saleMaxPrice = $('#sale_max_price').val();
-        var saleMinPrice = $('#sale_min_price').val();
-        var saleRemark = $('#sale_remark').val();
-        var productCategoryId = $('#sale_product_category_id option:selected').val();
-        var parductParValue = $('#sale_product_par_value').val();
+        var saleMaxPrice = $('#sale_max_price_new').val();
+        var saleMinPrice = $('#sale_min_price_new').val();
+        var saleRemark = $('#sale_remark_new').val();
+        var productCategoryId = $('#sale_product_category_id_new option:selected').val();
+        var parductParValue = $('#sale_product_par_value_new').val();
         var userInfo = JSON.parse(localStorage.UserInfo)
         $.ajax({
             type: "POST",
             dataType: "json",
             url: "/sales-customer",
-            data: { Id: userInfo.id, CategoryId: productCategoryId, ParValue: parductParValue, maxPrice: saleMaxPrice, minPrice: saleMinPrice, Remark: saleRemark },
+            data: { UserId: userInfo.id, CategoryId: productCategoryId, ParValue: parductParValue, maxPrice: saleMaxPrice, minPrice: saleMinPrice, Remark: saleRemark },
             success: function (result) {
                 if (result.state != 0) {
                     if (result.message == '请重新登录') { window.location.href = '/login'; }
-                    $('.alert-danger-modal strong').html(result.message + "!");
-                    $('.alert-danger-modal').show();
+                    $('.alert-danger-new-modal strong').html(result.message + "!");
+                    $('.alert-danger-new-modal').show();
                     return;
                 }
-                $('.alert-success-modal strong').html(result.message);
-                $('.alert-success-modal').show();
+                $('.alert-success-new-modal strong').html(result.message);
+                $('.alert-success-new-modal').show();
 
             },
             error: function (data) {
-                $('.alert-danger-modal').html("网络异常请联系管理员!");
-                $('.alert-danger-modal').show();
+                $('.alert-danger-new-modal').html("网络异常请联系管理员!");
+                $('.alert-danger-new-modal').show();
                 return;
             }
         });
