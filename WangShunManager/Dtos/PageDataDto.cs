@@ -1,4 +1,6 @@
-﻿namespace WangShunManager.Dtos
+﻿using System.Collections.Generic;
+
+namespace WangShunManager.Dtos
 {
     public class PageDataDto<T>
     {
@@ -6,6 +8,6 @@
         public int Page { get; set; }
         public int Total { get; set; }
         public int PageSize { get; set; }
-        public T[] Rows { get; set; }
+        public List<T> Rows { get; set; }
     }
 }

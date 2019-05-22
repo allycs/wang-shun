@@ -11,7 +11,7 @@
         public string Email { get; set; }
         public string AccountManager { get; set; }
         public string Remark { get; set; }
-        public bool IsDel { get; set; }
+        public bool IsDel { get; set; } = false;
         public int UserInfoState { get; set; }
     }
 }

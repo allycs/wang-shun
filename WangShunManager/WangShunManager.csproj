@@ -413,6 +413,7 @@
     <Compile Include="Bootstrapper.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Dtos\NewUserRowDto.cs" />
     <Compile Include="Dtos\PreCardBatchLogRowDto.cs" />
     <Compile Include="Dtos\PreCardLogRowDto.cs" />
     <Compile Include="Dtos\PreCardBatchDto.cs" />
